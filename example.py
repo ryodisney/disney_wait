@@ -1,11 +1,12 @@
 
 from richmenu import RichMenu, RichMenuManager
+import os
 
 
 
 # Setup RichMenuManager
 
-channel_access_token = "YOUR_CHANNEL_ACCESS_TOKEN"
+channel_access_token = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 
 rmm = RichMenuManager(channel_access_token)
 
