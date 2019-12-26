@@ -59,6 +59,9 @@ def response_message(event):
 
 
 def handle_message(event):
+    if event.reply_token == "00000000000000000000000000000000":
+        return
+    
     text=event.message.text
     if text == 'あ':
         confirm_template = ConfirmTemplate(text='Do it?', actions=[
