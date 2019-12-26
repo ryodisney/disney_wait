@@ -68,12 +68,12 @@ def handle_message(event):
         template_message = TemplateSendMessage(
             alt_text='Confirm alt text', template=confirm_template)
         line_bot_api.reply_message(event.reply_token, template_message)
-    else:
+    elif text == 'い':
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
-    
-    response_message(event)
+    else:
+        response_message(event)
 
 
 if __name__ == "__main__":
