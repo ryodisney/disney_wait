@@ -45,6 +45,15 @@ def callback():
 基本的にはここから下が
 """
 @handler.add(MessageEvent, message=TextMessage)
+def response_message(event):
+    language_list = ["Ruby", "Python", "PHP", "Java", "C"]
+
+    items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
+
+    messages = TextSendMessage(text="どの言語が好きですか？",
+                            quick_reply=QuickReply(items=items))
+
+    line_bot_api.reply_message(event.reply_token, messages=messages)
 
 def handle_message(event):
      
@@ -62,15 +71,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
 
-def response_message(event):
-    language_list = ["Ruby", "Python", "PHP", "Java", "C"]
 
-    items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
-
-    messages = TextSendMessage(text="どの言語が好きですか？",
-                            quick_reply=QuickReply(items=items))
-
-    line_bot_api.reply_message(event.reply_token, messages=messages)
 
 if __name__ == "__main__":
 #    app.run()
