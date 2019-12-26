@@ -56,7 +56,7 @@ print(user_id  + ":" + res["richMenuId"])
 
 # res = rmm.get_list()
 
-# rmm.download_image(richmenu_id, "/path/to/downloaded_image.png")
+rmm.download_image(richmenu_id, "/path/to/downloaded_image.png")
 
 # res = rmm.detach(user_id)
 
