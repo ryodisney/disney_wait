@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-import os
+import os,json
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -73,7 +73,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     else:
-        response_message(event)
+        quick = json.load(open('test.json'))
 
 
 if __name__ == "__main__":
