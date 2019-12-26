@@ -50,7 +50,7 @@ rmm.apply(user_id, richmenu_id)
 
 res = rmm.get_applied_menu(user_id)
 
-print(user_id  + ":" + res["richMenuId"])
+#print(user_id  + ":" + res["richMenuId"])
 
 f.close()
 
