@@ -44,7 +44,7 @@ def callback():
 """
 基本的にはここから下が
 """
-@handler.add(MessageEvent, message=TextMessage)
+
 def response_message(event):
     language_list = ["Ruby", "Python", "PHP", "Java", "C"]
 
@@ -55,8 +55,10 @@ def response_message(event):
 
     line_bot_api.reply_message(event.reply_token, messages=messages)
 
+@handler.add(MessageEvent, message=TextMessage)
+
+
 def handle_message(event):
-     
     text=event.message.text
     if text == 'あ':
         confirm_template = ConfirmTemplate(text='Do it?', actions=[
@@ -70,7 +72,8 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
-
+    
+    response_message(event)
 
 
 if __name__ == "__main__":
