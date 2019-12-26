@@ -9,16 +9,24 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+import config, lineapphandl, richmenu
 import os
+
 
 app = Flask(__name__)
 
-#環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+YOUR_CHANNEL_SECRET = config.YOUR_CHANNEL_SECRET
+YOUR_CHANNEL_ACCESS_TOKEN = config.YOUR_CHANNEL_ACCESS_TOKEN
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+# check for existing richmenu
+rich_menu_list = line_bot_api.get_rich_menu_list()
+if not rich_menu_list:
+    result = richmenu.createRichmeu()
+    if not result:
+        reply.reply_message(event, config.FAILED)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -27,42 +35,21 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    #app.logger.info("Request body: " + body)
+    app.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        print("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
 
     return 'OK'
 
-"""
-ここまでがLINEbotの設定部分なのでいじらなくてよい
-ここから下が実装部分
-"""
-from CreateRichmenu import createRichmenu
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.reply_token == "00000000000000000000000000000000":
-        return
-    
-    """
-    この下にスクレイピング関連を書く
-    word = event.message.text これはlineで入力された文字
-    result = sc.getNews(word)
-    """
+    lineapphandl.TextMessage(event)
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
-        #text = の右辺を書き換えればよい
-    
-    createRichmenu()
-
-
-if __name__ == "__main__":
-    #app.run()
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    app.run()
