@@ -37,15 +37,27 @@ def callback():
 
     return 'OK'
 
+"""
+ここまでがLINEbotの設定部分なのでいじらなくてよい
+ここから下が実装部分
+"""
+from CreateRichmenu import createRichmenu
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.reply_token == "00000000000000000000000000000000":
         return
+    
+    """
+    この下にスクレイピング関連を書く
+    word = event.message.text これはlineで入力された文字
+    result = sc.getNews(word)
+    """
 
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
+        #text = の右辺を書き換えればよい
 
 
 if __name__ == "__main__":
