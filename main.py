@@ -58,6 +58,8 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text))
         #text = の右辺を書き換えればよい
+    
+    createRichmenu()
 
 
 if __name__ == "__main__":
