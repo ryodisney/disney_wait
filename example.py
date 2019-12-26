@@ -2,6 +2,7 @@
 from richmenu import RichMenu, RichMenuManager
 import os
 
+f = open('log.txt', 'w')
 
 
 # Setup RichMenuManager
@@ -27,8 +28,9 @@ rm.add_area(1250, 843, 1250, 843, "postback", ["data3=from_richmenu_with&data4=m
 
 
 # Register
+f.write("here")
 
-res = rmm.register(rm, "photo/park.png")
+res = rmm.register(rm, "C:/Users/ryo/Desktop/programm/line_bot/photo/park.png")
 
 richmenu_id = res["richMenuId"]
 
@@ -50,7 +52,7 @@ res = rmm.get_applied_menu(user_id)
 
 print(user_id  + ":" + res["richMenuId"])
 
-
+f.close()
 
 # # Others
 
