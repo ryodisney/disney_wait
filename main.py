@@ -73,7 +73,8 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     else:
-        quick = json.load(open('test.json'))
+        temp = open('test.json',r)
+        quick = json.load(temp)
 
 
 if __name__ == "__main__":
