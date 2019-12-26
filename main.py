@@ -55,29 +55,6 @@ def response_message(event):
 
     line_bot_api.reply_message(event.reply_token, messages=messages)
 
-@handler.add(MessageEvent, message=TextMessage)
-
-
-def handle_message(event):
-    if event.reply_token == "00000000000000000000000000000000":
-        return
-    
-    text=event.message.text
-    if text == 'あ':
-        confirm_template = ConfirmTemplate(text='Do it?', actions=[
-            MessageAction(label='Yes', text='Yes!'),
-            MessageAction(label='No', text='No!'),
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='Confirm alt text', template=confirm_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
-    elif text == 'い':
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
-    else:
-        response_message(event)
-
 def createRichmenu():
     rich_menu_to_create = RichMenu(
         size=RichMenuSize(width=2500, height=843),
@@ -97,6 +74,30 @@ def createRichmenu():
         line_bot_api.set_rich_menu_image(rich_menu_id, "image/jpeg", f)
 
     line_bot_api.set_default_rich_menu(rich_menu_id)
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    if event.reply_token == "00000000000000000000000000000000":
+        return
+    
+    text=event.message.text
+    if text == 'あ':
+        confirm_template = ConfirmTemplate(text='Do it?', actions=[
+            MessageAction(label='Yes', text='Yes!'),
+            MessageAction(label='No', text='No!'),
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='Confirm alt text', template=confirm_template)
+        line_bot_api.reply_message(event.reply_token, template_message)
+    elif text == 'い':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text))
+    elif text == 'う':
+        response_message(event)
+    else:
+        createRichmenu()
+
 
 if __name__ == "__main__":
 #    app.run()
