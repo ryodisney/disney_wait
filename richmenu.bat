@@ -1,5 +1,5 @@
  curl -v -X POST https://api.line.me/v2/bot/richmenu \
-  -H 'Authorization: Bearer YOUR_LINE_CHANNEL_ACCESS_TOKEN' \
+  -H 'Authorization: Bearer sQnlvjuuGYHPpNBWK3bt6AE7klRenxYbmX3EdO3RSMME1nq8EYVfdZ/zzygP43wkWSZ2v00tYlf34GNzkeC+q69tKKOjm/LBU6LVxCBeSgsTz86KNTp3+A2syT4QFeC7OwjfE/s5HEubwoZ4uzSkCAdB04t89/1O/w1cDnyilFU=' \
   -H 'Content-Type:application/json' \
   -d \
   '{
