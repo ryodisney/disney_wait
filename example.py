@@ -28,7 +28,7 @@ rm.add_area(1250, 843, 1250, 843, "postback", ["data3=from_richmenu_with&data4=m
 
 # Register
 
-res = rmm.register(rm, "/photo/park.png")
+res = rmm.register(rm, "photo/park.png")
 
 richmenu_id = res["richMenuId"]
 
