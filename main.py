@@ -45,23 +45,6 @@ def callback():
 基本的にはここから下が
 """
 @handler.add(MessageEvent, message=TextMessage)
-"""
-def handle_message(event):
-     
-    text=event.message.text
-    if text == 'あ':
-        confirm_template = ConfirmTemplate(text='Do it?', actions=[
-            MessageAction(label='Yes', text='Yes!'),
-            MessageAction(label='No', text='No!'),
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='Confirm alt text', template=confirm_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
-"""
 
 def response_message(event):
     language_list = ["Ruby", "Python", "PHP", "Java", "C"]
