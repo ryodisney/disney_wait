@@ -55,7 +55,7 @@ def response_message(event):
 
     line_bot_api.reply_message(event.reply_token, messages=messages)
 
-def createRichmenu():
+def createRichmenu(event):
     rich_menu_to_create = RichMenu(
         size=RichMenuSize(width=2500, height=843),
         selected=False,
@@ -96,7 +96,7 @@ def handle_message(event):
     elif text == 'う':
         response_message(event)
     else:
-        createRichmenu()
+        createRichmenu(event)
 
 
 if __name__ == "__main__":
