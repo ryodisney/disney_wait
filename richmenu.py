@@ -1,4 +1,16 @@
-def createRichmenu():
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds, MessageAction, PostbackTemplateAction
+)
+#import randomchat.config
+
+
+def createRichmenu(line_bot_api):
     result = False
     try:
         # define a new richmenu
@@ -10,18 +22,19 @@ def createRichmenu():
             areas=[
                 RichMenuArea(
                     bounds=RichMenuBounds(x=0, y=0, width=480, height=405),
-                    action=MessageAction(text=config.REMOVE)
+                    action=MessageAction(text='REMOVE')
                 ),
                 RichMenuArea(
                     bounds=RichMenuBounds(x=480, y=0, width=720, height=405),
-                    action=MessageAction(text=config.NEXT)
+                    action=MessageAction(text='NEXT')
                 )
             ]
         )
         richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
 
         # upload an image for rich menu
-        path = 'image path for richmenu'
+        image = 'richmenu.jpg'
+        path = '/home/web/randomchat/' + image
 
         with open(path, 'rb') as f:
             line_bot_api.set_rich_menu_image(richMenuId, "image/jpeg", f)
