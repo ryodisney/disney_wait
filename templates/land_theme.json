@@ -76,7 +76,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#03303Acc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -159,7 +159,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#9C8E7Ecc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -242,7 +242,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#9C8E7Ecc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -325,7 +325,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#03303Acc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -382,7 +382,7 @@
                       {
                         "type": "text",
                         "text": "待ち時間",
-                        "color": "#000000",
+                        "color": "#FFD700",
                         "flex": 0,
                         "offsetTop": "-2px"
                       },
@@ -399,7 +399,7 @@
                 "borderWidth": "2px",
                 "cornerRadius": "4px",
                 "spacing": "sm",
-                "borderColor": "#000000",
+                "borderColor": "#FFD700",
                 "margin": "xxl",
                 "height": "40px"
               }
@@ -408,7 +408,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#000000",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -442,7 +442,7 @@
                     "type": "text",
                     "text": "トゥーン",
                     "size": "xxl",
-                    "color": "#000000",
+                    "color": "#00FF00",
                     "align": "center",
                     "weight": "bold"
                   }
@@ -465,7 +465,7 @@
                       {
                         "type": "text",
                         "text": "待ち時間",
-                        "color": "#000000",
+                        "color": "#00FF00",
                         "flex": 0,
                         "offsetTop": "-2px"
                       },
@@ -482,7 +482,7 @@
                 "borderWidth": "2px",
                 "cornerRadius": "4px",
                 "spacing": "sm",
-                "borderColor": "#000000",
+                "borderColor": "#00FF00",
                 "margin": "xxl",
                 "height": "40px"
               }
@@ -491,7 +491,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#03303Acc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
@@ -525,7 +525,7 @@
                     "type": "text",
                     "text": "トゥモロー",
                     "size": "xxl",
-                    "color": "#000000",
+                    "color": "#FFFF00",
                     "align": "center",
                     "weight": "bold"
                   }
@@ -574,7 +574,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#00000000",
+            "backgroundColor": "#03303Acc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
