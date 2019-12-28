@@ -163,4 +163,4 @@ payload = {
 
 container_obj = FlexSendMessage.new_from_json_dict(payload)
 
-line_bot_api.push_message('送りたい相手のUserID', messages=container_obj)
+line_bot_api.push_message('U85f57186d36fb4f6f3af641817cab322', messages=container_obj)

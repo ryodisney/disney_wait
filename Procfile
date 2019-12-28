@@ -1,1 +1,1 @@
-web: python profile.py 
+web: python push.py 
