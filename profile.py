@@ -8,7 +8,9 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent,TextMessage,TextSendMessage,ConfirmTemplate,MessageAction,TemplateSendMessage,QuickReplyButton,QuickReply,RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds,URIAction,
+    MessageEvent,TextMessage,TextSendMessage,ConfirmTemplate,
+    MessageAction,TemplateSendMessage,QuickReplyButton,QuickReply,
+    RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds,URIAction,
     ButtonsTemplate
 )
 
@@ -58,7 +60,7 @@ def response_message(event):
                                        title=profile.display_name,
                                        text=f"User Id: {profile.user_id[:5]}...\n"
                                             f"Status Message: {status_msg}",
-                                       actions=[MessageAction(label="成功", text="次は何を実装しましょうか？")]))
+                                       actions=[MessageAction(label="成功", text=profile.user_id)]))
 
     line_bot_api.reply_message(event.reply_token, messages=messages)
 
