@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
-import os
+import os,json
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -7,8 +8,10 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
+
 from linebot.models import (
-    MessageEvent,TextMessage,TextSendMessage,ConfirmTemplate,MessageAction,TemplateSendMessage,QuickReplyButton,QuickReply,RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds,URIAction
+    MessageEvent, TextMessage,
+    FlexSendMessage, BubbleContainer, CarouselContainer, TextSendMessage
 )
 
 app = Flask(__name__)
@@ -19,6 +22,11 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+template_env = Environment(
+    loader=FileSystemLoader('templates'),
+    autoescape=select_autoescape(['html', 'xml', 'json'])
+)
 
 @app.route("/")
 def hello_world():
@@ -45,36 +53,6 @@ def callback():
 基本的にはここから下が
 """
 
-def response_message(event):
-    language_list = ["ワールドバザール", "アドベンチャー", "PHP", "Java", "C"]
-
-    items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
-
-    messages = TextSendMessage(text="どの言語が好きですか？",
-                            quick_reply=QuickReply(items=items))
-
-    line_bot_api.reply_message(event.reply_token, messages=messages)
-
-def createRichmenu(event):
-    rich_menu_to_create = RichMenu(
-        size=RichMenuSize(width=2500, height=843),
-        selected=False,
-        name="Nice richmenu",
-        chat_bar_text="Tap here",
-        areas=[RichMenuArea(
-            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
-            action=URIAction(label='Go to line.me', uri='https://line.me'))]
-    )
-    rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-
-    image = 'tdl-wb.jpg'
-    path = '/photo/'+image 
-
-    with open(path, 'rb') as f:
-        line_bot_api.set_rich_menu_image(rich_menu_id, "image/jpeg", f)
-
-    line_bot_api.set_default_rich_menu(rich_menu_id)
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.reply_token == "00000000000000000000000000000000":
@@ -83,27 +61,21 @@ def handle_message(event):
     text=event.message.text
     #確認ボタンは二つしか無理
     if text == 'land':
-        confirm_template = ConfirmTemplate(text='エリアを選択してください', actions=[
-            MessageAction(label='ワールドバザール', text='ワールドバザール'),
-            MessageAction(label='アドベンチャー', text='アドベンチャー'),
-            MessageAction(label='ウエスタン', text='ウエスタン'),
-            MessageAction(label='クリッター', text='クリッター'),
-            MessageAction(label='ファンタジー', text='ファンタジー'),
-            MessageAction(label='トゥーン', text='トゥーン'),
-            MessageAction(label='トゥモロー', text='トゥモロー'),
-
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='Confirm alt text', template=confirm_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
+        les = "les"
+        template = template_env.get_template('land_theme.json')
+        data = template.render(dict(items=les))
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text="items",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        )
     elif text == 'い':
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
-    elif text == 'う':
-        response_message(event)
-    else:
-        createRichmenu(event)
 
 
 if __name__ == "__main__":
