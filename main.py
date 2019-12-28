@@ -85,11 +85,6 @@ def handle_message(event):
         confirm_template = ConfirmTemplate(text='エリアを選択してください', actions=[
             MessageAction(label='ワールドバザール', text='ワールドバザール'),
             MessageAction(label='アドベンチャー', text='アドベンチャー'),
-            MessageAction(label='ウエスタン', text='ウエスタン'),
-            MessageAction(label='クリッター', text='クリッター'),
-            MessageAction(label='ファンタジー', text='ファンタジー'),
-            MessageAction(label='トゥーン', text='トゥーン'),
-            MessageAction(label='トゥモロー', text='トゥモロー'),
 
         ])
         template_message = TemplateSendMessage(
