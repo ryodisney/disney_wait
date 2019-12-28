@@ -408,7 +408,7 @@
             "offsetBottom": "0px",
             "offsetStart": "0px",
             "offsetEnd": "0px",
-            "backgroundColor": "#000000",
+            "backgroundColor": "#000000cc",
             "paddingAll": "20px",
             "paddingTop": "18px"
           }
