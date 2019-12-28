@@ -276,7 +276,7 @@
                     "type": "text",
                     "text": "クリッター",
                     "size": "xxl",
-                    "color": "#FFFFFF",
+                    "color": "#0000FF",
                     "align": "center",
                     "weight": "bold"
                   }
@@ -299,7 +299,7 @@
                       {
                         "type": "text",
                         "text": "待ち時間",
-                        "color": "#ffffff",
+                        "color": "#0000FF",
                         "flex": 0,
                         "offsetTop": "-2px"
                       },
@@ -316,7 +316,7 @@
                 "borderWidth": "2px",
                 "cornerRadius": "4px",
                 "spacing": "sm",
-                "borderColor": "#ffffff",
+                "borderColor": "#0000FF",
                 "margin": "xxl",
                 "height": "40px"
               }
