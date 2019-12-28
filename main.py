@@ -46,7 +46,7 @@ def callback():
 """
 
 def response_message(event):
-    language_list = ["Ruby", "Python", "PHP", "Java", "C"]
+    language_list = ["ワールドバザール", "アドベンチャー", "PHP", "Java", "C"]
 
     items = [QuickReplyButton(action=MessageAction(label=f"{language}", text=f"{language}が好き")) for language in language_list]
 
@@ -81,10 +81,16 @@ def handle_message(event):
         return
     
     text=event.message.text
+    #確認ボタンは二つしか無理
     if text == 'land':
         confirm_template = ConfirmTemplate(text='エリアを選択してください', actions=[
             MessageAction(label='ワールドバザール', text='ワールドバザール'),
             MessageAction(label='アドベンチャー', text='アドベンチャー'),
+            MessageAction(label='ウエスタン', text='ウエスタン'),
+            MessageAction(label='クリッター', text='クリッター'),
+            MessageAction(label='ファンタジー', text='ファンタジー'),
+            MessageAction(label='トゥーン', text='トゥーン'),
+            MessageAction(label='トゥモロー', text='トゥモロー'),
 
         ])
         template_message = TemplateSendMessage(
