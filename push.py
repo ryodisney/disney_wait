@@ -2,8 +2,12 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage,  FlexSendMessage
 import os
 
-LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
-line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
+#環境変数取得
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 payload = {
   "type": "flex",
