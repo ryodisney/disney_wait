@@ -35,7 +35,7 @@
               "action": {
                 "type": "postback",
                 "label": "待ち時間を表示",
-                "data":"action=store&storeId=000000"
+                "data":"ワールドバザール"
               }
             }
           ]

@@ -89,6 +89,19 @@ def handle_message(event):
 
 """
 
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+        line_bot_api.reply_message(
+        event.reply_token,
+        FlexSendMessage(
+            alt_text="items",
+            contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        )
+    les = "les"
+    template = template_env.get_template('button_temp.json')
+    data = template.render(dict(items=les))
+
 # ボタンの入力を受け取るPostbackEvent
 @handler.add(PostbackEvent)
 def on_postback(event):
@@ -98,8 +111,7 @@ def on_postback(event):
     
     line_bot_api.push_message(
     to=user_id,
-    messages=TextSendMessage(text="aaa")       
-
+    messages=TextSendMessage(text=postback_msg)       
 
     )
 
