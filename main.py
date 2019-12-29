@@ -91,6 +91,10 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    les = "les"
+    template = template_env.get_template('button_temp.json')
+    data = template.render(dict(items=les))
+    
     line_bot_api.reply_message(
     event.reply_token,
     FlexSendMessage(
@@ -98,9 +102,7 @@ def handle_message(event):
         contents=CarouselContainer.new_from_json_dict(json.loads(data))
         )
     )
-    les = "les"
-    template = template_env.get_template('button_temp.json')
-    data = template.render(dict(items=les))
+
 
 # ボタンの入力を受け取るPostbackEvent
 @handler.add(PostbackEvent)
