@@ -72,10 +72,18 @@ def handle_message(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
-    elif text == 'い':
+    elif text == 'sea':
+        les = "les"
+        template = template_env.get_template('sea_theme.json')
+        data = template.render(dict(items=les))
+        
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=event.message.text))
+            FlexSendMessage(
+                alt_text="items",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        )
 
 
 if __name__ == "__main__":
