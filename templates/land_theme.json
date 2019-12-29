@@ -48,7 +48,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#DC143C",
                         "flex": 0,
@@ -131,7 +131,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#ffffff",
                         "flex": 0,
@@ -214,7 +214,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#A52A2A",
                         "flex": 0,
@@ -297,7 +297,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#00FFFF",
                         "flex": 0,
@@ -380,7 +380,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#FFD700",
                         "flex": 0,
@@ -463,7 +463,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#00FF00",
                         "flex": 0,
@@ -546,7 +546,7 @@
                         "type": "filler"
                       },
                       {
-                        "type": "text",
+                        "type": "button",
                         "text": "待ち時間",
                         "color": "#FFFF00",
                         "flex": 0,
