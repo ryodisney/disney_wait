@@ -91,13 +91,13 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-        line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
-            alt_text="items",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
+    line_bot_api.reply_message(
+    event.reply_token,
+    FlexSendMessage(
+        alt_text="items",
+        contents=CarouselContainer.new_from_json_dict(json.loads(data))
         )
+    )
     les = "les"
     template = template_env.get_template('button_temp.json')
     data = template.render(dict(items=les))
