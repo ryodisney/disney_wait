@@ -92,11 +92,13 @@ def handle_message(event):
 def on_postback(event):
     #reply_token = event.reply_token
     user_id = event.source.user_id
-    postback_msg = event.postback.data       
-
+    postback_msg = event.postback.data
+    
     line_bot_api.push_message(
-        to=user_id,
-        messages=TextSendMessage(text=postback_msg)
+    to=user_id,
+    messages=TextSendMessage(text="aaa")       
+
+
     )
 
 if __name__ == "__main__":
