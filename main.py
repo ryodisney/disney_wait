@@ -62,6 +62,9 @@ def handle_message(event):
     data = event.postback.data
     #確認ボタンは二つしか無理
     if text == 'land':
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text="ここまできてる")
+        )
         les = "les"
         template = template_env.get_template('button_temp.json')
         data = template.render(dict(items=les))
@@ -73,9 +76,7 @@ def handle_message(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
-        line_bot_api.reply_message(event.reply_token,
-            TextSendMessage(text="ここまできてる")
-        )
+
         line_bot_api.reply_message(event.reply_token,
             TextSendMessage(text=data)
         )
