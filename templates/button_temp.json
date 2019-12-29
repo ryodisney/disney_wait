@@ -34,7 +34,7 @@
               "style": "primary",
               "action": {
                 "type": "uri",
-                "label": "Add to Cart",
+                "label": "待ち時間を表示",
                 "uri": "https://linecorp.com"
               }
             }
@@ -73,10 +73,9 @@
               "type": "button",
               "flex": 2,
               "style": "primary",
-              "color": "#aaaaaa",
               "action": {
                 "type": "uri",
-                "label": "Add to Cart",
+                "label": "待ち時間を表示",
                 "uri": "https://linecorp.com"
               }
             }
