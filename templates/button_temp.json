@@ -1,0 +1,89 @@
+{
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+      "type": "carousel",
+      "contents": [
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-wb.jpg",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2:3",
+                "gravity": "top"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "ワールドバザール",
+                        "size": "xxl",
+                        "color": "#DC143C",
+                        "align": "center",
+                        "weight": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "filler"
+                      },
+                      {
+                        "type": "button",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "filler"
+                          },
+                          {
+                            "type": "text",
+                            "text": "待ち時間",
+                            "color": "#DC143C",
+                            "flex": 0,
+                            "offsetTop": "-2px"
+                          },
+                          {
+                            "type": "filler"
+                          }
+                        ],
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "filler"
+                      }
+                    ],
+                    "borderWidth": "2px",
+                    "cornerRadius": "4px",
+                    "spacing": "sm",
+                    "borderColor": "#DC143C",
+                    "margin": "xxl",
+                    "height": "40px"
+                  }
+                ],
+                "position": "absolute",
+                "offsetBottom": "0px",
+                "offsetStart": "0px",
+                "offsetEnd": "0px",
+                "backgroundColor": "#03303A8c",
+                "paddingAll": "20px",
+                "paddingTop": "18px"
+              }
+            ],
+            "paddingAll": "0px"
+          }
+        }

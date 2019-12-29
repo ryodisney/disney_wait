@@ -62,7 +62,7 @@ def handle_message(event):
     #確認ボタンは二つしか無理
     if text == 'land':
         les = "les"
-        template = template_env.get_template('land_theme.json')
+        template = template_env.get_template('button_temp.json')
         data = template.render(dict(items=les))
         
         line_bot_api.reply_message(
