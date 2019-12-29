@@ -33,7 +33,7 @@
               "type": "button",
               "style": "primary",
               "action": {
-                "type": "postback",
+                "type": "text",
                 "label": "待ち時間を表示",
                 "data":"ワールドバザール"
               }
