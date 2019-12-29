@@ -51,7 +51,7 @@ def callback():
 
 """
 基本的にはここから下が
-"""
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -86,6 +86,8 @@ def handle_message(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
+
+"""
 
 # ボタンの入力を受け取るPostbackEvent
 @handler.add(PostbackEvent)
