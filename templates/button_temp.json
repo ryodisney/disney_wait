@@ -33,9 +33,9 @@
               "type": "button",
               "style": "primary",
               "action": {
-                "type": "uri",
+                "type": "postback",
                 "label": "待ち時間を表示",
-                "uri": "https://linecorp.com"
+                "data":"ワールドバザール"
               }
             }
           ]

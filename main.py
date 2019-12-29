@@ -59,6 +59,7 @@ def handle_message(event):
         return
     
     text=event.message.text
+    data = event.postback.data
     #確認ボタンは二つしか無理
     if text == 'land':
         les = "les"
@@ -72,6 +73,10 @@ def handle_message(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
+        line_bot_api.reply_message(event.reply_token,
+            TextSendMessage(text=data)
+        )
+
     elif text == 'sea':
         les = "les"
         template = template_env.get_template('sea_theme.json')
@@ -84,6 +89,7 @@ def handle_message(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
+        
 
 
 if __name__ == "__main__":
