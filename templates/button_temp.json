@@ -17,32 +17,10 @@
           "contents": [
             {
               "type": "text",
-              "text": "Arm Chair, White",
+              "text": "ワールドバザール",
               "wrap": true,
               "weight": "bold",
               "size": "xl"
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "$49",
-                  "wrap": true,
-                  "weight": "bold",
-                  "size": "xl",
-                  "flex": 0
-                },
-                {
-                  "type": "text",
-                  "text": ".99",
-                  "wrap": true,
-                  "weight": "bold",
-                  "size": "sm",
-                  "flex": 0
-                }
-              ]
             }
           ]
         },
@@ -57,14 +35,6 @@
               "action": {
                 "type": "uri",
                 "label": "Add to Cart",
-                "uri": "https://linecorp.com"
-              }
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "Add to wishlist",
                 "uri": "https://linecorp.com"
               }
             }
@@ -87,42 +57,10 @@
           "contents": [
             {
               "type": "text",
-              "text": "Metal Desk Lamp",
+              "text": "アドベンチャーランド",
               "wrap": true,
               "weight": "bold",
               "size": "xl"
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "flex": 1,
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "$11",
-                  "wrap": true,
-                  "weight": "bold",
-                  "size": "xl",
-                  "flex": 0
-                },
-                {
-                  "type": "text",
-                  "text": ".99",
-                  "wrap": true,
-                  "weight": "bold",
-                  "size": "sm",
-                  "flex": 0
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "text": "Temporarily out of stock",
-              "wrap": true,
-              "size": "xxs",
-              "margin": "md",
-              "color": "#ff5551",
-              "flex": 0
             }
           ]
         },
@@ -139,14 +77,6 @@
               "action": {
                 "type": "uri",
                 "label": "Add to Cart",
-                "uri": "https://linecorp.com"
-              }
-            },
-            {
-              "type": "button",
-              "action": {
-                "type": "uri",
-                "label": "Add to wish list",
                 "uri": "https://linecorp.com"
               }
             }
