@@ -59,7 +59,7 @@ def Set(park,area):
     options.add_argument('--headless')
     #driver_path = "C:/Users/ryo/AppData/Local/Programs/Python/Python37/Scripts/chromedriver.exe"
     options.add_argument("--user-agent=Mozilla/5.0")
-    driver = webdriver.Chrome(doptions=options)
+    driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
     if park == "land":
