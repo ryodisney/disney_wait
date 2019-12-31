@@ -39,6 +39,7 @@ def Make_jsonfile(attraction,info):
     new_json_file = open('templates/recipt.json', 'w',encoding="utf-8")
     json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
 
+#エリアのみ書き込む
 def Send_area(area):
     json_file = open('templates/recipt.json', 'r',encoding="utf-8")
     json_object = json.load(json_file)
