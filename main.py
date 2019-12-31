@@ -114,7 +114,7 @@ def handle_message(event):
 def handle_postback(event):
     global park    
     data = event.postback.data
-    userid = event.source.userId
+    userid = event.source.user_id
     template = template_env.get_template('recipt.json')
     if data == "アドベンチャーランド":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=park))
