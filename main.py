@@ -2,7 +2,8 @@ from flask import Flask, request, abort
 import os,json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from scrape import Set
-
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -51,7 +52,12 @@ def callback():
 
     return 'OK'
 
-
+options = Options()
+options.set_headless(True)
+driver_path = "C:/Users/ryo/AppData/Local/Programs/Python/Python37/Scripts/chromedriver.exe"
+options.add_argument("--user-agent=Mozilla/5.0")
+driver = webdriver.Chrome(driver_path,options=options)
+driver.quit()
 
 park = "park"
 area = "area"
