@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from time import sleep
 import requests
 import json
+from makejsonfile import Make_jsonfile,Send_area
 
 def Scrape(html):
     attraction_list = []
@@ -41,7 +42,7 @@ def Scrape(html):
     
     return attraction_list,info_list
 
-def Make_recipt(attraction_list,info_list,area):
+def Match_area(attraction_list,info_list,area):
     attraction_thisarea = []
     info_thisarea = []
     for attraction_name,attraction_info in zip(attraction_list,info_list):
@@ -50,11 +51,8 @@ def Make_recipt(attraction_list,info_list,area):
             attraction_thisarea.append(attraction_name)
             info_thisarea.append(attraction_info)
     
-    print(info_thisarea)
 
-            
-
-    return attraction_info
+    return attraction_thisarea,info_thisarea
 
 def Set(park,area):
     options = Options()
@@ -74,9 +72,17 @@ def Set(park,area):
     driver.get(target_url)
     html = driver.page_source
     attraction_list,info_list = Scrape(html)
-    recipt = Make_recipt(attraction_list,info_list,area)
-    
+    attraction_thisarea,info_thisarea = Match_area(attraction_list,info_list,area)
+    Send_area(area)
+    for attraction,info in zip(attraction_thisarea,info_thisarea):
+        Make_jsonfile(attraction,info)
 
+    json_file = open('templates/recipt.json', 'r',encoding="utf-8_sig")
+    json_object = json.load(json_file)
+    text = json.dumps(json_object, indent=2,ensure_ascii=False)
+    print(text) 
+    
+    
 
     sleep(INTERVAL)
     driver.quit()

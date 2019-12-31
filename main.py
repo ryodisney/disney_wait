@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 import os,json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from scrape import Set
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -90,6 +91,7 @@ def handle_message(event):
 """
 
 park = "park"
+area = "area"
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -112,21 +114,23 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    global park    
-    event_data = event.postback.data
+    global park,area    
+    area = event.postback.data
+
+    #スクレイピング、レシート作成
+    Set(park,area)
     #レシート出力
     les = "les"
     template = template_env.get_template('recipt.json')
     data = template.render(dict(items=les))
 
-    if event_data == "アドベンチャーランド":
-        line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
-            alt_text="items",
-            contents=BubbleContainer.new_from_json_dict(json.loads(data))
-            )
+    line_bot_api.reply_message(
+    event.reply_token,
+    FlexSendMessage(
+        alt_text="items",
+        contents=BubbleContainer.new_from_json_dict(json.loads(data))
         )
+    )
 
 if __name__ == "__main__":
 #    app.run()
