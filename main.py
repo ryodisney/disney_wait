@@ -91,9 +91,9 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    text=event.message.text
+    park = event.message.text
 
-    if text == "land":
+    if park == "land":
         les = "les"
         template = template_env.get_template('land_theme.json')
         data = template.render(dict(items=les))
@@ -111,7 +111,7 @@ def handle_message(event):
 def handle_postback(event):
     data = event.postback.data
     if data == "アドベンチャーランド":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="OK!"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=park))
 
 if __name__ == "__main__":
 #    app.run()
