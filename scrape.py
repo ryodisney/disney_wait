@@ -55,10 +55,10 @@ def Match_area(attraction_list,info_list,area):
 
 def Set(park,area):
     options = Options()
-    #options.set_headless(True)
-    driver_path = "C:/Users/ryo/Desktop/programm/line_bot/chromedriver"
+    options.set_headless(True)
+    driver_path = "C:/Users/ryo/Desktop/programm/line_bot/chromedriver.exe"
     options.add_argument("--user-agent=Mozilla/5.0")
-    driver = webdriver.Chrome(driver_path)
+    driver = webdriver.Chrome(driver_path,options=options)
 
     #スクレイピングするサイトのURL
     if park == "land":
