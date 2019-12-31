@@ -52,12 +52,7 @@ def callback():
 
     return 'OK'
 
-options = Options()
-options.set_headless(True)
-driver_path = "C:/Users/ryo/AppData/Local/Programs/Python/Python37/Scripts/chromedriver.exe"
-options.add_argument("--user-agent=Mozilla/5.0")
-driver = webdriver.Chrome(driver_path,options=options)
-driver.quit()
+
 
 park = "park"
 area = "area"
