@@ -114,8 +114,12 @@ def handle_message(event):
 def handle_postback(event):
     global park    
     data = event.postback.data
+    userid = event.source.userId
+    template = template_env.get_template('recipt.json')
     if data == "アドベンチャーランド":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=park))
+        container_obj = FlexSendMessage.new_from_json_dict(template)
+        line_bot_api.push_message(userid, messages=container_obj)
 
 if __name__ == "__main__":
 #    app.run()
