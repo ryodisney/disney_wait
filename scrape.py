@@ -54,7 +54,7 @@ def Match_area(attraction_list,info_list,area):
     return attraction_thisarea,info_thisarea
 
 def Set(park,area):
-    #options = Options()
+    options = Options()
     #options.set_headless(True)
     driver_path = "C:/Users/ryo/Desktop/programm/line_bot/chromedriver"
     options.add_argument("--user-agent=Mozilla/5.0")
