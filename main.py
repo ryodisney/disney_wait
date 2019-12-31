@@ -52,45 +52,11 @@ def callback():
 
     return 'OK'
 
-"""
-基本的にはここから下が
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    if event.reply_token == "00000000000000000000000000000000":
-        return
-    
-    text=event.message.text
-    data = event.postback.data
-    #確認ボタンは二つしか無理
-    if text == 'land':
-        les = "les"
-        template = template_env.get_template('button_temp.json')
-        data = template.render(dict(items=les))
-        
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text="items",
-                contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        )
-
-    elif text == 'sea':
-        les = "les"
-        template = template_env.get_template('sea_theme.json')
-        data = template.render(dict(items=les))
-        
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text="items",
-                contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        )
-
-"""
+options = Options()
+options.set_headless(True)
+driver_path = "C:/Users/ryo/AppData/Local/Programs/Python/Python37/Scripts/chromedriver.exe"
+options.add_argument("--user-agent=Mozilla/5.0")
+driver = webdriver.Chrome(driver_path,options=options)
 
 park = "park"
 area = "area"
