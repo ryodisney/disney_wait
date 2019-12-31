@@ -2,7 +2,7 @@
 import json
 
 def Make_jsonfile(attraction,info):
-    json_file = open('templates/recipt.json', 'r',encoding="utf-8_sig")
+    json_file = open('templates/recipt.json', 'r',encoding="utf-8")
     json_object = json.load(json_file)
 
     new =   {
@@ -40,7 +40,7 @@ def Make_jsonfile(attraction,info):
     json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
 
 def Send_area(area):
-    json_file = open('templates/recipt.json', 'r',encoding="utf-8_sig")
+    json_file = open('templates/recipt.json', 'r',encoding="utf-8")
     json_object = json.load(json_file)
     json_object["body"]["contents"][1]["text"] = str(area)
     #書き込み

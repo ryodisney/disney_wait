@@ -68,7 +68,7 @@ def Set(park,area):
         target_url = "https://www.tokyodisneyresort.jp/tds/realtime/attraction/"
     
     #サイトに負荷をかけないように待機する時間,URLにアクセス
-    INTERVAL = 3
+    INTERVAL = 1
     driver.get(target_url)
     html = driver.page_source
     attraction_list,info_list = Scrape(html)
@@ -78,13 +78,11 @@ def Set(park,area):
         Make_jsonfile(attraction,info)
 
     """
-    json_file = open('templates/recipt.json', 'r',encoding="utf-8_sig")
+    json_file = open('templates/recipt.json', 'r',encoding="utf-8")
     json_object = json.load(json_file)
     text = json.dumps(json_object, indent=2,ensure_ascii=False)
     print(text) 
     """
-    
-    
 
     sleep(INTERVAL)
     driver.quit()
