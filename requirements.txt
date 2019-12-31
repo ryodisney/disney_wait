@@ -3,3 +3,4 @@ line-bot-sdk==1.15.0
 requests==2.21.0
 bs4==0.0.1
 selenium==3.141.0
+chromedriver-binary==80.0.3987.16.0
