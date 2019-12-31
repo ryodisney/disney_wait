@@ -124,7 +124,7 @@ def handle_postback(event):
         event.reply_token,
         FlexSendMessage(
             alt_text="items",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            contents=BubbleContainer.new_from_json_dict(json.loads(data))
             )
         )
 
