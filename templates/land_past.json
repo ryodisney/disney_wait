@@ -1,0 +1,590 @@
+{
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-wb.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ワールドバザール",
+                      "size": "xxl",
+                      "color": "#DC143C",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#DC143C",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#DC143C",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#03303A8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-al.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "アドベンチャー",
+                      "size": "xxl",
+                      "color": "#ffffff",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#ffffff",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#ffffff",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#9C8E7E8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-wl.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ウエスタン",
+                      "size": "xxl",
+                      "color": "#A52A2A",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#A52A2A",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#A52A2A",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#9C8E7E8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-cc.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "クリッター",
+                      "size": "xxl",
+                      "color": "#00FFFF",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#00FFFF",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#00FFFF",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#03303A8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-fl3.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ファンタジー",
+                      "size": "xxl",
+                      "color": "#FFD700",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#FFD700",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#FFD700",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#0000008c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-tt.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "トゥーン",
+                      "size": "xxl",
+                      "color": "#00FF00",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#00FF00",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#00FF00",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#03303A8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://media2.tokyodisneyresort.jp/home/tdl/map/tdl-tl_2.jpg",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:3",
+              "gravity": "top"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "トゥモロー",
+                      "size": "xxl",
+                      "color": "#FFFF00",
+                      "align": "center",
+                      "weight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "filler"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "contents": [
+                        {
+                          "type": "filler"
+                        },
+                        {
+                          "type": "text",
+                          "text": "待ち時間",
+                          "color": "#FFFF00",
+                          "flex": 0,
+                          "offsetTop": "-2px"
+                        },
+                        {
+                          "type": "filler"
+                        }
+                      ],
+                      "spacing": "sm"
+                    },
+                    {
+                      "type": "filler"
+                    }
+                  ],
+                  "borderWidth": "2px",
+                  "cornerRadius": "4px",
+                  "spacing": "sm",
+                  "borderColor": "#FFFF00",
+                  "margin": "xxl",
+                  "height": "40px"
+                }
+              ],
+              "position": "absolute",
+              "offsetBottom": "0px",
+              "offsetStart": "0px",
+              "offsetEnd": "0px",
+              "backgroundColor": "#03303A8c",
+              "paddingAll": "20px",
+              "paddingTop": "18px"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      }
+    ]
+  }
+}

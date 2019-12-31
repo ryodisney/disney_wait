@@ -92,10 +92,10 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text=event.message.text
-    
+
     if text == "land":
         les = "les"
-        template = template_env.get_template('button_temp.json')
+        template = template_env.get_template('land_theme.json')
         data = template.render(dict(items=les))
 
         line_bot_api.reply_message(
