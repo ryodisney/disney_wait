@@ -113,13 +113,20 @@ def handle_message(event):
 @handler.add(PostbackEvent)
 def handle_postback(event):
     global park    
-    data = event.postback.data
-    userid = event.source.user_id
+    event_data = event.postback.data
+    #レシート出力
+    les = "les"
     template = template_env.get_template('recipt.json')
-    if data == "アドベンチャーランド":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=park))
-        container_obj = FlexSendMessage.new_from_json_dict(template)
-        line_bot_api.push_message(userid, messages=container_obj)
+    data = template.render(dict(items=les))
+
+    if event_data == "アドベンチャーランド":
+        line_bot_api.reply_message(
+        event.reply_token,
+        FlexSendMessage(
+            alt_text="items",
+            contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        )
 
 if __name__ == "__main__":
 #    app.run()
