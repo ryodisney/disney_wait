@@ -68,12 +68,11 @@ def Land_dict():
 
     return dic
 
-def Check_park():
+def Check_park(date_words):
     #今の時間、日時を確認
     dt_now = dt.now()
 
     #今日の日付
-    date_words = "2020年1月2日（木）"
     date_info = re.sub("\\D","-",date_words)
     date_split = date_info.split("-",3)
     year = int(date_split[0])
@@ -103,6 +102,13 @@ def Check_park():
     else:
         return "close"
 
+def Scrape_day(html):
+    soup = BeautifulSoup(html,"lxml")
+
+    date = soup.find(class_ = "article_date")
+    return date
+
+
 def Set(park,area):
     options = Options()
     options.set_headless(True)
@@ -114,13 +120,9 @@ def Set(park,area):
     #スクレイピングするサイトのURL
     if park == "land":
         target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
-        situation = Check_park()
-        land_attraction = Land_dict()
-        print(land_attraction)
         
     else:
         target_url = "https://www.tokyodisneyresort.jp/tds/realtime/attraction/"
-        situation = Check_park()
     
     #アトラクションをエリア別に分けておく
     
@@ -129,6 +131,10 @@ def Set(park,area):
     INTERVAL = 1
     driver.get(target_url)
     html = driver.page_source
+
+    date_words = Scrape_day(html)
+    print(date_words)
+    situation = Check_park(date_words)
 
     #閉園中
     if situation == "close":
