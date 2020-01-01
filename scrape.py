@@ -70,7 +70,7 @@ def Set(park,area):
     options.set_headless(True)
     options.add_argument('--headless')
     #driver_path = "C:/Users/ryo/Desktop/chromedriver_win32/chromedriver.exe"
-    options.add_argument("--user-agent=ua = Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113")
+    options.add_argument("--user-agent = Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113")
     driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
