@@ -66,6 +66,7 @@ def handle_message(event):
         les = "les"
         template = template_env.get_template('land_theme.json')
         data = template.render(dict(items=les))
+        print(data)
 
         line_bot_api.reply_message(
         event.reply_token,
@@ -85,17 +86,16 @@ def handle_postback(event):
     #スクレイピング、レシート作成
     Set(park,area)
     #レシート出力
-    """
     les = "les"
     template = template_env.get_template('recipt.json')
     data = template.render(dict(items=les))
-    """
     
+
     line_bot_api.reply_message(
     event.reply_token,
     FlexSendMessage(
         alt_text="items",
-        contents=BubbleContainer.new_from_json_dict(json.loads('templates/recipt.json'))
+        contents=BubbleContainer.new_from_json_dict(json.loads(data))
         )
     )
 
