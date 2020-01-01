@@ -105,6 +105,7 @@ def Check_park(date_words):
 def Scrape_day(html):
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
+    print("ここかな")
     date = soup.find(class_ = "article_date")
     date = "2020年1月2日（木）"
     return date
@@ -134,7 +135,6 @@ def Set(park,area):
     html = driver.page_source
 
     date_words = Scrape_day(html)
-    print(date_words)
     situation = Check_park(date_words)
 
     #閉園中
