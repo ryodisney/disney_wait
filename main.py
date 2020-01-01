@@ -84,8 +84,10 @@ def handle_postback(event):
 
     #開閉園、スクレイピング、レシート作成
     situation = Set(park,area)
+    print(situation)
 
     if situation == "open":
+        print("open")
         #レシート出力
         les = "les"
         template = template_env.get_template('recipt.json')
@@ -101,10 +103,11 @@ def handle_postback(event):
         )
     
     else:
+        print("close")
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="現在は閉園中です") 
-        )
+            TextSendMessage(text="閉園中です")
+            )
 
 if __name__ == "__main__":
 #    app.run()

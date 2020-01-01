@@ -56,7 +56,6 @@ def Match_area(attraction_list,info_list,area):
 def Close(html):
     close_flag = False
     soup = BeautifulSoup(html,"lxml")
-    print("サイトのタイトル = " + str(soup.title.text))
 
     close_tag = soup.find_all('div',class_ = "close")
 
@@ -104,8 +103,6 @@ def Set(park,area):
         driver.quit()
         
         return "open"
-
-
 
 def main():
     print("これはpythonのみ開発モード")
