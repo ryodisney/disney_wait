@@ -84,7 +84,7 @@ def Set(park,area):
     html = driver.page_source
 
     close_flag = Close(html)
-
+    print(close_flag)
     #閉園中
     if close_flag == "True":
         sleep(INTERVAL)
