@@ -105,7 +105,7 @@ def Check_park(date_words):
 def Scrape_day(html):
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
-    date = soup.find(class_ = "article_date").text
+    date = soup.find(class_ = "article_date")
     date = "2020年1月2日（木）"
     return date
 
@@ -115,7 +115,7 @@ def Set(park,area):
     options.set_headless(True)
     options.add_argument('--headless')
     #driver_path = "C:/Users/ryo/Desktop/chromedriver_win32/chromedriver.exe"
-    #options.add_argument("--user-agent = Mozilla/5.0")
+    options.add_argument("--user-agent = Mozilla/5.0")
     driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
