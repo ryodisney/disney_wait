@@ -66,7 +66,6 @@ def handle_message(event):
         les = "les"
         template = template_env.get_template('land_theme.json')
         data = template.render(dict(items=les))
-        print(data)
 
         line_bot_api.reply_message(
         event.reply_token,
@@ -89,7 +88,7 @@ def handle_postback(event):
     les = "les"
     template = template_env.get_template('recipt.json')
     data = template.render(dict(items=les))
-    
+    print(data)
 
     line_bot_api.reply_message(
     event.reply_token,
