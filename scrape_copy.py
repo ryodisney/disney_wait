@@ -104,8 +104,8 @@ def Check_park(date_words):
 
 def Scrape_day(html):
     soup = BeautifulSoup(html,"lxml")
-
-    date = soup.find(class_ = "article_date")
+    print("ここまで来てる")
+    date = soup.find(class_ = "article_date").text
     return date
 
 

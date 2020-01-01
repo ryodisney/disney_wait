@@ -78,7 +78,6 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    print("ここまで来てる")
     global park,area    
     area = event.postback.data
 
