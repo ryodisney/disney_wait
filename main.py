@@ -82,21 +82,29 @@ def handle_postback(event):
     global park,area    
     area = event.postback.data
 
-    #スクレイピング、レシート作成
-    Set(park,area)
-    #レシート出力
-    les = "les"
-    template = template_env.get_template('recipt.json')
-    data = template.render(dict(items=les))
-    print(data)
+    #開閉園、スクレイピング、レシート作成
+    situation = Set(park,area)
 
-    line_bot_api.reply_message(
-    event.reply_token,
-    FlexSendMessage(
-        alt_text="items",
-        contents=BubbleContainer.new_from_json_dict(json.loads(data))
+    if situation == "open":
+        #レシート出力
+        les = "les"
+        template = template_env.get_template('recipt.json')
+        data = template.render(dict(items=les))
+        print(data)
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        FlexSendMessage(
+            alt_text="items",
+            contents=BubbleContainer.new_from_json_dict(json.loads(data))
+            )
         )
-    )
+    
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="現在は閉園中です") 
+        )
 
 if __name__ == "__main__":
 #    app.run()

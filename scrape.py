@@ -53,6 +53,17 @@ def Match_area(attraction_list,info_list,area):
 
     return attraction_thisarea,info_thisarea
 
+def Close(html):
+    close_flag = False
+    soup = BeautifulSoup(html,"lxml")
+
+    close_tag = soup.find(class_ = "close")
+
+    if close_tag is not None:
+        close_flag = True
+    
+    return close_flag
+
 def Set(park,area):
     options = Options()
     options.set_headless(True)
@@ -71,17 +82,29 @@ def Set(park,area):
     INTERVAL = 1
     driver.get(target_url)
     html = driver.page_source
-    attraction_list,info_list = Scrape(html)
-    attraction_thisarea,info_thisarea = Match_area(attraction_list,info_list,area)
-    Send_area(area)
-    print(attraction_thisarea,info_thisarea)
-    for attraction,info in zip(attraction_thisarea,info_thisarea):
-        Make_jsonfile(attraction,info)
+
+    close_flag = Close(html)
+
+    #閉園中
+    if close_flag == "True":
+        sleep(INTERVAL)
+        driver.quit()
+        return "close"
+
+    else:
+        attraction_list,info_list = Scrape(html)
+        attraction_thisarea,info_thisarea = Match_area(attraction_list,info_list,area)
+        Send_area(area)
+        print(attraction_thisarea,info_thisarea)
+        for attraction,info in zip(attraction_thisarea,info_thisarea):
+            Make_jsonfile(attraction,info)
+        
+        sleep(INTERVAL)
+        driver.quit()
+        
+        return "open"
 
 
-
-    sleep(INTERVAL)
-    driver.quit()
 
 def main():
     print("これはpythonのみ開発モード")
