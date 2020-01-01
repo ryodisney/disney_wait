@@ -1,7 +1,6 @@
 #coding:utf-8
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from time import sleep
 import json
 from makejsonfile import Make_jsonfile,Send_area
