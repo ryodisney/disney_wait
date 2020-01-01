@@ -112,11 +112,10 @@ def Scrape_day(html):
 
 
 def Set(park,area):
-    options = Options()
+    options = webdriver.ChromeOptions()
     options.set_headless(True)
     options.add_argument('--headless')
-    #driver_path = "C:/Users/ryo/Desktop/chromedriver_win32/chromedriver.exe"
-    #options.add_argument("--user-agent = Mozilla/5.0 (Windows NT 6.1; Win64; x64)")
+    options.add_argument('--user-agent=Mozilla/5.0')
     driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
@@ -124,7 +123,7 @@ def Set(park,area):
         target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         
     else:
-        target_url = "https://www.tokyodisneyresort.jp/tds/realtime/attraction/"
+        target_url = "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html"
     
     #アトラクションをエリア別に分けておく
     
