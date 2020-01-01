@@ -55,9 +55,9 @@ def Match_area(attraction_list,info_list,area):
 
 def Set(park,area):
     options = Options()
-    #options.set_headless(True)
+    options.set_headless(True)
     options.add_argument('--headless')
-    #driver_path = "C:/Users/ryo/AppData/Local/Programs/Python/Python37/Scripts/chromedriver.exe"
+    #driver_path = "C:/Users/ryo/Desktop/chromedriver_win32/chromedriver.exe"
     options.add_argument("--user-agent=Mozilla/5.0")
     driver = webdriver.Chrome(options=options)
 
