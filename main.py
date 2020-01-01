@@ -85,18 +85,17 @@ def handle_postback(event):
     #スクレイピング、レシート作成
     Set(park,area)
     #レシート出力
+    """
     les = "les"
     template = template_env.get_template('recipt.json')
     data = template.render(dict(items=les))
+    """
     
-    formatted_data = json.dumps(data, indent=2)
-    print(formatted_data)
-
     line_bot_api.reply_message(
     event.reply_token,
     FlexSendMessage(
         alt_text="items",
-        contents=BubbleContainer.new_from_json_dict(json.loads(data))
+        contents=BubbleContainer.new_from_json_dict(json.loads('templates/recipt.json'))
         )
     )
 
