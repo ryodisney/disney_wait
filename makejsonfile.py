@@ -37,7 +37,7 @@ def Make_jsonfile(attraction,info):
     json_object["body"]["contents"][3]["contents"].append(new)
 
     new_json_file = open('templates/recipt.json', 'w',encoding="utf-8-sig")
-    json.dump(json_object, new_json_file, indent=2,ensure_ascii=False, encoding='utf8')
+    json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
 
 #エリアのみ書き込む
 def Send_area(area):
@@ -46,4 +46,4 @@ def Send_area(area):
     json_object["body"]["contents"][1]["text"] = str(area)
     #書き込み
     new_json_file = open('templates/recipt.json', 'w',encoding="utf-8-sig")
-    json.dump(json_object, new_json_file, indent=2,ensure_ascii=False, encoding='utf8')
+    json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
