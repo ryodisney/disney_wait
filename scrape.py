@@ -77,12 +77,7 @@ def Set(park,area):
     for attraction,info in zip(attraction_thisarea,info_thisarea):
         Make_jsonfile(attraction,info)
 
-    """
-    json_file = open('templates/recipt.json', 'r',encoding="utf-8-sig")
-    json_object = json.load(json_file)
-    text = json.dumps(json_object, indent=2,ensure_ascii=False)
-    print(text) 
-    """
+
 
     sleep(INTERVAL)
     driver.quit()
