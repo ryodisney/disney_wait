@@ -1,11 +1,12 @@
 #coding:utf-8
-
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from time import sleep
 import json
 from makejsonfile import Make_jsonfile,Send_area
+from datetime import datetime as dt
+import re
 
 def Scrape(html):
     attraction_list = []
@@ -53,41 +54,84 @@ def Match_area(attraction_list,info_list,area):
 
     return attraction_thisarea,info_thisarea
 
-def Close(html):
-    close_flag = False
-    soup = BeautifulSoup(html,"lxml")
-    print(soup.title.text)
 
-    close_tag = soup.find_all('div',class_ = "close")
 
-    if close_tag is not None:
-        close_flag = True
-    
-    return close_flag
+def Land_dict():
+    dic = {}
+    dic["ワールドバザール"] = ["オムニバス","ペニーアーケード"]
+    dic["アドベンチャーランド"] = ["ウエスタンリバー鉄道","カリブの海賊","ジャングルクルーズ","ツリーハウス","魅惑のチキルーム"]
+    dic["トゥーンタウン"] = ["ロジャーラビット","ミニーの家","ガジェットのゴーコースター","ドナルドのボート","トゥーンパーク"]
+    dic["トゥモローランド"] = ["スティッチ・エンカウンター","スター・ツアーズ","スペース・マウンテン","モンスターズ・インク"]
+    dic["ウエスタンランド"] = ["ビッグサンダー・マウンテン","シューティングギャラリー","カントリーベア・シアター","マークトウェイン号","トムソーヤ島いかだ"]
+    dic["クリッターカントリー"] = ["スプラッシュ・マウンテン","カヌー探検"]
+    dic["ファンタジーランド"] = ["ホーンテッド・マンション","プーさんのハニーハント","ピーターパン","白雪姫","シンデレラ","フィルハーマジック","ピノキオ","空飛ぶダンボ","キャッスルカルーセル","スモールワールド","アリスのティーパーティー"]
+
+    return dic
+
+def Check_park():
+    #今の時間、日時を確認
+    dt_now = dt.now()
+    dt_date = dt_now.date()
+
+    #今日の日付
+    date_words = "2020年1月2日（木）"
+    date_info = re.sub("\\D","-",date_words)
+    date_split = date_info.split("-",3)
+    year = int(date_split[0])
+    month = int(date_split[1])
+    day = int(date_split[2])
+
+    #今日の営業時間
+    business_hour = "8:00 ～ 22:00"
+
+    #開園時間の分割
+    open_time = business_hour.split("～")[0]
+    open_hour = int(open_time.split(":")[0])
+    open_minute = int(open_time.split(":")[1])
+
+    #閉園時間の分割
+    close_time = business_hour.split("～")[1]
+    close_hour = int(close_time.split(":")[0])
+    close_minute = int(close_time.split(":")[1])
+
+    #datetime化
+    open_datetime = dt(year,month,day,open_hour,open_minute)
+    close_datetime = dt(year,month,day,close_hour,close_minute)
+
+    if open_datetime < dt_now < close_datetime:
+        return "open"
+
+    else:
+        return "close"
 
 def Set(park,area):
     options = Options()
     options.set_headless(True)
     options.add_argument('--headless')
     #driver_path = "C:/Users/ryo/Desktop/chromedriver_win32/chromedriver.exe"
-    options.add_argument("--user-agent = Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113")
+    #options.add_argument("--user-agent = Mozilla/5.0")
     driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
     if park == "land":
-        target_url = "https://www.tokyodisneyresort.jp/tdl/realtime/attraction/"
+        target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
+        situation = Check_park()
+        land_attraction = Land_dict()
+        
     else:
         target_url = "https://www.tokyodisneyresort.jp/tds/realtime/attraction/"
+        situation = Check_park()
     
+    #アトラクションをエリア別に分けておく
+    
+
     #サイトに負荷をかけないように待機する時間,URLにアクセス
     INTERVAL = 1
     driver.get(target_url)
     html = driver.page_source
 
-    close_flag = Close(html)
-    print(close_flag)
     #閉園中
-    if close_flag == "True":
+    if situation == "close":
         sleep(INTERVAL)
         driver.quit()
         return "close"
