@@ -78,6 +78,7 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
+    print("ここまで来てる")
     global park,area    
     area = event.postback.data
 
@@ -88,7 +89,6 @@ def handle_postback(event):
     template = template_env.get_template('recipt.json')
     data = template.render(dict(items=les))
 
-    print("ここまで来てる")
     line_bot_api.reply_message(
     event.reply_token,
     FlexSendMessage(
