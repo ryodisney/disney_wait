@@ -56,8 +56,9 @@ def Match_area(attraction_list,info_list,area):
 def Close(html):
     close_flag = False
     soup = BeautifulSoup(html,"lxml")
+    print(soup.title.text)
 
-    close_tag = soup.find('div',class_ = "close")
+    close_tag = soup.find_all('div',class_ = "close")
 
     if close_tag is not None:
         close_flag = True
