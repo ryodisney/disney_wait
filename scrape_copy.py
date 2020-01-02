@@ -1,59 +1,11 @@
 #coding:utf-8
 from bs4 import BeautifulSoup
-from selenium import webdriver
+import requests
 from time import sleep
 import json
 from makejsonfile import Make_jsonfile,Send_area
 from datetime import datetime as dt
 import re
-
-def Scrape(html):
-    attraction_list = []
-    info_list = []
-    soup = BeautifulSoup(html,"lxml")
-    
-    for search_tag in soup.find_all(class_ = 'areaName'):
-        area_name = search_tag.text.strip()
-        #アトラクションの名前と運転状況
-        attraction_info = search_tag.parent
-        attraction_name = attraction_info.find('h3').text.strip()
-        attraction_list.append(attraction_name)
-        current_info_temp = attraction_info.find(class_ = "operation")
-        if current_info_temp is None:
-            current_info = "運営中止"
-        else:
-            current_info = current_info_temp.text.strip()
-        #print(attraction_name,current_info)
-
-        if current_info == "運営中":
-            wait_status = attraction_info.find(class_ = "waitingTime").text.strip()
-            if "分" in wait_status:
-                wait_time = str(attraction_info.find(class_ = "time").text.strip()) + "分"
-            else:
-                wait_time = wait_status
-                
-            update_time = attraction_info.find(class_ = "update").text.strip()
-            info_list.append([area_name,wait_time,update_time])
-        
-        else:
-            update_time = attraction_info.find(class_ = "update").text.strip()
-            info_list.append([area_name,current_info,update_time])
-    
-    return attraction_list,info_list
-
-def Match_area(attraction_list,info_list,area):
-    attraction_thisarea = []
-    info_thisarea = []
-    for attraction_name,attraction_info in zip(attraction_list,info_list):
-        if attraction_info[0] == area:
-            del attraction_info[0]
-            attraction_thisarea.append(attraction_name)
-            info_thisarea.append(attraction_info)
-    
-
-    return attraction_thisarea,info_thisarea
-
-
 
 def Land_dict():
     dic = {}
@@ -101,8 +53,7 @@ def Check_park(date_words):
     else:
         return "close"
 
-def Scrape_day(html):
-    soup = BeautifulSoup(html,"lxml")
+def Scrape_day(soup):
     print(soup.title.text)
     print("ここかな")
     date = soup.find(class_ = "article_date")
@@ -111,11 +62,6 @@ def Scrape_day(html):
 
 
 def Set(park,area):
-    options = webdriver.ChromeOptions()
-    options.set_headless(True)
-    options.add_argument('--headless')
-    options.add_argument('--user-agent=Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)')
-    driver = webdriver.Chrome(options=options)
 
     #スクレイピングするサイトのURL
     if park == "land":
@@ -128,30 +74,18 @@ def Set(park,area):
     
 
     #サイトに負荷をかけないように待機する時間,URLにアクセス
-    INTERVAL = 1
-    driver.get(target_url)
-    html = driver.page_source
+    html = requests.get(target_url)
+    soup = BeautifulSoup(html,"lxml")
 
-    date_words = Scrape_day(html)
+    date_words = Scrape_day(soup)
     situation = Check_park(date_words)
 
     #閉園中
     if situation == "close":
-        sleep(INTERVAL)
-        driver.quit()
+
         return "close"
 
-    else:
-        attraction_list,info_list = Scrape(html)
-        attraction_thisarea,info_thisarea = Match_area(attraction_list,info_list,area)
-        Send_area(area)
-        print(attraction_thisarea,info_thisarea)
-        for attraction,info in zip(attraction_thisarea,info_thisarea):
-            Make_jsonfile(attraction,info)
-        
-        sleep(INTERVAL)
-        driver.quit()
-        
+    else:        
         return "open"
 
 def main():
