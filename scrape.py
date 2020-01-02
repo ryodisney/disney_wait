@@ -72,7 +72,6 @@ def Land_dict():
 def Check_park():
     #今の時間、日時を確認
     dt_now = dt.now()
-    dt_date = dt_now.date()
 
     #今日の日付
     date_words = "2020年1月2日（木）"
@@ -115,7 +114,8 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
+        target_url = "google"
+        #target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         situation = Check_park()
         land_attraction = Land_dict()
         
