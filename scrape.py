@@ -130,7 +130,9 @@ def Set(park,area):
     INTERVAL = 1
     driver.get(target_url)
     html = driver.page_source
-
+    soup = BeautifulSoup(html,"lxml")
+    print(soup.title.text)
+    
     #閉園中
     if situation == "close":
         sleep(INTERVAL)
