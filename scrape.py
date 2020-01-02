@@ -131,8 +131,8 @@ def Set(park,area):
     driver.get(target_url)
     html = driver.page_source
     soup = BeautifulSoup(html,"lxml")
-    for tr in soup.find_all('tr'):
-        print(tr)
+    for td in soup.find_all('td'):
+        print(td)
 
 
     #閉園中
