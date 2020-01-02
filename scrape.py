@@ -114,7 +114,6 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        #target_url = "https://www.google.com/"
         target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         situation = Check_park()
         land_attraction = Land_dict()
@@ -132,7 +131,7 @@ def Set(park,area):
     html = driver.page_source
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
-    driver.save_screenshot('result.jpg')
+    driver.save_screenshot('result.png')
 
     #閉園中
     if situation == "close":
@@ -158,7 +157,8 @@ def main():
     print("これはpythonのみ開発モード")
     park = "land"
     area = "アドベンチャーランド"
-    Set(park,area)
+    situation = Set(park,area)
+    print(situation)
 
 
 if __name__ == "__main__":
