@@ -133,9 +133,6 @@ def Set(park,area):
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
 
-    link_land = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
-    driver.find_element_by_class_name("gLFyf gsfi").send_keys(link_land)
-    print(soup.title.text)
     
     #閉園中
     if situation == "close":
