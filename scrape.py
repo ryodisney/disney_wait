@@ -138,13 +138,14 @@ def Set(park,area):
         return "close"
 
     else:
+        """
         attraction_list,info_list = Scrape(html)
         attraction_thisarea,info_thisarea = Match_area(attraction_list,info_list,area)
         Send_area(area)
         print(attraction_thisarea,info_thisarea)
         for attraction,info in zip(attraction_thisarea,info_thisarea):
             Make_jsonfile(attraction,info)
-        
+        """
         sleep(INTERVAL)
         driver.quit()
         
