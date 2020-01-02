@@ -74,8 +74,9 @@ def Set(park,area):
     
 
     #サイトに負荷をかけないように待機する時間,URLにアクセス
-    html = requests.get(target_url)
-    soup = BeautifulSoup(html,"lxml")
+    headers = {'User-Agent':'Mozilla/5.0'}
+    html = requests.get(target_url,headers=headers)
+    soup = BeautifulSoup(html,'lxml')
 
     date_words = Scrape_day(soup)
     situation = Check_park(date_words)
