@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 import os,json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from scrape_copy import Set
+from scrape import Set
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
