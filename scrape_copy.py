@@ -76,7 +76,7 @@ def Set(park,area):
     html = requests.get(target_url,headers=headers)
     soup = BeautifulSoup(html.content,'lxml')
 
-    print(soup.title.text)
+    result = soup.title.text
     print("ここかな")
     
     date_words = Scrape_day(soup)
@@ -88,13 +88,14 @@ def Set(park,area):
         return "close"
 
     else:        
-        return "open"
+        return result
 
 def main():
     print("これはpythonのみ開発モード")
     park = "land"
     area = "アドベンチャーランド"
-    Set(park,area)
+    result = Set(park,area)
+    print(result)
 
 
 if __name__ == "__main__":
