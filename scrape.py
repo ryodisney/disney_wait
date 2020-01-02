@@ -131,7 +131,7 @@ def Set(park,area):
     html = driver.page_source
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
-    driver.save_screenshot('result.png')
+    driver.save_screenshot('C:/Users/ryo/Desktop/program/line_botresult.png')
 
     #閉園中
     if situation == "close":
