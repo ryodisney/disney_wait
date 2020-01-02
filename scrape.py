@@ -133,7 +133,9 @@ def Set(park,area):
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
 
-    
+    link_land = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
+    driver.find_element_by_id("fakebox-input").send_keys(link_land)
+
     #閉園中
     if situation == "close":
         sleep(INTERVAL)
