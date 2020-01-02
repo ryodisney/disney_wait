@@ -114,7 +114,7 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        target_url = "google"
+        target_url = "https://www.google.com/"
         #target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         situation = Check_park()
         land_attraction = Land_dict()
