@@ -87,6 +87,7 @@ def handle_postback(event):
 
     if situation == "open":
         print("open")
+        """
         #レシート出力
         les = "les"
         template = template_env.get_template('recipt.json')
@@ -100,6 +101,11 @@ def handle_postback(event):
             contents=BubbleContainer.new_from_json_dict(json.loads(data))
             )
         )
+        """
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="オープンなう！")
+            )
     
     else:
         print("close")
