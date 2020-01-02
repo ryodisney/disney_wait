@@ -12,6 +12,7 @@ def Scrape(html):
     attraction_list = []
     info_list = []
     soup = BeautifulSoup(html,"lxml")
+    print(soup.title.text)
     
     for search_tag in soup.find_all(class_ = 'areaName'):
         area_name = search_tag.text.strip()
