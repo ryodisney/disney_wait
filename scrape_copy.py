@@ -63,7 +63,8 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
+        target_url = "https://www.google.com/"
+        #target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         
     else:
         target_url = "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html"
