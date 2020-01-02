@@ -7,6 +7,7 @@ from makejsonfile import Make_jsonfile,Send_area
 from datetime import datetime as dt
 import re
 
+
 def Land_dict():
     dic = {}
     dic["ワールドバザール"] = ["オムニバス","ペニーアーケード"]
@@ -64,17 +65,17 @@ def Set(park,area):
     #スクレイピングするサイトのURL
     if park == "land":
         #target_url = "https://www.google.com/"
-        #target_url = "https://disneyreal.asumirai.info/index-sea.html"
-        target_url = "https://dwait.net/index.php/tdlwait"
+        target_url = "https://disneyreal.asumirai.info/index-sea.html"
+        #target_url = "https://dwait.net/index.php/tdlwait"
         
     else:
         target_url = "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html"
     
     #アトラクションをエリア別に分けておく
     
-
     #サイトに負荷をかけないように待機する時間,URLにアクセス
-    headers = {'User-Agent':'Mozilla/5.0'}
+    headers = {"User-Agent": "Mozilla/5.0"}
+    #headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'}
     html = requests.get(target_url,headers=headers)
     soup = BeautifulSoup(html.content,'lxml')
 
