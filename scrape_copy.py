@@ -64,7 +64,8 @@ def Set(park,area):
     #スクレイピングするサイトのURL
     if park == "land":
         #target_url = "https://www.google.com/"
-        target_url = "https://disneyreal.asumirai.info/index-sea.html"
+        #target_url = "https://disneyreal.asumirai.info/index-sea.html"
+        target_url = "https://dwait.net/index.php/tdlwait"
         
     else:
         target_url = "https://disneyreal.asumirai.info/realtime/disneysea-wait-today.html"
@@ -78,6 +79,7 @@ def Set(park,area):
     soup = BeautifulSoup(html.content,'lxml')
 
     result = soup.title.text
+    print(result)
     print("ここかな")
     
     date_words = Scrape_day(soup)
