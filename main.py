@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 import os,json
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from scrape import Set
+from scrape_copy import Set
 
 
 from linebot import (
