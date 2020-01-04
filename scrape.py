@@ -117,7 +117,7 @@ def Set(park,area):
     #スクレイピングするサイトのURL
     if park == "land":
         target_url = "https://www.tokyodisneyresort.jp/tdl/daily/calendar.html"
-        #situation = Check_park()
+        situation = Check_park()
         land_attraction = Land_dict()
         
     else:
