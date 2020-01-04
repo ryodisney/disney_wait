@@ -74,7 +74,7 @@ def Set(park,area):
     #アトラクションをエリア別に分けておく
     
     #サイトに負荷をかけないように待機する時間,URLにアクセス
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {"referer":"https://www.google.com/","User-Agent": "Mozilla/5.0"}
     #headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'}
     html = requests.get(target_url,headers=headers)
     soup = BeautifulSoup(html.content,'lxml')
