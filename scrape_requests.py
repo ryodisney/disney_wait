@@ -83,6 +83,7 @@ def Scrape_data(soup):
         #中身が数字なら「分」を追加
         if wait_time_treat.isdecimal():
             wait_time_treat += "分"
+        
 
         wait_time.append(wait_time_treat)
     
@@ -96,10 +97,16 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
 
         for attraction,wait_time in zip(attraction_all,wait_time_all):
             if attraction_goal in attraction:
+
+                if "FP" in wait_time:
+                    wait_time = wait_time.strip("【FP：TICKETING_END】") 
+
                 if wait_time == "":
                     info_thisarea.append("情報がありません")
                 else:
                     info_thisarea.append(wait_time)
+                
+    print(info_thisarea)
 
     return info_thisarea
 
@@ -162,7 +169,7 @@ def Set(park,area):
 def main():
     print("これはpythonのみ開発モード")
     park = "land"
-    area = "アドベンチャーランド"
+    area = "トゥモローランド"
     result = Set(park,area)
     print(result)
 
