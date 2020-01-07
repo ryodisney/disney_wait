@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
-import os,json
+import os,json,shutil
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from scrape import Set
+from scrape_requests import Set
 
 
 from linebot import (
@@ -19,8 +19,8 @@ from linebot.models import (
 app = Flask(__name__)
 
 #環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["LINE_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -75,23 +75,35 @@ def handle_message(event):
         )
 
 
+
 @handler.add(PostbackEvent)
-def handle_postback(event):
+def handle_postback(event):        
     global park,area    
     area = event.postback.data
+    userid = event.source.user_id
+
+    #ポストバック受け取り確認
+    confirm_message = TextSendMessage(text="処理中です")
+    line_bot_api.push_message(userid, messages=confirm_message)
+
+    #ファイルのコピー、入れ替え
+    src = 'templates/recipt.json'
+    scr_template = 'templates/recipt_template.json'
+    if os.path.isfile(src) and os.path.isfile(scr_template):
+        print("コピー")
+        shutil.copyfile('templates/recipt_template.json', 'templates/recipt_this.json')
+
 
     #開閉園、スクレイピング、レシート作成
     situation = Set(park,area)
-    print(situation)
 
     if situation == "open":
         print("open")
-        """
+
         #レシート出力
         les = "les"
         template = template_env.get_template('recipt.json')
         data = template.render(dict(items=les))
-        print(data)
 
         line_bot_api.reply_message(
         event.reply_token,
@@ -100,12 +112,7 @@ def handle_postback(event):
             contents=BubbleContainer.new_from_json_dict(json.loads(data))
             )
         )
-        """
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="オープンなう！")
-            )
-    
+
     else:
         print("close")
         line_bot_api.reply_message(

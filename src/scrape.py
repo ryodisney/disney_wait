@@ -13,7 +13,6 @@ def Scrape(html):
     info_list = []
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
-
     
     for search_tag in soup.find_all(class_ = 'areaName'):
         area_name = search_tag.text.strip()
@@ -41,7 +40,6 @@ def Scrape(html):
         else:
             update_time = attraction_info.find(class_ = "update").text.strip()
             info_list.append([area_name,current_info,update_time])
-    
     
     return attraction_list,info_list
 
@@ -116,7 +114,8 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        target_url = "https://www.tokyodisneyresort.jp/tdl"
+        target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name"
+        #target_url = "https://disneyreal.asumirai.info/realtime/disneyland-wait-today.html"
         situation = Check_park()
         land_attraction = Land_dict()
         
@@ -133,16 +132,7 @@ def Set(park,area):
     html = driver.page_source
     soup = BeautifulSoup(html,"lxml")
     print(soup.title.text)
- 
-    attraction_link_pre = soup.find('div',class_ = "button today_park_link")
-    attraction_link = target_url + str(attraction_link_pre.a.get("href"))
-    print(attraction_link)
-    
-    driver.get(attraction_link)
-    html_2 = driver.page_source
-    soup_2 = BeautifulSoup(html_2,"lxml")
-    print(soup_2.title.text)
-    
+
 
     #閉園中
     if situation == "close":
@@ -168,8 +158,7 @@ def main():
     print("これはpythonのみ開発モード")
     park = "land"
     area = "アドベンチャーランド"
-    situation = Set(park,area)
-    print(situation)
+    Set(park,area)
 
 
 if __name__ == "__main__":
