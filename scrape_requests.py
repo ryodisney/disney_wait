@@ -125,8 +125,18 @@ def Set(park,area):
 
     #閉園中
     if situation == "close":
+        html = requests.get(target_url,verify=False)
+        soup = BeautifulSoup(html.content,'lxml')
 
-        return "close"
+        attraction_all,wait_time_all = Scrape_data(soup)
+        info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
+        #print(attraction_thisarea,info_thisarea)
+        
+        for attraction,info in zip(attraction_thisarea,info_thisarea):
+            Send_area(area)
+            Make_jsonfile(attraction,info)
+
+        return "open"
 
     else:
         #headers = {'User-Agent':'Mozilla/5.0'}
