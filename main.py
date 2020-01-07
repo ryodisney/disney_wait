@@ -91,7 +91,7 @@ def handle_postback(event):
     scr_template = 'templates/recipt_template.json'
     if os.path.isfile(src) and os.path.isfile(scr_template):
         print("コピー")
-        shutil.copy('templates/recipt_template.json', 'templates/recipt_this.json')
+        shutil.copy('templates/recipt_template.json', 'templates/recipt.json')
 
 
     #開閉園、スクレイピング、レシート作成
