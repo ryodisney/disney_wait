@@ -91,7 +91,7 @@ def handle_postback(event):
     scr_template = str(os.path.abspath('recipt_template.json'))
     print(src,scr_template)
 
-    shutil.copy('/app/recipt_template.json', '/app/recipt.json')
+    shutil.copy('app/recipt_template.json', 'app/recipt.json')
 
 
     #開閉園、スクレイピング、レシート作成
