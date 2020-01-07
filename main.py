@@ -87,7 +87,7 @@ def handle_postback(event):
     line_bot_api.push_message(userid, messages=confirm_message)
 
     #ファイルのコピー、入れ替え
-    print('getcwd:      ', os.getcwd())
+    print('getcwd:      ', os.path.abspath("recipt.json"))
     src = 'templates/recipt.json'
     scr_template = 'templates/recipt_template.json'
     if os.path.isfile(src) and os.path.isfile(scr_template):
