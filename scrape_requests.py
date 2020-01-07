@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 from time import sleep
 import json
-from makejsonfile import Make_jsonfile,Send_area
+from makejsonfile import Make_jsonfile,Send_area,Reset_jsonfile
 from datetime import datetime as dt
 import re
 import urllib3
@@ -121,7 +121,7 @@ def Set(park,area):
     business_hour = Scrape_day(info_url)
     situation = Check_park(business_hour)
 
-
+    Reset_jsonfile()
 
     #閉園中
     if situation == "close":

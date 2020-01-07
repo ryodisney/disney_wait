@@ -86,11 +86,6 @@ def handle_postback(event):
     confirm_message = TextSendMessage(text="処理中です")
     line_bot_api.push_message(userid, messages=confirm_message)
 
-    #ファイルのコピー、入れ替え
-    directory = os.listdir('/app')
-    print(directory)
-    shutil.copy('recipt_template.json', 'recipt.json')
-
 
     #開閉園、スクレイピング、レシート作成
     situation = Set(park,area)

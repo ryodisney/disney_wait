@@ -47,3 +47,57 @@ def Send_area(area):
     #書き込み
     new_json_file = open('templates/recipt.json', 'w',encoding="utf-8")
     json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
+
+def Reset_jsonfile():
+    reset = {
+                "type": "bubble",
+                "styles": {
+                "footer": {
+                    "separator": True
+                }
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "待ち時間",
+                    "weight": "bold",
+                    "color": "#1DB446",
+                    "size": "sm"
+                    },
+                    {
+                    "type": "text",
+                    "text": "アトラクション名",
+                    "weight": "bold",
+                    "size": "xxl",
+                    "margin": "md"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "xxl"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "xxl",
+                    "spacing": "sm",
+                    "contents": [
+                        
+                    ]
+                    }
+                ]
+                }
+            }
+
+    new_json_file = open('templates/recipt.json', 'w',encoding="utf-8")
+    json.dump(reset, new_json_file, indent=2,ensure_ascii=False)
+
+
+def main():
+    Reset_jsonfile()
+
+
+if  __name__ == "__main__":
+    main()
