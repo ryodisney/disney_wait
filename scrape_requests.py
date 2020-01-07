@@ -57,10 +57,15 @@ def Scrape_day(info_url):
     #開園時間取得
     html = requests.get(info_url,verify=False)
     soup = BeautifulSoup(html.content,'lxml')
-    business_hour = soup.find(class_ = "business-hour").text
-    business_hour_final = business_hour.strip()
+    business_hour = soup.find(class_ = "business-hour")
 
-    return business_hour
+    if business_hour is None:
+        business_hour_final = "No data"
+    
+    else:
+        business_hour_final = business_hour.text.strip()
+
+    return business_hour_final
 
 def Scrape_data(soup):
     attraction = []
@@ -115,8 +120,10 @@ def Set(park,area):
 
     #開園時間をチェック
     business_hour = Scrape_day(info_url)
-    #print(business_hour)
-    situation = Check_park(business_hour)
+    if business_hour != "No data":
+        situation = Check_park(business_hour)
+    else:
+        situation = "close"
 
 
     #閉園中
