@@ -71,7 +71,7 @@ def Reset_jsonfile():
                     "type": "text",
                     "text": "テーマ",
                     "weight": "bold",
-                    "size": "xxl",
+                    "size": "xl",
                     "margin": "md"
                     },
                     {
