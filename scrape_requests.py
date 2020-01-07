@@ -33,7 +33,7 @@ def Check_park(business_hour):
 
     #開園時間の分割
     open_time = business_hour.split("～")[0]
-    if open_time.split(":")[0] is None:
+    if open_time.split(":")[0] == "":
         return "close"
 
     else:
