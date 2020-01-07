@@ -113,7 +113,7 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
                 if wait_time == "":
-                    info_thisarea.append("")
+                    info_thisarea.append("なし")
                 else:
                     info_thisarea.append(wait_time)
                 
