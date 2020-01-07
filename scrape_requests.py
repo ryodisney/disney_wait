@@ -11,7 +11,7 @@ import urllib3
 def Land_dict(area):
     dic = {}
     dic["ワールドバザール"] = ["オムニバス"]
-    dic["アドベンチャーランド"] = ["ウエスタンリバー鉄道","カリブの海賊","スイスファミリー・ツリーハウス","魅惑のチキルーム","ジャングルクルーズ：ワイルドライフ・エクスペディション"]
+    dic["アドベンチャーランド"] = ["ウエスタンリバー鉄道","カリブの海賊","ツリーハウス","魅惑のチキルーム","ジャングルクルーズ"]
     dic["トゥーンタウン"] = ["ガジェットのゴーコースター","グーフィーのペイント＆プレイハウス","チップとデールのツリーハウス","トゥーンパーク","ドナルドのボート","ミッキーの家とミート・ミッキー","ミニーの家","ロジャーラビットのカートゥーンスピン"]
     dic["トゥモローランド"] = ["スターツアーズ","スペース・マウンテン","バズ・ライトイヤー","モンスターズ・インク","スティッチ・エンカウンター"]
     dic["ウエスタンランド"] = ["ウエスタンランド・シューティングギャラリー","カントリーベア・シアター","蒸気船マークトウェイン号","トムソーヤ島いかだ","ビッグサンダー・マウンテン","ウッドチャック・グリーティングトレイル（デイジー）","ウッドチャック・グリーティングトレイル（ドナルド）"]
@@ -22,6 +22,7 @@ def Land_dict(area):
 
     return attraction_area_extraction
 
+#今が開園時間か確認
 def Check_park(business_hour):
     #今の時間、日時を確認
     dt_now = dt.now()
@@ -56,9 +57,8 @@ def Check_park(business_hour):
         else:
             return "close"
 
-#日にち取得
+#開園時間取得
 def Scrape_day(info_url):
-    #開園時間取得
     html = requests.get(info_url,verify=False)
     soup = BeautifulSoup(html.content,'lxml')
     business_hour = soup.find(class_ = "business-hour").text
@@ -66,6 +66,7 @@ def Scrape_day(info_url):
 
     return business_hour_final
 
+#待ち時間取得
 def Scrape_data(soup):
     attraction = []
     wait_time = []
@@ -90,7 +91,7 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
     for attraction_goal in attraction_thisarea:
 
         for attraction,wait_time in zip(attraction_all,wait_time_all):
-            if attraction_goal == attraction:
+            if attraction_goal in attraction:
                 if wait_time == "":
                     info_thisarea.append("情報がありません")
                 else:

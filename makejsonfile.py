@@ -69,7 +69,7 @@ def Reset_jsonfile():
                     },
                     {
                     "type": "text",
-                    "text": "アトラクション名",
+                    "text": "テーマ",
                     "weight": "bold",
                     "size": "xxl",
                     "margin": "md"

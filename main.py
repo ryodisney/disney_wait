@@ -41,7 +41,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    #app.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
@@ -69,7 +69,7 @@ def handle_message(event):
         line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
-            alt_text="items",
+            alt_text="テーマランド",
             contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
