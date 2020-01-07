@@ -87,7 +87,7 @@ def handle_postback(event):
     line_bot_api.push_message(userid, messages=confirm_message)
 
     #ファイルのコピー、入れ替え
-    directory = os.listdir('app')
+    directory = os.listdir('/app')
     print(directory)
     shutil.copy('recipt_template.json', 'recipt.json')
 
