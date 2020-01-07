@@ -3,587 +3,288 @@
   "contents": [
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-mh.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-mh.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "メディテレーニアン\nハーバー",
-                    "size": "xl",
-                    "color": "#A52A2A",
-                    "wrap": true,
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#A52A2A",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#A52A2A",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#03303A8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "メディテレーニアンハーバー",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "action": {
+              "type":"postback",
+              "label":"待ち時間を表示",
+              "data":"メディテレーニアンハーバー"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-aw.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-aw.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "アメリカン\nウォーターフロント",
-                    "size": "xl",
-                    "color": "#ffffff",
-                    "wrap": true,                
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#ffffff",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#ffffff",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#9C8E7E8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "アメリカンウォーターフロント",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "アメリカンウォーターフロント"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-pd.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-pd.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ポートディスカバリー",
-                    "size": "xl",
-                    "color": "#DC143C",
-                    "wrap": true,                    
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#DC143C",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#DC143C",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#9C8E7E8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "ポートディスカバリー",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "ポートディスカバリー"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ld.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ld.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ロストリバーデルタ",
-                    "size": "xl",
-                    "color": "#228B22",
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#228B22",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#228B22",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#03303A8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "ロストリバーデルタ",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "ロストリバーデルタ"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ac.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ac.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "アラビアンコースト",
-                    "size": "xl",
-                    "color": "#BA55D3",
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#BA55D3",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#BA55D3",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#0000008c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "アラビアンコースト",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "アラビアンコースト"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ml.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-ml.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "マーメイドラグーン",
-                    "size": "xl",
-                    "color": "#FF00FF",
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#FF00FF",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#FF00FF",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#03303A8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "マーメイドラグーン",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "マーメイドラグーン"
+            }
+          }
+        ]
       }
     },
     {
       "type": "bubble",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-mi.jpg"
+      },
       "body": {
         "type": "box",
         "layout": "vertical",
+        "spacing": "sm",
         "contents": [
           {
-            "type": "image",
-            "url": "https://media2.tokyodisneyresort.jp/home/tds/map/tds-mi.jpg",
-            "size": "full",
-            "aspectMode": "cover",
-            "aspectRatio": "2:3",
-            "gravity": "top"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ミステリアスアイランド",
-                    "size": "xl",
-                    "color": "#FFFF00",
-                    "wrap": true, 
-                    "align": "center",
-                    "weight": "bold"
-                  }
-                ]
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "filler"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "baseline",
-                    "contents": [
-                      {
-                        "type": "filler"
-                      },
-                      {
-                        "type": "text",
-                        "text": "待ち時間",
-                        "color": "#FFFF00",
-                        "flex": 0,
-                        "offsetTop": "-2px"
-                      },
-                      {
-                        "type": "filler"
-                      }
-                    ],
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "filler"
-                  }
-                ],
-                "borderWidth": "2px",
-                "cornerRadius": "4px",
-                "spacing": "sm",
-                "borderColor": "#FFFF00",
-                "margin": "xxl",
-                "height": "40px"
-              }
-            ],
-            "position": "absolute",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#03303A8c",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
+            "type": "text",
+            "text": "ミステリアスアイランド",
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
           }
-        ],
-        "paddingAll": "0px"
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "flex": 2,
+            "style": "primary",
+            "action": {
+              "type": "postback",
+              "label": "待ち時間を表示",
+              "data": "ミステリアスアイランド"
+            }
+          }
+        ]
       }
     }
   ]
