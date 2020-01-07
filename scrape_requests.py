@@ -33,37 +33,36 @@ def Check_park(business_hour):
 
     #開園時間の分割
     open_time = business_hour.split("～")[0]
-    open_hour = int(open_time.split(":")[0])
-    open_minute = int(open_time.split(":")[1])
-
-    #閉園時間の分割
-    close_time = business_hour.split("～")[1]
-    close_hour = int(close_time.split(":")[0])
-    close_minute = int(close_time.split(":")[1])
-
-    #datetime化
-    open_datetime = dt(year,month,day,open_hour,open_minute)
-    close_datetime = dt(year,month,day,close_hour,close_minute)
-
-
-    if open_datetime < dt_now < close_datetime:
-        return "open"
+    if open_time.split(":")[0] is None:
+        return "close"
 
     else:
-        return "close"
+        open_hour = int(open_time.split(":")[0])
+        open_minute = int(open_time.split(":")[1])
+
+        #閉園時間の分割
+        close_time = business_hour.split("～")[1]
+        close_hour = int(close_time.split(":")[0])
+        close_minute = int(close_time.split(":")[1])
+
+        #datetime化
+        open_datetime = dt(year,month,day,open_hour,open_minute)
+        close_datetime = dt(year,month,day,close_hour,close_minute)
+
+
+        if open_datetime < dt_now < close_datetime:
+            return "open"
+
+        else:
+            return "close"
 
 #日にち取得
 def Scrape_day(info_url):
     #開園時間取得
     html = requests.get(info_url,verify=False)
     soup = BeautifulSoup(html.content,'lxml')
-    business_hour = soup.find(class_ = "business-hour")
-
-    if business_hour is None:
-        business_hour_final = "No data"
-    
-    else:
-        business_hour_final = business_hour.text.strip()
+    business_hour = soup.find(class_ = "business-hour").text
+    business_hour_final = business_hour.strip()
 
     return business_hour_final
 
@@ -120,10 +119,8 @@ def Set(park,area):
 
     #開園時間をチェック
     business_hour = Scrape_day(info_url)
-    if business_hour != "No data":
-        situation = Check_park(business_hour)
-    else:
-        situation = "close"
+    situation = Check_park(business_hour)
+
 
 
     #閉園中
