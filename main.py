@@ -87,12 +87,11 @@ def handle_postback(event):
     line_bot_api.push_message(userid, messages=confirm_message)
 
     #ファイルのコピー、入れ替え
-    src = str(os.path.abspath('recipt.json')) + 'recipt.json'
-    scr_template = str(os.path.abspath('recipt_template.json')) + 'recipt_template.json'
+    src = str(os.path.abspath('recipt.json')) 
+    scr_template = str(os.path.abspath('recipt_template.json'))
     print(src,scr_template)
-    if os.path.isfile(src) and os.path.isfile(scr_template):
-        print("コピー")
-        shutil.copy('/app/recipt_template.json', '/app/recipt.json')
+
+    shutil.copy('/app/recipt_template.json', '/app/recipt.json')
 
 
     #開閉園、スクレイピング、レシート作成
