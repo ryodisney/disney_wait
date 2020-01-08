@@ -108,8 +108,10 @@ def handle_postback(event):
     area = ""
 
     post_data = event.postback.data
-    print(post_data)
     userid = event.source.user_id
+
+    if post_data == "エリア別" or "待ち時間上位":
+        genre = post_data
 
     land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
     sea_area_list = ["メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
