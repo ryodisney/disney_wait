@@ -118,6 +118,8 @@ def handle_postback(event):
     land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
     sea_area_list = ["メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
 
+    print("park = " + str(park))
+
     if post_data == "land" or post_data == "sea":
         park = post_data
 
@@ -208,6 +210,7 @@ def handle_postback(event):
                 
                 elif genre == "FP":
                     target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
 
     if info_url != "":
         #開閉園、スクレイピング、レシート作成
