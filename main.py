@@ -114,7 +114,7 @@ def handle_postback(event):
 
 
         #ランドを選択したときのカルーセル表示
-        if park == "land":
+        if park == "land" and genre == "エリア別":
             les = "les"
             template = template_env.get_template('land_theme.json')
             data = template.render(dict(items=les))
@@ -127,7 +127,7 @@ def handle_postback(event):
             
 
         #シーを選択したときのカルーセル表示
-        elif park == "sea":
+        elif park == "sea"and genre == "エリア別":
             les = "les"
             template = template_env.get_template('sea_theme.json')
             data = template.render(dict(items=les))
