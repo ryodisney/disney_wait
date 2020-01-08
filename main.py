@@ -143,6 +143,7 @@ def handle_postback(event):
                 line_bot_api.push_message(userid, messages=confirm_message)
 
     #開閉園、スクレイピング、レシート作成
+    print(area)
     situation = Set(park,area)
 
     if situation == "open":
