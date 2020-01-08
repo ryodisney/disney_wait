@@ -129,22 +129,17 @@ def handle_postback(event):
             line_bot_api.push_message(userid, messages=sea_carousel)
     
     if park == "land":
-        for area in land_area_list:
-            print("ここまで来てる")
-            print(area)
-            if post_data == area:
+        for land_area in land_area_list:
+            if post_data == land_area:
                 area = post_data
-                print("ランド")
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
     
     elif park == "sea":
-        for area in sea_area_list:
-            print("ここまで来てる")
-            if post_data == area:
+        for sea_area in sea_area_list:
+            if post_data == sea_area:
                 area = post_data
-                print("シー")
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
