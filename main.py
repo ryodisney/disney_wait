@@ -101,6 +101,10 @@ def handle_postback(event):
         for area in area_list:
             if post_data == area_list:
                 area = post_data
+               
+                #ポストバック受け取り確認
+                confirm_message = TextSendMessage(text="処理中です")
+                line_bot_api.push_message(userid, messages=confirm_message)
 
     #ランドを選択したときのカルーセル表示
     if park == "land":
@@ -126,9 +130,6 @@ def handle_postback(event):
             )
         line_bot_api.push_message(userid, messages=sea_carousel)
 
-    #ポストバック受け取り確認
-    confirm_message = TextSendMessage(text="処理中です")
-    line_bot_api.push_message(userid, messages=confirm_message)
 
 
     #開閉園、スクレイピング、レシート作成
