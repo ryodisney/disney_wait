@@ -123,34 +123,35 @@ def handle_postback(event):
 
     print("park = " + str(park))
     print("genre = " + str(genre))
+    
 
     if post_data == "land" or post_data == "sea":
         park = post_data
 
-        #ランドを選択したときのカルーセル表示
-        if park == "land" and genre == "エリア別":
-            les = "les"
-            template = template_env.get_template('land_theme.json')
-            data = template.render(dict(items=les))
+    #ランドを選択したときのカルーセル表示
+    if park == "land" and genre == "エリア別":
+        les = "les"
+        template = template_env.get_template('land_theme.json')
+        data = template.render(dict(items=les))
 
-            land_carousel = FlexSendMessage(
-                alt_text="テーマランド",
-                contents=CarouselContainer.new_from_json_dict(json.loads(data))
-                )
-            line_bot_api.push_message(userid, messages=land_carousel)
-            
+        land_carousel = FlexSendMessage(
+            alt_text="テーマランド",
+            contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        line_bot_api.push_message(userid, messages=land_carousel)
+        
 
-        #シーを選択したときのカルーセル表示
-        elif park == "sea"and genre == "エリア別":
-            les = "les"
-            template = template_env.get_template('sea_theme.json')
-            data = template.render(dict(items=les))
+    #シーを選択したときのカルーセル表示
+    elif park == "sea" and genre == "エリア別":
+        les = "les"
+        template = template_env.get_template('sea_theme.json')
+        data = template.render(dict(items=les))
 
-            sea_carousel = FlexSendMessage(
-                alt_text="テーマポート",
-                contents=CarouselContainer.new_from_json_dict(json.loads(data))
-                )
-            line_bot_api.push_message(userid, messages=sea_carousel)
+        sea_carousel = FlexSendMessage(
+            alt_text="テーマポート",
+            contents=CarouselContainer.new_from_json_dict(json.loads(data))
+            )
+        line_bot_api.push_message(userid, messages=sea_carousel)
             
     #カルーセルのボタンが押された後の処理
     if park == "land":
