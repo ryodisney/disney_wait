@@ -5,11 +5,7 @@
       "url": "https://secured.disney.co.jp/content/disney/jp/secured/dcc/tokuten/bf-tdr-prk-tckt/_jcr_content/par/dcc_hero_panel_image/image1.img.jpg/1474355301452.jpg",
       "size": "full",
       "aspectRatio": "20:13",
-      "aspectMode": "cover",
-      "action": {
-        "type": "uri",
-        "uri": "http://linecorp.com/"
-      }
+      "aspectMode": "cover"
     },
     "body": {
       "type": "box",
@@ -17,7 +13,7 @@
       "contents": [
         {
           "type": "text",
-          "text": "Brown Cafe",
+          "text": "パークを選択してください",
           "weight": "bold",
           "size": "xl"
         }
@@ -35,7 +31,7 @@
           "action": {
             "type": "message",
             "label": "ランド",
-            "text": "ランド"
+            "text": "land"
           }
         },
         {
@@ -45,7 +41,7 @@
           "action": {
             "type": "message",
             "label": "シー",
-            "text": "シー"
+            "text": "sea"
           }
         },
         {
