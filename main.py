@@ -59,15 +59,18 @@ area = "area"
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global park,genre,area
-    park = "park"
-    genre = "genre"
-    area = "area"
 
     text = event.message.text
     userid = event.source.user_id
 
     #最初とリセット時
     if text == "待ち時間":
+        #初期化
+        park = "park"
+        genre = "genre"
+        area = "area"
+
+        
         les = "les"
         template = template_env.get_template('theme_select.json')
         data = template.render(dict(items=les))
