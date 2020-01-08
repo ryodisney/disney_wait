@@ -113,12 +113,12 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
                 if wait_time == "":
-                    info_thisarea.append("なし")
+                    info_thisarea.append("情報なし")
+                elif "案内終了" in wait_time:
+                    info_thisarea.append("案内終了")
                 else:
                     info_thisarea.append(wait_time)
                 
-    print(info_thisarea)
-
     return info_thisarea
 
 #ここでのmain関数
@@ -137,6 +137,7 @@ def Set(park,area):
         
     else:
         target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
+        #開園時間や天気などのリンク
         info_url = "https://tokyodisneyresort.info/index.php?park=sea"
         attraction_thisarea = Sea_dict(area)
     
@@ -145,6 +146,7 @@ def Set(park,area):
     business_hour = Scrape_day(info_url)
     situation = Check_park(business_hour)
 
+    #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
     #閉園中

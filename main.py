@@ -60,7 +60,8 @@ area = "area"
 def handle_message(event):
     global park
     park = event.message.text
-
+    
+    #ランドを選択したときのカルーセル表示
     if park == "land":
         les = "les"
         template = template_env.get_template('land_theme.json')
@@ -74,6 +75,7 @@ def handle_message(event):
             )
         )
 
+    #シーを選択したときのカルーセル表示
     if park == "sea":
         les = "les"
         template = template_env.get_template('sea_theme.json')

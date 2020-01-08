@@ -17,7 +17,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "メディテレーニアンハーバー",
+            "text": "メディテレーニアン\nハーバー",
             "wrap": true,
             "weight": "bold",
             "size": "xl"
@@ -57,7 +57,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "アメリカンウォーターフロント",
+            "text": "アメリカンウォーター\nフロント",
             "wrap": true,
             "weight": "bold",
             "size": "xl"
