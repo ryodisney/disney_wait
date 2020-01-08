@@ -77,7 +77,7 @@ def handle_message(event):
                 alt_text="テーマ選択",
                 contents=BubbleContainer.new_from_json_dict(json.loads(data))
                 )
-            )
+            
 
         line_bot_api.push_message(userid, messages=select__theme_massage)   
     
