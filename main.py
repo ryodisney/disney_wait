@@ -122,6 +122,7 @@ def handle_postback(event):
     sea_area_list = ["メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
 
     print("park = " + str(park))
+    print("genre = " + str(genre))
 
     if post_data == "land" or post_data == "sea":
         park = post_data
