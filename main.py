@@ -88,6 +88,7 @@ def handle_message(event):
 @handler.add(PostbackEvent)
 def handle_postback(event):
     global park,genre,area
+    area = ""
 
     post_data = event.postback.data
     userid = event.source.user_id
