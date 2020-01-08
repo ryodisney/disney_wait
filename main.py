@@ -96,40 +96,40 @@ def handle_postback(event):
 
     if post_data == "land" or post_data == "sea":
         park = post_data
+
+        #ランドを選択したときのカルーセル表示
+        if park == "land":
+            les = "les"
+            template = template_env.get_template('land_theme.json')
+            data = template.render(dict(items=les))
+
+            land_carousel = FlexSendMessage(
+                alt_text="テーマランド",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+                )
+            line_bot_api.push_message(userid, messages=land_carousel)
+
+        #シーを選択したときのカルーセル表示
+        if park == "sea":
+            les = "les"
+            template = template_env.get_template('sea_theme.json')
+            data = template.render(dict(items=les))
+
+            sea_carousel = FlexSendMessage(
+                alt_text="テーマポート",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+                )
+            line_bot_api.push_message(userid, messages=sea_carousel)
     
     else:
         for area in area_list:
+            print("ここまで来てる")
             if post_data == area_list:
                 area = post_data
-               
+                print(area)
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
-
-    #ランドを選択したときのカルーセル表示
-    if park == "land":
-        les = "les"
-        template = template_env.get_template('land_theme.json')
-        data = template.render(dict(items=les))
-
-        land_carousel = FlexSendMessage(
-            alt_text="テーマランド",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        line_bot_api.push_message(userid, messages=land_carousel)
-
-    #シーを選択したときのカルーセル表示
-    if park == "sea":
-        les = "les"
-        template = template_env.get_template('sea_theme.json')
-        data = template.render(dict(items=les))
-
-        sea_carousel = FlexSendMessage(
-            alt_text="テーマポート",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        line_bot_api.push_message(userid, messages=sea_carousel)
-
 
 
     #開閉園、スクレイピング、レシート作成
