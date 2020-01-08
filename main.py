@@ -70,7 +70,7 @@ def handle_message(event):
         genre = "genre"
         area = "area"
 
-        
+
         les = "les"
         template = template_env.get_template('theme_select.json')
         data = template.render(dict(items=les))
@@ -214,7 +214,7 @@ def handle_postback(event):
                 elif genre == "FP":
                     target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
 
-
+    situation = ""
     if info_url != "":
         #開閉園、スクレイピング、レシート作成
         situation = Set(park,area,info_url,target_url)
@@ -235,7 +235,7 @@ def handle_postback(event):
             )
         )
 
-    else:
+    elif situation == "close":
         print("close")
         line_bot_api.reply_message(
             event.reply_token,
