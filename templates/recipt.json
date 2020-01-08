@@ -18,7 +18,7 @@
       },
       {
         "type": "text",
-        "text": "トゥモローランド",
+        "text": "ロストリバーデルタ",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "スターツアーズ",
+                    "text": "インディージョーンズ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報がありません",
+                    "text": "20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -73,14 +73,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "スペース・マウンテン",
+                    "text": "スチーマーライン",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報がありません",
+                    "text": "20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,14 +101,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "バズ・ライトイヤー",
+                    "text": "レイジングスピリッツ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報がありません",
+                    "text": "20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -129,14 +129,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "モンスターズ・インク",
+                    "text": "グリーティングドック",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報がありません",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -157,14 +157,70 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "スティッチ",
+                    "text": "トレイル(グーフィー)",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報がありません",
+                    "text": "運営・公演中止",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "トレイル(ミニーマウス)",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "30分",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "トレイル(ミッキーマウス)",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "案内終了",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"

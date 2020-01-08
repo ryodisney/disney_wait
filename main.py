@@ -60,6 +60,17 @@ area = "area"
 def handle_message(event):
     global park
     park = event.message.text
+    userid = event.source.user_id
+
+    les = "les"
+    template = template_env.get_template('theme_select.json')
+    data = template.render(dict(items=les))
+    button_message = FlexSendMessage(
+        alt_text="テーマ選択",
+        contents=CarouselContainer.new_from_json_dict(json.loads(data))
+        )
+    line_bot_api.push_message(userid, messages=button_message)
+
     
     #ランドを選択したときのカルーセル表示
     if park == "land":
@@ -88,7 +99,6 @@ def handle_message(event):
             contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
         )
-
 
 
 @handler.add(PostbackEvent)

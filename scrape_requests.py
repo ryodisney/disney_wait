@@ -176,13 +176,14 @@ def Set(park,area):
         for attraction,info in zip(attraction_thisarea,info_thisarea):
             Send_area(area)
             Make_jsonfile(attraction,info)
+            print(attraction,info)
     
         return "open"
 
 def main():
     print("これはpythonのみ開発モード")
-    park = "land"
-    area = "トゥモローランド"
+    park = "sea"
+    area = "ロストリバーデルタ"
     result = Set(park,area)
     print(result)
 
