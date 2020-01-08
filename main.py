@@ -106,6 +106,8 @@ def handle_message(event):
 def handle_postback(event):
     global park,genre,area
     area = ""
+    info_url = ""
+    target_url = ""
 
     post_data = event.postback.data
     userid = event.source.user_id
@@ -207,7 +209,7 @@ def handle_postback(event):
                 elif genre == "FP":
                     target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
 
-    if info_url is not None:
+    if info_url != "":
         #開閉園、スクレイピング、レシート作成
         situation = Set(park,area,info_url,target_url)
 
