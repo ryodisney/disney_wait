@@ -122,15 +122,13 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
     return info_thisarea
 
 #ここでのmain関数
-def Set(park,area):
+def Set(park,area,info_url,target_url):
     #警告を消すため
     urllib3.disable_warnings()
 
     #スクレイピングするサイトのURL
     if park == "land":
-        #開園時間や天気などのリンク
-        info_url = "https://tokyodisneyresort.info/index.php?park=land"
-        
+
         #待ち時間のリンク
         target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name"
 
@@ -139,8 +137,7 @@ def Set(park,area):
         
     else:
         target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
-        #開園時間や天気などのリンク
-        info_url = "https://tokyodisneyresort.info/index.php?park=sea"
+
         attraction_thisarea = Sea_dict(area)
     
 
@@ -186,7 +183,11 @@ def main():
     print("これはpythonのみ開発モード")
     park = "sea"
     area = "ロストリバーデルタ"
-    result = Set(park,area)
+    #開園時間や天気などのリンク
+    info_url = "https://tokyodisneyresort.info/index.php?park=sea"
+    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
+
+    result = Set(park,area,info_url,target_url)
     print(result)
 
 

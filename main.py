@@ -12,7 +12,7 @@ from linebot.exceptions import (
 )
 
 from linebot.models import (
-    MessageEvent, TextMessage, PostbackTemplateAction, PostbackEvent,
+    MessageEvent, TextMessage, PostbackTemplateAction, PostbackEvent, PostbackAction, QuickReplyButton, QuickReply
     FlexSendMessage, BubbleContainer, CarouselContainer, TextSendMessage
 )
 
@@ -64,7 +64,7 @@ def handle_message(event):
     area = "area"
 
     text = event.message.text
-
+    userid = event.source.user_id
 
     #最初とリセット時
     if text == "待ち時間":
@@ -72,13 +72,14 @@ def handle_message(event):
         template = template_env.get_template('theme_select.json')
         data = template.render(dict(items=les))
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
-            alt_text="テーマ選択",
-            contents=BubbleContainer.new_from_json_dict(json.loads(data))
+
+        select__theme_massage = FlexSendMessage(
+                alt_text="テーマ選択",
+                contents=BubbleContainer.new_from_json_dict(json.loads(data))
+                )
             )
-        )
+
+        line_bot_api.push_message(userid, messages=select__theme_massage)   
     
     else:
         #リッチメニューが選択されたとき
@@ -87,7 +88,14 @@ def handle_message(event):
         for richmenu in richmenu_list:
             if text == richmenu:
                 genre = text
-    
+                select_list = ["待ち時間上位","エリア別"]
+                items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = {select})) for select in select_list]
+                
+                quick_messages = TextSendMessage(text="どちらで表示しますか？",
+                            quick_reply=QuickReply(items=items))
+
+                line_bot_api.push_message(userid, messages=quick_messages)              
+                
 
 
 @handler.add(PostbackEvent)
@@ -104,6 +112,7 @@ def handle_postback(event):
     if post_data == "land" or post_data == "sea":
         park = post_data
 
+
         #ランドを選択したときのカルーセル表示
         if park == "land":
             les = "les"
@@ -115,9 +124,10 @@ def handle_postback(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
                 )
             line_bot_api.push_message(userid, messages=land_carousel)
+            
 
         #シーを選択したときのカルーセル表示
-        if park == "sea":
+        elif park == "sea":
             les = "les"
             template = template_env.get_template('sea_theme.json')
             data = template.render(dict(items=les))
@@ -127,7 +137,8 @@ def handle_postback(event):
                 contents=CarouselContainer.new_from_json_dict(json.loads(data))
                 )
             line_bot_api.push_message(userid, messages=sea_carousel)
-    
+            
+    #カルーセルのボタンが押された後の処理
     if park == "land":
         for land_area in land_area_list:
             if post_data == land_area:
@@ -135,7 +146,31 @@ def handle_postback(event):
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
-    
+
+                #開園時間や天気などのリンク
+                info_url = "https://tokyodisneyresort.info/index.php?park=land"
+
+                #リッチメニューによるURLの変化
+                if genre == "アトラクション":
+                    target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
+
+                elif genre == "パレード/ショー":
+                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
+                
+                elif genre == "グリーティング":
+                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
+                
+                elif genre == "レストラン":
+                    target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+                
+                elif genre == "ガイドツアー":
+                    target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
+                
+                elif genre == "FP":
+                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
+
+
+    #カルーセルのボタンが押された後の処理
     elif park == "sea":
         for sea_area in sea_area_list:
             if post_data == sea_area:
@@ -143,9 +178,32 @@ def handle_postback(event):
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
+                
+                #開園時間や天気などのリンク
+                info_url = "https://tokyodisneyresort.info/index.php?park=sea"
+
+                #リッチメニューによるURLの変化
+                if genre == "アトラクション":
+                    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name" 
+
+                elif genre == "パレード/ショー":
+                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
+                
+                elif genre == "グリーティング":
+                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
+                
+                elif genre == "レストラン":
+                    target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
+                
+                elif genre == "ガイドツアー":
+                    target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
+                
+                elif genre == "FP":
+                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
 
     #開閉園、スクレイピング、レシート作成
-    situation = Set(park,area)
+    situation = Set(park,area,info_url)
 
     if situation == "open":
         print("open")
