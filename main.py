@@ -67,7 +67,7 @@ def handle_message(event):
     data = template.render(dict(items=les))
     button_message = FlexSendMessage(
         alt_text="テーマ選択",
-        contents=CarouselContainer.new_from_json_dict(json.loads(data))
+        contents=BubbleContainer.new_from_json_dict(json.loads(data))
         )
     line_bot_api.push_message(userid, messages=button_message)
 
