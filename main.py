@@ -58,8 +58,13 @@ area = "area"
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global genre
+    global park,genre,area
+    park = "park"
+    genre = "genre"
+    area = "area"
+
     text = event.message.text
+
 
     #最初とリセット時
     if text == "待ち時間":
