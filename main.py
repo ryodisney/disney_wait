@@ -30,6 +30,7 @@ template_env = Environment(
     autoescape=select_autoescape(['html', 'xml', 'json'])
 )
 
+
 @app.route("/")
 def hello_world():
     return "hello world!"
@@ -51,41 +52,67 @@ def callback():
 
     return 'OK'
 
-
-
 park = "park"
+genre = "genre"
 area = "area"
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global park
-    park = event.message.text
-    userid = event.source.user_id
+    global genre
+    text = event.message.text
 
-    if park == "待ち時間":
+    #最初とリセット時
+    if text == "待ち時間":
         les = "les"
         template = template_env.get_template('theme_select.json')
         data = template.render(dict(items=les))
-        button_message = FlexSendMessage(
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        FlexSendMessage(
             alt_text="テーマ選択",
             contents=BubbleContainer.new_from_json_dict(json.loads(data))
             )
-        line_bot_api.push_message(userid, messages=button_message)
-
+        )
     
+    else:
+        #リッチメニューが選択されたとき
+        richmenu_list = ["アトラクション","パレード/ショー","グリーティング","レストラン","ガイドツアー","FP"]
+
+        for richmenu in richmenu_list:
+            if text == richmenu:
+                genre = text
+    
+
+
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    global park,genre,area
+
+    post_data = event.postback.data
+    userid = event.source.user_id
+
+    area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド","メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
+
+    if post_data == "land" or post_data == "sea":
+        park = post_data
+    
+    else:
+        for area in area_list:
+            if post_data == area_list:
+                area = post_data
+
     #ランドを選択したときのカルーセル表示
     if park == "land":
         les = "les"
         template = template_env.get_template('land_theme.json')
         data = template.render(dict(items=les))
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
+        land_carousel = FlexSendMessage(
             alt_text="テーマランド",
             contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
-        )
+        line_bot_api.push_message(userid, messages=land_carousel)
 
     #シーを選択したときのカルーセル表示
     if park == "sea":
@@ -93,20 +120,11 @@ def handle_message(event):
         template = template_env.get_template('sea_theme.json')
         data = template.render(dict(items=les))
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        FlexSendMessage(
+        sea_carousel = FlexSendMessage(
             alt_text="テーマポート",
             contents=CarouselContainer.new_from_json_dict(json.loads(data))
             )
-        )
-
-
-@handler.add(PostbackEvent)
-def handle_postback(event):        
-    global park,area    
-    area = event.postback.data
-    userid = event.source.user_id
+        line_bot_api.push_message(userid, messages=sea_carousel)
 
     #ポストバック受け取り確認
     confirm_message = TextSendMessage(text="処理中です")

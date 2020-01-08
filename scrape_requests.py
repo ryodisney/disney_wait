@@ -128,10 +128,12 @@ def Set(park,area):
 
     #スクレイピングするサイトのURL
     if park == "land":
-        #待ち時間のリンク
-        target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name"
         #開園時間や天気などのリンク
         info_url = "https://tokyodisneyresort.info/index.php?park=land"
+        
+        #待ち時間のリンク
+        target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name"
+
         attraction_thisarea = Land_dict(area)
 
         

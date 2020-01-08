@@ -29,9 +29,9 @@
           "style": "link",
           "height": "sm",
           "action": {
-            "type": "message",
+            "type": "postback",
             "label": "ランド",
-            "text": "land"
+            "data": "land"
           }
         },
         {
@@ -39,9 +39,9 @@
           "style": "link",
           "height": "sm",
           "action": {
-            "type": "message",
+            "type": "postback",
             "label": "シー",
-            "text": "sea"
+            "data": "sea"
           }
         },
         {
