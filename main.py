@@ -131,9 +131,10 @@ def handle_postback(event):
     if park == "land":
         for area in land_area_list:
             print("ここまで来てる")
+            print(area)
             if post_data == area:
                 area = post_data
-                print(area)
+                print("ランド")
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
@@ -143,13 +144,12 @@ def handle_postback(event):
             print("ここまで来てる")
             if post_data == area:
                 area = post_data
-                print(area)
+                print("シー")
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
 
     #開閉園、スクレイピング、レシート作成
-    print(area)
     situation = Set(park,area)
 
     if situation == "open":
