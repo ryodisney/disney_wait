@@ -78,7 +78,6 @@ def handle_message(event):
                 contents=BubbleContainer.new_from_json_dict(json.loads(data))
                 )
             
-
         line_bot_api.push_message(userid, messages=select__theme_massage)   
     
     else:
@@ -89,7 +88,7 @@ def handle_message(event):
             if text == richmenu:
                 genre = text
                 select_list = ["待ち時間上位","エリア別"]
-                items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = {select})) for select in select_list]
+                items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
                 
                 quick_messages = TextSendMessage(text="どちらで表示しますか？",
                             quick_reply=QuickReply(items=items))
