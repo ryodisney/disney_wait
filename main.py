@@ -92,7 +92,8 @@ def handle_postback(event):
     post_data = event.postback.data
     userid = event.source.user_id
 
-    area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド","メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
+    land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
+    sea_area_list = ["メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
 
     if post_data == "land" or post_data == "sea":
         park = post_data
@@ -121,16 +122,25 @@ def handle_postback(event):
                 )
             line_bot_api.push_message(userid, messages=sea_carousel)
     
-    else:
-        for area in area_list:
+    if park == "land":
+        for area in land_area_list:
             print("ここまで来てる")
-            if post_data == area_list:
+            if post_data == area:
                 area = post_data
                 print(area)
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
-
+    
+    elif park == "sea":
+        for area in sea_area_list:
+            print("ここまで来てる")
+            if post_data == area:
+                area = post_data
+                print(area)
+                #ポストバック受け取り確認
+                confirm_message = TextSendMessage(text="処理中です")
+                line_bot_api.push_message(userid, messages=confirm_message)
 
     #開閉園、スクレイピング、レシート作成
     situation = Set(park,area)
