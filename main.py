@@ -87,13 +87,18 @@ def handle_message(event):
         for richmenu in richmenu_list:
             if text == richmenu:
                 genre = text
-                select_list = ["待ち時間上位","エリア別"]
-                items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
                 
-                quick_messages = TextSendMessage(text="どちらで表示しますか？",
-                            quick_reply=QuickReply(items=items))
+                if genre == "アトラクション":
+                    #quickreplyはjsonで書くこともできる（下記サイト）
+                    #https://developers.line.biz/ja/docs/messaging-api/using-quick-reply/
+                    select_list = ["待ち時間上位","エリア別"]
+                    items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
+                    
+                    quick_messages = TextSendMessage(text="どちらで表示しますか？",
+                                quick_reply=QuickReply(items=items))
 
-                line_bot_api.push_message(userid, messages=quick_messages)              
+                    line_bot_api.push_message(userid, messages=quick_messages)
+
                 
 
 
@@ -103,6 +108,7 @@ def handle_postback(event):
     area = ""
 
     post_data = event.postback.data
+    print(post_data)
     userid = event.source.user_id
 
     land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
@@ -110,7 +116,6 @@ def handle_postback(event):
 
     if post_data == "land" or post_data == "sea":
         park = post_data
-
 
         #ランドを選択したときのカルーセル表示
         if park == "land" and genre == "エリア別":
@@ -202,7 +207,7 @@ def handle_postback(event):
 
 
     #開閉園、スクレイピング、レシート作成
-    situation = Set(park,area,info_url)
+    situation = Set(park,area,info_url,target_url)
 
     if situation == "open":
         print("open")
