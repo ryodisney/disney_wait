@@ -55,6 +55,8 @@ def callback():
 park = "park"
 genre = "genre"
 area = "area"
+info_url = ""
+target_url = ""
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -107,10 +109,9 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    global park,genre,area
+    global park,genre,area,info_url,target_url
     area = ""
-    info_url = ""
-    target_url = ""
+
 
     post_data = event.postback.data
     userid = event.source.user_id
