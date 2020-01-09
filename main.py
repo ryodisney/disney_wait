@@ -96,7 +96,7 @@ def handle_message(event):
                 if genre == "アトラクション":
                     #quickreplyはjsonで書くこともできる（下記サイト）
                     #https://developers.line.biz/ja/docs/messaging-api/using-quick-reply/
-                    select_list = ["待ち時間上位","エリア別"]
+                    select_list = ["待ち時間TOP10","エリア別"]
                     items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
                     
                     quick_messages = TextSendMessage(text="どちらで表示しますか？",
