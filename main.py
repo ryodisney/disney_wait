@@ -128,6 +128,9 @@ def handle_postback(event):
     if post_data == "land" or post_data == "sea":
         park = post_data
 
+        park_message = TextSendMessage(text= str(park) + "を選択\nカテゴリを下のメニューから選択してください")
+        line_bot_api.push_message(userid, messages=park_message)
+
     #ランドを選択したときのカルーセル表示
     if park == "land" and genre == "エリア別":
         les = "les"
