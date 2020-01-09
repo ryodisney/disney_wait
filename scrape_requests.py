@@ -81,8 +81,8 @@ def Scrape_day(info_url):
 
     return business_hour_final
 
-#待ち時間取得
-def Scrape_data(soup):
+#待ち時間取得（エリア別）
+def Scrape_data_area(soup):
     attraction = []
     wait_time = []
 
@@ -99,6 +99,43 @@ def Scrape_data(soup):
         wait_time.append(wait_time_treat)
     
     return attraction,wait_time
+
+#待ち時間取得（待ち時間TOP10）
+def Scrape_data_top10(soup):
+    attraction = []
+    wait_time = []
+    counter = 0
+
+    attraction_finded = soup.find_all(class_ = "attr_name")
+    wait_time_finded = soup.find_all(class_ = "attr_wait")
+        
+    while counter < 10:
+        for attraction_temp,wait_time_temp in zip(attraction_finded,wait_time_finded):
+            attraction.append(attraction_temp.text.strip())
+            wait_time_treat = wait_time_temp.text.split("分")[0].strip()
+            #中身が数字なら「分」を追加
+            if wait_time_treat.isdecimal():
+                wait_time_treat += "分"
+            
+            wait_time.append(wait_time_treat)
+
+        counter += 1
+
+     
+    return attraction,wait_time
+
+def Scrare_data_show(soup):
+    show = []
+    wait_time = []
+
+    for show_temp in soup.find_all(class_ = "attr_name"):
+        show.append(show_temp.text.strip())
+
+    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
+        wait_time_treat = wait_time_temp.text.strip()
+        wait_time.append(wait_time_treat)
+
+    return show,wait_time
 
 def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
     
@@ -122,24 +159,9 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
     return info_thisarea
 
 #ここでのmain関数
-def Set(park,area,info_url,target_url):
+def Set(park,area,info_url,target_url,genre):
     #警告を消すため
     urllib3.disable_warnings()
-
-    #スクレイピングするサイトのURL
-    if park == "land":
-
-        #待ち時間のリンク
-        target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name"
-
-        attraction_thisarea = Land_dict(area)
-
-        
-    else:
-        target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
-
-        attraction_thisarea = Sea_dict(area)
-    
 
     #開園時間をチェック
     business_hour = Scrape_day(info_url)
@@ -153,13 +175,20 @@ def Set(park,area,info_url,target_url):
         html = requests.get(target_url,verify=False)
         soup = BeautifulSoup(html.content,'lxml')
 
-        attraction_all,wait_time_all = Scrape_data(soup)
-        info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
-        #print(attraction_thisarea,info_thisarea)
-        
-        for attraction,info in zip(attraction_thisarea,info_thisarea):
-            Send_area(area)
-            Make_jsonfile(attraction,info)
+        #エリア別
+        if genre == "エリア別":
+            attraction_all,wait_time_all = Scrape_data_area(soup)
+            info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
+            #print(attraction_thisarea,info_thisarea)
+            
+            for attraction,info in zip(attraction_thisarea,info_thisarea):
+                Send_area(area)
+                Make_jsonfile(attraction,info)
+
+        elif genre == "待ち時間TOP10":
+            attraction,wait_time = Scrape_data_top10(soup)
+            Send_area("待ち時間TOP10")
+            Make_jsonfile(attraction,wait_time)
 
         return "open"
 
@@ -167,15 +196,33 @@ def Set(park,area,info_url,target_url):
         #headers = {'User-Agent':'Mozilla/5.0'}
         html = requests.get(target_url,verify=False)
         soup = BeautifulSoup(html.content,'lxml')
-
-        attraction_all,wait_time_all = Scrape_data(soup)
-        info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
-        #print(attraction_thisarea,info_thisarea)
         
-        for attraction,info in zip(attraction_thisarea,info_thisarea):
-            Send_area(area)
-            Make_jsonfile(attraction,info)
-            print(attraction,info)
+
+        #エリア別
+        if genre == "エリア別":
+            if park == "land":
+                attraction_thisarea = Land_dict(area)
+                
+            elif park == "sea":
+                attraction_thisarea = Sea_dict(area)
+
+            attraction_all,wait_time_all = Scrape_data_area(soup)
+            info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
+            #print(attraction_thisarea,info_thisarea)
+            
+            for attraction,info in zip(attraction_thisarea,info_thisarea):
+                Send_area(area)
+                Make_jsonfile(attraction,info)
+
+        elif genre == "待ち時間TOP10":
+            attraction,wait_time = Scrape_data_top10(soup)
+            Send_area("待ち時間TOP10")
+            Make_jsonfile(attraction,wait_time)
+
+        elif genre == "パレード/ショー":
+            show,wait_time = Scrare_data_show(soup)
+            Send_area("パレード/ショー")
+            Make_jsonfile(show,wait_time)
     
         return "open"
 
@@ -186,8 +233,9 @@ def main():
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=sea"
     target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
+    genre = "待ち時間TOP10"
 
-    result = Set(park,area,info_url,target_url)
+    result = Set(park,area,info_url,target_url,genre)
     print(result)
 
 

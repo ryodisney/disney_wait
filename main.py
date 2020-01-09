@@ -115,7 +115,7 @@ def handle_postback(event):
     post_data = event.postback.data
     userid = event.source.user_id
 
-    if post_data == "エリア別" or "待ち時間上位":
+    if post_data == "エリア別" or "待ち時間TOP10":
         genre = post_data
 
     land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
@@ -127,8 +127,17 @@ def handle_postback(event):
 
     if post_data == "land" or post_data == "sea":
         park = post_data
+        if park == "land":
+            #開園時間や天気などのリンク
+            info_url = "https://tokyodisneyresort.info/index.php?park=land"
+            park_ja = "ランド"
+        
+        elif park == "sea":
+            #開園時間や天気などのリンク
+            info_url = "https://tokyodisneyresort.info/index.php?park=sea"
+            park_ja ="シー"
 
-        park_message = TextSendMessage(text= str(park) + "を選択\nカテゴリを下のメニューから選択してください")
+        park_message = TextSendMessage(text= str(park_ja) + "を選択しています\nカテゴリを下のメニューから\n選択してください")
         line_bot_api.push_message(userid, messages=park_message)
 
     #ランドを選択したときのカルーセル表示
@@ -157,7 +166,7 @@ def handle_postback(event):
         line_bot_api.push_message(userid, messages=sea_carousel)
             
     #カルーセルのボタンが押された後の処理
-    if park == "land":
+    if park == "land" and genre == "エリア別":
         for land_area in land_area_list:
             if post_data == land_area:
                 area = post_data
@@ -165,64 +174,70 @@ def handle_postback(event):
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
 
-                #開園時間や天気などのリンク
-                info_url = "https://tokyodisneyresort.info/index.php?park=land"
-
                 #リッチメニューによるURLの変化
-                if genre == "アトラクション":
+                if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
 
-                elif genre == "パレード/ショー":
-                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
-                
-                elif genre == "グリーティング":
-                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
-                
-                elif genre == "レストラン":
-                    target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
-                
-                elif genre == "ガイドツアー":
-                    target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
-                
-                elif genre == "FP":
-                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
+    #ランドでアトラクション以外が選択されたとき
+    if park == "land" and genre != "エリア別":
+        if genre == "待ち時間TOP10":
+            target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=wait"
+
+        elif genre == "パレード/ショー":
+            target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
+        
+        elif genre == "グリーティング":
+            target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
+        
+        elif genre == "レストラン":
+            target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+        
+        elif genre == "ガイドツアー":
+            target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
+        
+        elif genre == "FP":
+            target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
 
 
     #カルーセルのボタンが押された後の処理
-    elif park == "sea":
+    elif park == "sea" and genre == "エリア別":
         for sea_area in sea_area_list:
             if post_data == sea_area:
                 area = post_data
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
                 line_bot_api.push_message(userid, messages=confirm_message)
-                
-                #開園時間や天気などのリンク
-                info_url = "https://tokyodisneyresort.info/index.php?park=sea"
-
                 #リッチメニューによるURLの変化
-                if genre == "アトラクション":
-                    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name" 
+                if genre == "エリア別":
+                    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"                 
 
-                elif genre == "パレード/ショー":
-                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
-                
-                elif genre == "グリーティング":
-                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
-                
-                elif genre == "レストラン":
-                    target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
-                
-                elif genre == "ガイドツアー":
-                    target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
-                
-                elif genre == "FP":
-                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+    if park == "sea" and genre != "エリア別":
+        #リッチメニューによるURLの変化
+        if genre == "待ち時間TOP10":
+            target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait" 
 
-    situation = ""
+        elif genre == "パレード/ショー":
+            target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
+        
+        elif genre == "グリーティング":
+            target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
+        
+        elif genre == "レストラン":
+            target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
+        
+        elif genre == "ガイドツアー":
+            target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
+        
+        elif genre == "FP":
+            target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
+    
     if info_url != "":
         #開閉園、スクレイピング、レシート作成
-        situation = Set(park,area,info_url,target_url)
+        situation = Set(park,area,info_url,target_url,genre)
+    
+    else:
+        situation = ""
 
     if situation == "open":
         print("open")
