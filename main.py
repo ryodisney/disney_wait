@@ -64,7 +64,7 @@ def handle_message(event):
     userid = event.source.user_id
 
     #最初とリセット時
-    if text == "待ち時間":
+    if text == "ホーム":
         #初期化
         park = "park"
         genre = "genre"
