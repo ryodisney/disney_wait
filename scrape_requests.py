@@ -177,6 +177,12 @@ def Set(park,area,info_url,target_url,genre):
 
         #エリア別
         if genre == "エリア別":
+            if park == "land":
+                attraction_thisarea = Land_dict(area)
+                
+            elif park == "sea":
+                attraction_thisarea = Sea_dict(area)
+                
             attraction_all,wait_time_all = Scrape_data_area(soup)
             info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
             #print(attraction_thisarea,info_thisarea)
