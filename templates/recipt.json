@@ -157,6 +157,34 @@
                 "contents": [
                   {
                     "type": "text",
+                    "text": "ミッキー&フレンズ･グリーティングトレイル(ミッキーマウス)",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "55分",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
                     "text": "タワー・オブ・テラー",
                     "size": "sm",
                     "color": "#555555",
@@ -185,14 +213,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミッキー&フレンズ･グリーティングトレイル(ミッキーマウス)",
+                    "text": "アリエルグリーティング",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "50分",
+                    "text": "40分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -221,34 +249,6 @@
                   {
                     "type": "text",
                     "text": "40分",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "アリエルグリーティング",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "35分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
