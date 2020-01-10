@@ -184,9 +184,6 @@ def handle_postback(event):
                 if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
                 
-                    #ポストバック受け取り確認
-                    confirm_message = TextSendMessage(text="処理中です")
-                    line_bot_api.push_message(userid, messages=confirm_message) 
 
     #ランドでアトラクション以外が選択されたとき
     if park == "land" and genre != "エリア別":
@@ -219,9 +216,7 @@ def handle_postback(event):
                 if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"
 
-                    #ポストバック受け取り確認
-                    confirm_message = TextSendMessage(text="処理中です")
-                    line_bot_api.push_message(userid, messages=confirm_message)                 
+               
 
     if park == "sea" and genre != "エリア別":
         #リッチメニューによるURLの変化
