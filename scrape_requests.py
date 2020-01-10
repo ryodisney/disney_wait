@@ -129,7 +129,6 @@ def Scrape_data_top10(soup):
             break
 
     print(attraction,wait_time)
-
     
     return attraction,wait_time
 
@@ -196,15 +195,18 @@ def Set(park,area,info_url,target_url,genre):
             info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
             #print(attraction_thisarea,info_thisarea)
             
+            Send_area(area)
+
             for attraction,info in zip(attraction_thisarea,info_thisarea):
-                Send_area(area)
                 Make_jsonfile(attraction,info)
 
         elif genre == "待ち時間TOP10":
-            attraction,wait_time = Scrape_data_top10(soup)
+            attraction_pop,wait_time = Scrape_data_top10(soup)
             Send_area("待ち時間TOP10")
-            Make_jsonfile(attraction,wait_time)
-            print(attraction,wait_time)
+
+            for attraction,info in zip(attraction_pop,wait_time):
+                Make_jsonfile(attraction,info)
+            
 
         return "open"
 
