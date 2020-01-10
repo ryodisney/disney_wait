@@ -8,7 +8,13 @@ from datetime import datetime as dt
 import re
 import urllib3
 
-def Land_dict(area):
+def Land_pop_list():
+
+    pop_list = ["ウエスタンリバー鉄道","カリブの海賊","ジャングルクルーズ","カートゥーンスピン","スペース・マウンテン","バズ・ライトイヤー","モンスターズ・インク","ビッグサンダー","トレイル（デイジー）","トレイル（ドナルド）","スプラッシュ","空飛ぶダンボ","ピノキオの冒険旅行","ピーターパン","ハニーハント","ホーンテッドマンション","スモールワールド"]
+
+    return pop_list
+
+def Land_area_dict(area):
     dic = {}
     dic["ワールドバザール"] = ["オムニバス"]
     dic["アドベンチャーランド"] = ["ウエスタンリバー鉄道","カリブの海賊","ツリーハウス","魅惑のチキルーム","ジャングルクルーズ"]
@@ -22,7 +28,7 @@ def Land_dict(area):
 
     return attraction_area_extraction
 
-def Sea_dict(area):
+def Sea_area_dict(area):
     dic = {}
     dic["メディテレーニアンハーバー"] =["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン"]
     dic["アメリカンウォーターフロント"] = ["タワー・オブ・テラー","タートル・トーク","トイ・ストーリー・マニア！","ビッグシティ・ヴィークル","グリーティングプレイス","スチーマーライン","レールウェイ","ウォーターフロントパーク","ケープコッド・クックオフ横"]
@@ -119,14 +125,7 @@ def Scrape_data_top10(soup):
             #中身が数字なら「分」を追加
             if wait_time_treat.isdecimal():
                 wait_time_treat += "分"
-                wait_time.append(wait_time_treat)
-            elif wait_time == "":
-                wait_time.append("情報なし")
-            elif "案内終了" in wait_time:
-                wait_time.append("案内終了")
-            else:
-                wait_time.append(wait_time)
-            
+                wait_time.append(wait_time_treat)            
             counter += 1
         
         else:
@@ -167,6 +166,26 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                 
     return info_thisarea
 
+def Pop_extraction(attraction_pop_list,attraction_pop,wait_time):
+
+    info_pop = []
+
+    for attraction_goal in attraction_pop:
+        for attraction in attraction_pop_list:
+            if attraction_goal in attraction:
+
+                if "FP" in wait_time:
+                    wait_time = wait_time.strip("【FP：TICKETING_END】") 
+
+                if wait_time == "":
+                    info_pop.append("情報なし")
+                elif "案内終了" in wait_time:
+                    info_pop.append("案内終了")
+                else:
+                    info_pop.append(wait_time)
+    
+    return info_pop
+
 #ここでのmain関数
 def Set(park,area,info_url,target_url,genre):
     #警告を消すため
@@ -187,10 +206,10 @@ def Set(park,area,info_url,target_url,genre):
         #エリア別
         if genre == "エリア別":
             if park == "land":
-                attraction_thisarea = Land_dict(area)
+                attraction_thisarea = Land_area_dict(area)
                 
             elif park == "sea":
-                attraction_thisarea = Sea_dict(area)
+                attraction_thisarea = Sea_area_dict(area)
 
             attraction_all,wait_time_all = Scrape_data_area(soup)
             info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
@@ -202,10 +221,18 @@ def Set(park,area,info_url,target_url,genre):
                 Make_jsonfile(attraction,info)
 
         elif genre == "待ち時間TOP10":
+
+            if park == "land":
+                attraction_pop_list = Land_pop_list()
+                
+            elif park == "sea":
+                attraction_thisarea = Sea_area_dict(area)
+
             attraction_pop,wait_time = Scrape_data_top10(soup)
+            info_pop = Pop_extraction(attraction_pop_list,attraction_pop,wait_time)
             Send_area("待ち時間TOP10")
 
-            for attraction,info in zip(attraction_pop,wait_time):
+            for attraction,info in zip(attraction_pop,info_pop):
                 Make_jsonfile(attraction,info)
             
         return "open"

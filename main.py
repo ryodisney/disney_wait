@@ -57,10 +57,11 @@ genre = "genre"
 area = "area"
 info_url = ""
 target_url = ""
+counter = 0
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global park,genre,area
+    global park,genre,area,counter
 
     text = event.message.text
     userid = event.source.user_id
@@ -71,6 +72,7 @@ def handle_message(event):
         park = "park"
         genre = "genre"
         area = "area"
+        counter = 0
 
 
         les = "les"
@@ -109,7 +111,7 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    global park,genre,area,info_url,target_url
+    global park,genre,area,info_url,target_url,counter
     area = ""
 
 
@@ -143,28 +145,34 @@ def handle_postback(event):
 
     #ランドを選択したときのカルーセル表示
     if park == "land" and genre == "エリア別":
-        les = "les"
-        template = template_env.get_template('land_theme.json')
-        data = template.render(dict(items=les))
+        counter += 1
 
-        land_carousel = FlexSendMessage(
-            alt_text="テーマランド",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        line_bot_api.push_message(userid, messages=land_carousel)
+        if counter == 1:
+            les = "les"
+            template = template_env.get_template('land_theme.json')
+            data = template.render(dict(items=les))
+
+            land_carousel = FlexSendMessage(
+                alt_text="テーマランド",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+                )
+            line_bot_api.push_message(userid, messages=land_carousel)
         
 
     #シーを選択したときのカルーセル表示
     elif park == "sea" and genre == "エリア別":
-        les = "les"
-        template = template_env.get_template('sea_theme.json')
-        data = template.render(dict(items=les))
+        counter += 1
 
-        sea_carousel = FlexSendMessage(
-            alt_text="テーマポート",
-            contents=CarouselContainer.new_from_json_dict(json.loads(data))
-            )
-        line_bot_api.push_message(userid, messages=sea_carousel)
+        if counter == 1:
+            les = "les"
+            template = template_env.get_template('sea_theme.json')
+            data = template.render(dict(items=les))
+
+            sea_carousel = FlexSendMessage(
+                alt_text="テーマポート",
+                contents=CarouselContainer.new_from_json_dict(json.loads(data))
+                )
+            line_bot_api.push_message(userid, messages=sea_carousel)
             
     #カルーセルのボタンが押された後の処理
     if park == "land" and genre == "エリア別":
@@ -239,7 +247,7 @@ def handle_postback(event):
 
     if situation == "open":
         print("open")
-        
+
         #ポストバック受け取り確認
         confirm_message = TextSendMessage(text="処理中です")
         line_bot_api.push_message(userid, messages=confirm_message)
