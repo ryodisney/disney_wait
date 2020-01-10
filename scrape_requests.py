@@ -108,20 +108,29 @@ def Scrape_data_top10(soup):
 
     attraction_finded = soup.find_all(class_ = "attr_name")
     wait_time_finded = soup.find_all(class_ = "attr_wait")
-        
-    while counter < 10:
-        for attraction_temp,wait_time_temp in zip(attraction_finded,wait_time_finded):
+
+    for counter,(attraction_temp,wait_time_temp) in enumerate(zip(attraction_finded,wait_time_finded)):
+        if counter < 10:
             attraction.append(attraction_temp.text.strip())
-            wait_time_treat = wait_time_temp.text.split("分")[0].strip()
+            #temp2,3は\nと\tを削除するため
+            wait_time_temp2 = wait_time_temp.text.split("分")[0].strip()
+            wait_time_temp3 = wait_time_temp2.replace("\n","")
+            wait_time_treat = wait_time_temp3.replace("\t","")
+            
             #中身が数字なら「分」を追加
             if wait_time_treat.isdecimal():
                 wait_time_treat += "分"
             
             wait_time.append(wait_time_treat)
 
-        counter += 1
+            counter += 1
+        
+        else:
+            break
 
-     
+    print(attraction,wait_time)
+
+    
     return attraction,wait_time
 
 def Scrare_data_show(soup):
@@ -182,7 +191,7 @@ def Set(park,area,info_url,target_url,genre):
                 
             elif park == "sea":
                 attraction_thisarea = Sea_dict(area)
-                
+
             attraction_all,wait_time_all = Scrape_data_area(soup)
             info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
             #print(attraction_thisarea,info_thisarea)
@@ -195,6 +204,7 @@ def Set(park,area,info_url,target_url,genre):
             attraction,wait_time = Scrape_data_top10(soup)
             Send_area("待ち時間TOP10")
             Make_jsonfile(attraction,wait_time)
+            print(attraction,wait_time)
 
         return "open"
 
@@ -238,7 +248,7 @@ def main():
     area = "ロストリバーデルタ"
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=sea"
-    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea"
+    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait"
     genre = "待ち時間TOP10"
 
     result = Set(park,area,info_url,target_url,genre)
