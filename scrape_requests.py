@@ -28,6 +28,12 @@ def Land_area_dict(area):
 
     return attraction_area_extraction
 
+def Sea_pop_list():
+
+    pop_list = ["ヴェネツィアン・ゴンドラ","ディズニーシー･プラザ","タワー・オブ・テラー","タートル・トーク","トイ・ストーリー・マニア！","グリーティングプレイス","ウォーターフロントパーク","ケープコッド・クックオフ横","シーライダー","インディージョーンズ","レイジングスピリッツ","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)","マジックランプシアター","アラビアンコースト","アリエルグリーティング","ラグーンシアター","センター"]
+
+    return pop_list
+
 def Sea_area_dict(area):
     dic = {}
     dic["メディテレーニアンハーバー"] =["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン"]
@@ -116,7 +122,6 @@ def Scrape_data_top10(soup):
 
     for counter,(attraction_temp,wait_time_temp) in enumerate(zip(attraction_finded,wait_time_finded)):
         if counter < 10:
-            attraction.append(attraction_temp.text.strip())
             #temp2,3は\nと\tを削除するため
             wait_time_temp2 = wait_time_temp.text.split("分")[0].strip()
             wait_time_temp3 = wait_time_temp2.replace("\n","")
@@ -125,6 +130,8 @@ def Scrape_data_top10(soup):
             #中身が数字なら「分」を追加
             if wait_time_treat.isdecimal():
                 wait_time_treat += "分"
+                #ここでappend
+                attraction.append(attraction_temp.text.strip())
                 wait_time.append(wait_time_treat)            
             counter += 1
         
@@ -166,24 +173,23 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                 
     return info_thisarea
 
-def Pop_extraction(attraction_pop_list,attraction_pop,wait_time_pop):
+#表示のために名前を短くする関数
+def Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop):
 
+    attraction_pop_final = []
     info_pop = []
 
-    for attraction_goal in attraction_pop:
-        for attraction,wait_time in zip(attraction_pop_list,wait_time_pop):
+    for attraction_goal in attraction_pop_list:
+        for attraction,wait_time in zip(attraction_pop,wait_time_pop):
             if attraction_goal in attraction:
+
                 if "FP" in wait_time:
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
-                if wait_time == "":
-                    info_pop.append("情報なし")
-                elif "案内終了" in wait_time:
-                    info_pop.append("案内終了")
-                else:
-                    info_pop.append(wait_time)
+                info_pop.append(wait_time)
+                attraction_pop_final.append(attraction_goal)
     
-    return info_pop
+    return attraction_pop_final,info_pop
 
 #ここでのmain関数
 def Set(park,area,info_url,target_url,genre):
@@ -225,13 +231,14 @@ def Set(park,area,info_url,target_url,genre):
                 attraction_pop_list = Land_pop_list()
                 
             elif park == "sea":
-                attraction_thisarea = Sea_area_dict(area)
+                attraction_pop_list = Sea_pop_list()
 
             attraction_pop,wait_time_pop = Scrape_data_top10(soup)
-            info_pop = Pop_extraction(attraction_pop_list,attraction_pop,wait_time_pop)
+            attraction_pop_final,info_pop = Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop)
             Send_area("待ち時間TOP10")
 
-            for attraction,info in zip(attraction_pop,info_pop):
+
+            for attraction,info in zip(attraction_pop_final,info_pop):
                 Make_jsonfile(attraction,info)
             
         return "open"

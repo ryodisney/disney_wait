@@ -45,42 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ウォーターフロントパーク",
+                    "text": "タワー・オブ・テラー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "[[...], '120分', '110分', '80分', '65分', [...], '60分', '50分', '50分', '50分']",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ケープコッド・クックオフ横",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "120分",
+                    "text": "55分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -108,7 +80,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "110分",
+                    "text": "120分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -129,91 +101,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "センター・オブ・ジ・アース",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "80分",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "インディージョーンズ",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "65分",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ディズニーシー･プラザ",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "[[...], '120分', '110分', '80分', '65分', [...], '60分', '50分', '50分', '50分']",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ヴィレッジ・グリーティングプレイス",
+                    "text": "グリーティングプレイス",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -241,7 +129,35 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "“サルードス・アミーゴス!”グリーティングドック",
+                    "text": "インディージョーンズ",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "70分",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "トレイル(ミッキーマウス)",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -269,14 +185,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミッキー&フレンズ･グリーティングトレイル(ミッキーマウス)",
+                    "text": "アリエルグリーティング",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "50分",
+                    "text": "60分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -297,14 +213,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミッキー＆フレンズ・グリーティングトレイル（ミッキー）",
+                    "text": "センター",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "50分",
+                    "text": "70分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
