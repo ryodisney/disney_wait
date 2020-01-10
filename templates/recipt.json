@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "タワー・オブ・テラー",
+                    "text": "センター・オブ・ジ・アース",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "55分",
+                    "text": "110分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -80,7 +80,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "120分",
+                    "text": "110分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,14 +101,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "グリーティングプレイス",
+                    "text": "ヴィレッジ・グリーティングプレイス",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "60分",
+                    "text": "70分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -136,7 +136,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "70分",
+                    "text": "60分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -157,7 +157,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "トレイル(ミッキーマウス)",
+                    "text": "タワー・オブ・テラー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -185,14 +185,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "アリエルグリーティング",
+                    "text": "ミッキー&フレンズ･グリーティングトレイル(ミッキーマウス)",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "60分",
+                    "text": "50分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -213,14 +213,42 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "センター",
+                    "text": "“サルードス・アミーゴス!”グリーティングドック",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "70分",
+                    "text": "40分",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "アリエルグリーティング",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "35分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"

@@ -179,9 +179,9 @@ def Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop):
     attraction_pop_final = []
     info_pop = []
 
-    for attraction_goal in attraction_pop_list:
-        for attraction,wait_time in zip(attraction_pop,wait_time_pop):
-            if attraction_goal in attraction:
+    for attraction_goal,wait_time in zip(attraction_pop,wait_time_pop):
+        for attraction in attraction_pop_list:
+            if attraction in attraction_goal:
 
                 if "FP" in wait_time:
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
@@ -234,9 +234,11 @@ def Set(park,area,info_url,target_url,genre):
                 attraction_pop_list = Sea_pop_list()
 
             attraction_pop,wait_time_pop = Scrape_data_top10(soup)
+            print(attraction_pop)
             attraction_pop_final,info_pop = Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop)
+            print(attraction_pop_final)
+            
             Send_area("待ち時間TOP10")
-
 
             for attraction,info in zip(attraction_pop_final,info_pop):
                 Make_jsonfile(attraction,info)
