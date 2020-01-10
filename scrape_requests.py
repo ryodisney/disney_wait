@@ -166,12 +166,12 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                 
     return info_thisarea
 
-def Pop_extraction(attraction_pop_list,attraction_pop,wait_time):
+def Pop_extraction(attraction_pop_list,attraction_pop,wait_time_pop):
 
     info_pop = []
 
     for attraction_goal in attraction_pop:
-        for attraction in attraction_pop_list:
+        for attraction,wait_time,wait_time in zip(attraction_pop_list,wait_time_pop):
             if attraction_goal in attraction:
 
                 if "FP" in wait_time:
@@ -228,8 +228,8 @@ def Set(park,area,info_url,target_url,genre):
             elif park == "sea":
                 attraction_thisarea = Sea_area_dict(area)
 
-            attraction_pop,wait_time = Scrape_data_top10(soup)
-            info_pop = Pop_extraction(attraction_pop_list,attraction_pop,wait_time)
+            attraction_pop,wait_time_pop = Scrape_data_top10(soup)
+            info_pop = Pop_extraction(attraction_pop_list,attraction_pop,wait_time_pop)
             Send_area("待ち時間TOP10")
 
             for attraction,info in zip(attraction_pop,info_pop):
