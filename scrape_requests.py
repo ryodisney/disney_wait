@@ -104,7 +104,6 @@ def Scrape_data_area(soup):
 def Scrape_data_top10(soup):
     attraction = []
     wait_time = []
-    counter = 0
 
     attraction_finded = soup.find_all(class_ = "attr_name")
     wait_time_finded = soup.find_all(class_ = "attr_wait")
@@ -120,15 +119,18 @@ def Scrape_data_top10(soup):
             #中身が数字なら「分」を追加
             if wait_time_treat.isdecimal():
                 wait_time_treat += "分"
+                wait_time.append(wait_time_treat)
+            elif wait_time == "":
+                wait_time.append("情報なし")
+            elif "案内終了" in wait_time:
+                wait_time.append("案内終了")
+            else:
+                wait_time.append(wait_time)
             
-            wait_time.append(wait_time_treat)
-
             counter += 1
         
         else:
             break
-
-    print(attraction,wait_time)
     
     return attraction,wait_time
 
@@ -198,6 +200,7 @@ def Set(park,area,info_url,target_url,genre):
             Send_area(area)
 
             for attraction,info in zip(attraction_thisarea,info_thisarea):
+                print(genre,attraction)
                 Make_jsonfile(attraction,info)
 
         elif genre == "待ち時間TOP10":
@@ -205,9 +208,9 @@ def Set(park,area,info_url,target_url,genre):
             Send_area("待ち時間TOP10")
 
             for attraction,info in zip(attraction_pop,wait_time):
+                print(genre,attraction)
                 Make_jsonfile(attraction,info)
             
-
         return "open"
 
     else:
