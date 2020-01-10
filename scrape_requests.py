@@ -130,9 +130,8 @@ def Scrape_data_top10(soup):
             counter += 1
         
         else:
-            break
-    
-    return attraction,wait_time
+            return attraction,wait_time
+              
 
 def Scrare_data_show(soup):
     show = []
@@ -181,7 +180,7 @@ def Set(park,area,info_url,target_url,genre):
     Reset_jsonfile()
 
     #閉園中
-    if situation == "close":
+    if situation == "open":
         html = requests.get(target_url,verify=False)
         soup = BeautifulSoup(html.content,'lxml')
 
@@ -200,7 +199,6 @@ def Set(park,area,info_url,target_url,genre):
             Send_area(area)
 
             for attraction,info in zip(attraction_thisarea,info_thisarea):
-                print(genre,attraction)
                 Make_jsonfile(attraction,info)
 
         elif genre == "待ち時間TOP10":
@@ -208,44 +206,12 @@ def Set(park,area,info_url,target_url,genre):
             Send_area("待ち時間TOP10")
 
             for attraction,info in zip(attraction_pop,wait_time):
-                print(genre,attraction)
                 Make_jsonfile(attraction,info)
             
         return "open"
 
-    else:
-        #headers = {'User-Agent':'Mozilla/5.0'}
-        html = requests.get(target_url,verify=False)
-        soup = BeautifulSoup(html.content,'lxml')
-        
-
-        #エリア別
-        if genre == "エリア別":
-            if park == "land":
-                attraction_thisarea = Land_dict(area)
-                
-            elif park == "sea":
-                attraction_thisarea = Sea_dict(area)
-
-            attraction_all,wait_time_all = Scrape_data_area(soup)
-            info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
-            #print(attraction_thisarea,info_thisarea)
-            
-            for attraction,info in zip(attraction_thisarea,info_thisarea):
-                Send_area(area)
-                Make_jsonfile(attraction,info)
-
-        elif genre == "待ち時間TOP10":
-            attraction,wait_time = Scrape_data_top10(soup)
-            Send_area("待ち時間TOP10")
-            Make_jsonfile(attraction,wait_time)
-
-        elif genre == "パレード/ショー":
-            show,wait_time = Scrare_data_show(soup)
-            Send_area("パレード/ショー")
-            Make_jsonfile(show,wait_time)
-    
-        return "open"
+    else:    
+        return "close"
 
 def main():
     print("これはpythonのみ開発モード")

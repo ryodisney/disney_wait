@@ -205,9 +205,6 @@ def handle_postback(event):
         for sea_area in sea_area_list:
             if post_data == sea_area:
                 area = post_data
-                #ポストバック受け取り確認
-                confirm_message = TextSendMessage(text="処理中です")
-                line_bot_api.push_message(userid, messages=confirm_message)
                 #リッチメニューによるURLの変化
                 if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"                 
@@ -242,6 +239,10 @@ def handle_postback(event):
 
     if situation == "open":
         print("open")
+        
+        #ポストバック受け取り確認
+        confirm_message = TextSendMessage(text="処理中です")
+        line_bot_api.push_message(userid, messages=confirm_message)
 
         #レシート出力
         les = "les"
