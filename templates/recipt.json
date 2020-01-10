@@ -45,7 +45,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "センター・オブ・ジ・アース",
+                    "text": "センター",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -101,7 +101,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ヴィレッジ・グリーティングプレイス",
+                    "text": "グリーティングプレイス",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -157,14 +157,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミッキー&フレンズ･グリーティングトレイル(ミッキーマウス)",
+                    "text": "トレイル(ミッキーマウス)",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "55分",
+                    "text": "60分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -185,7 +185,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "タワー・オブ・テラー",
+                    "text": "フィッシュコースター",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
@@ -213,14 +213,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "アリエルグリーティング",
+                    "text": "タワー・オブ・テラー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "40分",
+                    "text": "45分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -241,7 +241,7 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "“サルードス・アミーゴス!”グリーティングドック",
+                    "text": "アリエルグリーティング",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0

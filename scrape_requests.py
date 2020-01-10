@@ -198,7 +198,7 @@ def Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop):
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
                 info_pop.append(wait_time)
-                attraction_pop_final.append(attraction_goal)
+                attraction_pop_final.append(attraction)
     
     return attraction_pop_final,info_pop
 
