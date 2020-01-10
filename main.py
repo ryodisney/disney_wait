@@ -239,6 +239,10 @@ def handle_postback(event):
 
     
     if info_url != "":
+        #ポストバック受け取り確認
+        confirm_message = TextSendMessage(text="処理中です")
+        line_bot_api.push_message(userid, messages=confirm_message)
+        
         #開閉園、スクレイピング、レシート作成
         situation = Set(park,area,info_url,target_url,genre)
     
@@ -248,9 +252,6 @@ def handle_postback(event):
     if situation == "open":
         print("open")
 
-        #ポストバック受け取り確認
-        confirm_message = TextSendMessage(text="処理中です")
-        line_bot_api.push_message(userid, messages=confirm_message)
 
         #レシート出力
         les = "les"

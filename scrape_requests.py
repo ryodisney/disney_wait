@@ -171,9 +171,8 @@ def Pop_extraction(attraction_pop_list,attraction_pop,wait_time_pop):
     info_pop = []
 
     for attraction_goal in attraction_pop:
-        for attraction,wait_time,wait_time in zip(attraction_pop_list,wait_time_pop):
+        for attraction,wait_time in zip(attraction_pop_list,wait_time_pop):
             if attraction_goal in attraction:
-
                 if "FP" in wait_time:
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
