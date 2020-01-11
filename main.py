@@ -110,14 +110,77 @@ def handle_message(event):
 
                     line_bot_api.push_message(userid, messages=quick_messages)
 
-                
+        if park == "land" and genre != "アトラクション":
+            if genre == "パレード/ショー":
+                target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
+            
+            elif genre == "グリーティング":
+                target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
+            
+            elif genre == "レストラン":
+                target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+            
+            elif genre == "ガイドツアー":
+                target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
+            
+            elif genre == "FP":
+                target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
+                    
 
+        elif park == "sea" and genre != "アトラクション":
+
+            if genre == "パレード/ショー":
+                target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
+            
+            elif genre == "グリーティング":
+                target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
+            
+            elif genre == "レストラン":
+                target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
+            
+            elif genre == "ガイドツアー":
+                target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
+            
+            elif genre == "FP":
+                target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
+
+        if info_url != "" and target_url != "":
+            #ポストバック受け取り確認
+            confirm_message = TextSendMessage(text="処理中です")
+            line_bot_api.push_message(userid, messages=confirm_message)
+
+            print("target = " + str(target_url))
+            #開閉園、スクレイピング、レシート作成
+            situation = Set(park,area,info_url,target_url,genre)
+
+        if situation == "open":
+            print("open")
+
+            #レシート出力
+            les = "les"
+            template = template_env.get_template('recipt.json')
+            data = template.render(dict(items=les))
+
+            line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text="items",
+                contents=BubbleContainer.new_from_json_dict(json.loads(data))
+                )
+            )
+
+        elif situation == "close":
+            print("close")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="閉園中です")
+                )
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
     global park,genre,area,info_url,target_url,counter
     area = ""
-
 
     post_data = event.postback.data
     userid = event.source.user_id
@@ -195,22 +258,6 @@ def handle_postback(event):
         if genre == "待ち時間TOP10":
             target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=wait"
 
-        elif genre == "パレード/ショー":
-            target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
-        
-        elif genre == "グリーティング":
-            target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
-        
-        elif genre == "レストラン":
-            target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
-        
-        elif genre == "ガイドツアー":
-            target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
-        
-        elif genre == "FP":
-            target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
-
-
     #カルーセルのボタンが押された後の処理
     elif park == "sea" and genre == "エリア別":
         for sea_area in sea_area_list:
@@ -228,20 +275,7 @@ def handle_postback(event):
         if genre == "待ち時間TOP10":
             target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait" 
 
-        elif genre == "パレード/ショー":
-            target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
-        
-        elif genre == "グリーティング":
-            target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
-        
-        elif genre == "レストラン":
-            target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
-        
-        elif genre == "ガイドツアー":
-            target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
-        
-        elif genre == "FP":
-            target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
 
     
     if info_url != "" and target_url != "":
