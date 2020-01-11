@@ -152,8 +152,7 @@ def handle_message(event):
 
             #開閉園、スクレイピング、レシート作成
             situation = Set(park,area,info_url,target_url,genre)
-            #テスト用!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-            situation = "open"
+            #テスト用!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 

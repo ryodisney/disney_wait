@@ -219,6 +219,7 @@ def Set(park,area,info_url,target_url,genre):
     #開園時間をチェック
     business_hour = Scrape_day(info_url)
     situation = Check_park(business_hour)
+    situation = "open"
 
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
