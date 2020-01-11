@@ -97,6 +97,7 @@ def handle_message(event):
         for richmenu in richmenu_list:
             if text == richmenu:
                 genre = text
+                print(genre)
                 
                 if genre == "アトラクション":
                     #quickreplyはjsonで書くこともできる（下記サイト）
