@@ -242,7 +242,7 @@ def handle_postback(event):
             target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
 
     
-    if info_url != "":
+    if info_url != "" and target_url != "":
         #ポストバック受け取り確認
         confirm_message = TextSendMessage(text="処理中です")
         line_bot_api.push_message(userid, messages=confirm_message)
