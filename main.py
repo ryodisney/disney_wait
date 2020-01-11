@@ -61,7 +61,7 @@ counter = 0
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global park,genre,area,counter
+    global park,genre,area,info_url,target_url,counter
 
     text = event.message.text
     userid = event.source.user_id
