@@ -65,6 +65,7 @@ def handle_message(event):
 
     text = event.message.text
     userid = event.source.user_id
+    print(text)
 
     #最初とリセット時
     if text == "ホーム":
