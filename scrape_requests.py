@@ -222,6 +222,7 @@ def Set(park,area,info_url,target_url,genre):
 
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
+    print(target_url)
 
     #開園中
     if situation == "open":
