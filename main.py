@@ -72,6 +72,8 @@ def handle_message(event):
         park = "park"
         genre = "genre"
         area = "area"
+        info_url = ""
+        target_url = ""
         counter = 0
 
 
@@ -184,6 +186,7 @@ def handle_postback(event):
                 if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
                 
+
 
     #ランドでアトラクション以外が選択されたとき
     if park == "land" and genre != "エリア別":
