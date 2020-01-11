@@ -8,6 +8,7 @@ from datetime import datetime as dt
 import re
 import urllib3
 
+#人気TOP10用リスト
 def Land_pop_list():
 
     pop_list = ["オムニバス","ウエスタンリバー鉄道","カリブの海賊","ツリーハウス","魅惑のチキルーム","ジャングルクルーズ",\
@@ -19,6 +20,7 @@ def Land_pop_list():
 
     return pop_list
 
+#エリア別用リスト
 def Land_area_dict(area):
     dic = {}
     dic["ワールドバザール"] = ["オムニバス"]
@@ -33,6 +35,7 @@ def Land_area_dict(area):
 
     return attraction_area_extraction
 
+#人気TOP10用リスト
 def Sea_pop_list():
 
     pop_list = ["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン",\
@@ -45,6 +48,7 @@ def Sea_pop_list():
 
     return pop_list
 
+#エリア別用リスト
 def Sea_area_dict(area):
     dic = {}
     dic["メディテレーニアンハーバー"] =["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン"]
@@ -149,20 +153,6 @@ def Scrape_data_top10(soup):
         else:
             return attraction,wait_time
               
-
-def Scrare_data_show(soup):
-    show = []
-    wait_time = []
-
-    for show_temp in soup.find_all(class_ = "attr_name"):
-        show.append(show_temp.text.strip())
-
-    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
-        wait_time_treat = wait_time_temp.text.strip()
-        wait_time.append(wait_time_treat)
-
-    return show,wait_time
-
 def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
     
     info_thisarea = []
@@ -201,6 +191,20 @@ def Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop):
                 attraction_pop_final.append(attraction)
     
     return attraction_pop_final,info_pop
+
+def Scrare_data_show(soup):
+    show = []
+    wait_time = []
+
+    for show_temp in soup.find_all(class_ = "attr_name"):
+        show.append(show_temp.text.strip())
+
+    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
+        wait_time_treat = wait_time_temp.text.strip()
+        wait_time.append(wait_time_treat)
+
+    return show,wait_time
+
 
 #ここでのmain関数
 def Set(park,area,info_url,target_url,genre):
@@ -255,7 +259,8 @@ def Set(park,area,info_url,target_url,genre):
                 Make_jsonfile(attraction,info)
             
         return "open"
-
+    
+    #閉園中
     else:    
         return "close"
 
