@@ -197,11 +197,16 @@ def Scrare_data_show(soup):
     wait_time = []
 
     for show_temp in soup.find_all(class_ = "attr_name"):
-        show.append(show_temp.text.strip())
+        show.append(show_temp.text.split("NEW")[0].strip())
 
     for wait_time_temp in soup.find_all(class_ = "attr_wait"):
-        wait_time_treat = wait_time_temp.text.strip()
-        wait_time.append(wait_time_treat)
+        if "事前予約制" in wait_time_temp.text:
+            wait_time.append("事前予約制")
+        else:
+            wait_time_temp2 = wait_time_temp.text.strip()
+            wait_time_temp3 = wait_time_temp2.replace("\xa0","")
+            wait_time_treat = wait_time_temp3.replace("&nbsp;","")
+            wait_time.append(wait_time_treat)
 
     return show,wait_time
 
@@ -218,11 +223,14 @@ def Set(park,area,info_url,target_url,genre):
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
-    #閉園中
+    #開園中
     if situation == "open":
         html = requests.get(target_url,verify=False)
         soup = BeautifulSoup(html.content,'lxml')
 
+        """
+        アトラクション
+        """
         #エリア別
         if genre == "エリア別":
             if park == "land":
@@ -257,7 +265,18 @@ def Set(park,area,info_url,target_url,genre):
 
             for attraction,info in zip(attraction_pop_final,info_pop):
                 Make_jsonfile(attraction,info)
+        
+        """
+        パレード/ショー
+        """
+        if genre == "パレード/ショー":
+            show,wait_time = Scrare_data_show(soup)
             
+            for show_name,show_info in zip(show,wait_time):
+                Make_jsonfile(show_name,show_info)
+            
+
+
         return "open"
     
     #閉園中
@@ -266,12 +285,12 @@ def Set(park,area,info_url,target_url,genre):
 
 def main():
     print("これはpythonのみ開発モード")
-    park = "sea"
-    area = "ロストリバーデルタ"
+    park = "land"
+    area = ""
     #開園時間や天気などのリンク
-    info_url = "https://tokyodisneyresort.info/index.php?park=sea"
-    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait"
-    genre = "待ち時間TOP10"
+    info_url = "https://tokyodisneyresort.info/index.php?park=land"
+    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
+    genre = "パレード/ショー"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)
