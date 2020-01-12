@@ -18,7 +18,7 @@
       },
       {
         "type": "text",
-        "text": "パレード/ショー",
+        "text": "FP",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミート・ミッキー",
+                    "text": "スプラッシュ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "75分",
+                    "text": "発券終了",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -73,14 +73,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "トレイル（ドナルド）",
+                    "text": "ビッグサンダー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "45分",
+                    "text": "発券終了",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,14 +101,126 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "トレイル（デイジー）",
+                    "text": "ハニーハント",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "40分",
+                    "text": "発券終了",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "モンスターズ・インク",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "発券終了",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "バズ・ライトイヤー",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "発券終了",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "スペース・マウンテン",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "発券終了",
+                    "size": "sm",
+                    "color": "#111111",
+                    "align": "end"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "スターツアーズ",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "発券終了",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"

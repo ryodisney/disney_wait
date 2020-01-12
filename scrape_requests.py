@@ -40,6 +40,12 @@ def Land_greating():
 
     return greating_list
 
+def Land_restaurant():
+    restaurant_list = ["クリスタルパレス","パン・ギャラクティック","チャイナボイジャー","れすとらん北斎","イーストサイド・カフェ","ブルーバイユー","ハングリーベア",\
+                        "グランマ・サラ","グットタイムカフェ","ウッドチャック","プラザパビリオン","トゥモローランド・テラス","センターストリート","クイーン・オブ・ハート","プラズマ・レイズ"]
+
+    return restaurant_list
+
 def Sea_greating():
     greating_list = ["グリーティングプレイス","アリエルグリーティング","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)",\
                     "ディズニーシー･プラザ","ウォーターフロントパーク","アラビアンコースト"]
@@ -74,6 +80,12 @@ def Sea_area_dict(area):
 
     return attraction_area_extraction
 
+def Sea_restaurant():
+    restaurant_list = ["ケープコッド・クックオフ","カスバ","ホライズンベイ","SSコロンビア","ニューヨーク・デリ","ミゲルズ・エルドラド",\
+                        "ディ・カナレット","カプリソキッチン","ルーズヴェルト・ラウンジ","ユカタン・ベースキャンプ","マゼランズ","ポルトフィーノ",\
+                            "レストラン櫻","ザンビーニ","ヴォルケイニア"]
+    
+    return restaurant_list
 
 #今が開園時間か確認
 def Check_park(business_hour):
@@ -245,17 +257,93 @@ def Greating_shortname(greating_list,greating,wait_time):
     greating_final = []
     info_greating = []
 
-    for greating_goal,wait_time in zip(greating,wait_time):
+    for greating_goal,wait_time_ind in zip(greating,wait_time):
         for greating_short in greating_list:
             if greating_short in greating_goal:
 
-                if "案内終了" in wait_time:
-                    wait_time = "案内終了"
+                if "案内終了" in wait_time_ind:
+                    wait_time_ind = "案内終了"
 
-                info_greating.append(wait_time)
+                info_greating.append(wait_time_ind)
                 greating_final.append(greating_short)
     
     return greating_final,info_greating
+
+def Scrare_data_restaurant(soup):
+    restaurant = []
+    wait_time = []
+
+    for restaurant_temp in soup.find_all(class_ = "attr_name"):
+        restaurant.append(restaurant_temp.text.split("NEW")[0].strip())
+
+    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
+        if "事前予約制" in wait_time_temp.text:
+            wait_time.append("事前予約制")
+        else:
+            wait_time_temp2 = wait_time_temp.text.strip()
+            wait_time_temp3 = wait_time_temp2.replace("\xa0","")
+            wait_time_treat = wait_time_temp3.replace("&nbsp;","")
+            wait_time.append(wait_time_treat)
+
+    return restaurant,wait_time
+
+#表示のために名前を短くする関数
+def Restaurant_shortname(restaurant_list,restaurant,wait_time):
+
+    restaurant_final = []
+    info_restaurant = []
+
+    for restaurant_goal,wait_time_ind in zip(restaurant,wait_time):
+        for restaurant_short in restaurant_list:
+            if restaurant_short in restaurant_goal:
+
+                if "案内終了" in wait_time_ind:
+                    wait_time_ind = "案内終了"
+                
+                #(なんとか味)って書いてるやつは全部消した
+                elif re.search(r'(.)',wait_time_ind):
+                    wait_time_ind = wait_time_ind.split("(")[0]
+
+                info_restaurant.append(wait_time_ind)
+                restaurant_final.append(restaurant_short)
+    
+    return restaurant_final,info_restaurant
+
+def Scrape_data_fp(soup):
+    fp = []
+    wait_time = []
+
+    for fp_temp in soup.find_all(class_ = "attr_name"):
+        fp.append(fp_temp.text.strip())
+
+        fptime_source = fp_temp.parent
+        wait_time_treat = fptime_source.text.split("分")[0].strip()
+        #中身が数字なら「分」を追加
+        if wait_time_treat.isdecimal():
+            wait_time_treat += "分"
+        
+        wait_time.append(wait_time_treat)
+    
+    return fp,wait_time
+
+#表示のために名前を短くする関数
+def Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp):
+
+    fp_final = []
+    info_fp = []
+
+    for fp_goal,wait_time_ind in zip(attraction_fp,wait_time_fp):
+        for fp_short in attraction_pop_list:
+            if fp_short in fp_goal:
+
+                if "発券終了" in wait_time_ind:
+                    wait_time_ind = "発券終了"
+                
+                info_fp.append(wait_time_ind)
+                fp_final.append(fp_short)
+    
+    return fp_final,info_fp
+
 
 #ここでのmain関数
 def Set(park,area,info_url,target_url,genre):
@@ -268,6 +356,8 @@ def Set(park,area,info_url,target_url,genre):
     
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
+
+    situation = "open"
 
     #開園中
     if situation == "open":
@@ -303,10 +393,9 @@ def Set(park,area,info_url,target_url,genre):
                 attraction_pop_list = Sea_pop_list()
 
             attraction_pop,wait_time_pop = Scrape_data_top10(soup)
-            print(attraction_pop)
+
             attraction_pop_final,info_pop = Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop)
-            print(attraction_pop_final)
-            
+
             Send_area("待ち時間TOP10")
 
             for attraction,info in zip(attraction_pop_final,info_pop):
@@ -333,10 +422,41 @@ def Set(park,area,info_url,target_url,genre):
             greating_final,wait_time_final = Greating_shortname(greating_list,greating,wait_time)
             
             Send_area("グリーティング")
-            print("ここまで来てる！")
             for greating_name,show_info in zip(greating_final,wait_time_final):
-                Make_jsonfile(greating_name,show_info)            
-        
+                Make_jsonfile(greating_name,show_info)         
+
+        elif genre == "レストラン":
+            if park == "land":
+                restaurant_list = Land_restaurant()
+                
+            elif park == "sea":
+                restaurant_list = Sea_restaurant()
+
+            restaurant,wait_time = Scrare_data_restaurant(soup)
+            restaurant_final,wait_time_final = Restaurant_shortname(restaurant_list,restaurant,wait_time)
+            
+            Send_area("レストラン")
+            for restaurant_name,show_info in zip(restaurant_final,wait_time_final):
+                Make_jsonfile(restaurant_name,show_info)
+
+        elif genre == "FP":
+            #リストは一緒なので使いまわす
+            if park == "land":
+                attraction_pop_list = Land_pop_list()
+                
+            elif park == "sea":
+                attraction_pop_list = Sea_pop_list()                           
+
+            attraction_fp,wait_time_fp = Scrape_data_fp(soup)
+            fp_final,wait_time_final = Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp)
+            #print(attraction_thisarea,info_thisarea)
+            
+            print(fp_final,wait_time_final)
+
+            Send_area("FP")
+            for fp_name,fp_info in zip(fp_final,wait_time_final):
+                Make_jsonfile(fp_name,fp_info)
+
             
         return "open"
     
@@ -350,8 +470,8 @@ def main():
     area = ""
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=land"
-    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
-    genre = "グリーティング"
+    target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
+    genre = "FP"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)
