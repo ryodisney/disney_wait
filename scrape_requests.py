@@ -322,7 +322,7 @@ def Set(park,area,info_url,target_url,genre):
             for show_name,show_info in zip(show,wait_time):
                 Make_jsonfile(show_name,show_info)
         
-        print(genre)
+        
         elif genre == "グリーティング":
             if park == "land":
                 greating_list = Land_greating()
