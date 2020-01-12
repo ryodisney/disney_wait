@@ -35,6 +35,17 @@ def Land_area_dict(area):
 
     return attraction_area_extraction
 
+def Land_greating():
+    greating_list = ["ミート・ミッキー","トレイル（デイジー）","トレイル（ドナルド）"]
+
+    return greating_list
+
+def Sea_greating():
+    greating_list = ["グリーティングプレイス","アリエルグリーティング","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)",\
+                    "ディズニーシー･プラザ","ウォーターフロントパーク","アラビアンコースト"]
+
+    return greating_list
+
 #人気TOP10用リスト
 def Sea_pop_list():
 
@@ -210,6 +221,41 @@ def Scrare_data_show(soup):
 
     return show,wait_time
 
+def Scrare_data_greating(soup):
+    show = []
+    wait_time = []
+
+    for show_temp in soup.find_all(class_ = "attr_name"):
+        show.append(show_temp.text.split("NEW")[0].strip())
+
+    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
+        if "事前予約制" in wait_time_temp.text:
+            wait_time.append("事前予約制")
+        else:
+            wait_time_temp2 = wait_time_temp.text.strip()
+            wait_time_temp3 = wait_time_temp2.replace("\xa0","")
+            wait_time_treat = wait_time_temp3.replace("&nbsp;","")
+            wait_time.append(wait_time_treat)
+
+    return show,wait_time
+
+#表示のために名前を短くする関数
+def Greating_shortname(greating_list,greating,wait_time):
+
+    greating_final = []
+    info_greating = []
+
+    for greating_goal,wait_time in zip(greating,wait_time):
+        for greating_short in greating_list:
+            if greating_short in greating_goal:
+
+                if "案内終了" in wait_time:
+                    wait_time = "案内終了"
+
+                info_greating.append(wait_time)
+                greating_final.append(greating_short)
+    
+    return greating_final,info_greating
 
 #ここでのmain関数
 def Set(park,area,info_url,target_url,genre):
@@ -219,10 +265,11 @@ def Set(park,area,info_url,target_url,genre):
     #開園時間をチェック
     business_hour = Scrape_day(info_url)
     situation = Check_park(business_hour)
-    situation = "open"
-
+    
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
+
+    situation = "open"
 
     #開園中
     if situation == "open":
@@ -268,16 +315,32 @@ def Set(park,area,info_url,target_url,genre):
                 Make_jsonfile(attraction,info)
         
         """
-        パレード/ショー
+        パレード/ショー,グリーティング,レストラン,FP
         """
         if genre == "パレード/ショー":
             show,wait_time = Scrare_data_show(soup)
+            Send_area("パレード/ショー")
             
             for show_name,show_info in zip(show,wait_time):
                 Make_jsonfile(show_name,show_info)
+        
+
+        elif genre == "グリーティング":
+            if park == "land":
+                greating_list = Land_greating()
+                
+            elif park == "sea":
+                greating_list = Sea_greating()
+
+            greating,wait_time = Scrare_data_greating(soup)
+            greating_final,wait_time_final = Greating_shortname(greating_list,greating,wait_time)
             
+            Send_area("パレード/ショー")
 
-
+            for greating_name,show_info in zip(greating,wait_time):
+                Make_jsonfile(greating_name,show_info)            
+        
+            
         return "open"
     
     #閉園中
@@ -290,8 +353,8 @@ def main():
     area = ""
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=land"
-    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
-    genre = "パレード/ショー"
+    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
+    genre = "グリーティング"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)
