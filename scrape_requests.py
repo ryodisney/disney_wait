@@ -269,8 +269,6 @@ def Set(park,area,info_url,target_url,genre):
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
-    situation = "open"
-
     #開園中
     if situation == "open":
         html = requests.get(target_url,verify=False)
@@ -324,7 +322,7 @@ def Set(park,area,info_url,target_url,genre):
             for show_name,show_info in zip(show,wait_time):
                 Make_jsonfile(show_name,show_info)
         
-
+        print(genre)
         elif genre == "グリーティング":
             if park == "land":
                 greating_list = Land_greating()
@@ -335,9 +333,9 @@ def Set(park,area,info_url,target_url,genre):
             greating,wait_time = Scrare_data_greating(soup)
             greating_final,wait_time_final = Greating_shortname(greating_list,greating,wait_time)
             
-            Send_area("パレード/ショー")
-
-            for greating_name,show_info in zip(greating,wait_time):
+            Send_area("グリーティング")
+            print("ここまで来てる！")
+            for greating_name,show_info in zip(greating_final,wait_time_final):
                 Make_jsonfile(greating_name,show_info)            
         
             

@@ -18,7 +18,7 @@
       },
       {
         "type": "text",
-        "text": "テーマ",
+        "text": "パレード/ショー",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ミッキーの家とミート・ミッキー",
+                    "text": "ミート・ミッキー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
+                    "text": "75分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -73,14 +73,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ウッドチャック・グリーティングトレイル（ドナルド）",
+                    "text": "トレイル（ドナルド）",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
+                    "text": "45分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,70 +101,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ウッドチャック・グリーティングトレイル（デイジー）",
+                    "text": "トレイル（デイジー）",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "メインエントランス(ベビーカー&車イス・レンタル側)",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "メインエントランス(メインストリート・ハウス側)",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "",
+                    "text": "40分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
