@@ -317,11 +317,9 @@ def Scrape_data_fp(soup):
         fp.append(fp_temp.text.strip())
 
         fptime_source = fp_temp.parent
-        wait_time_treat = fptime_source.text.split("分")[0].strip()
-        #中身が数字なら「分」を追加
-        if wait_time_treat.isdecimal():
-            wait_time_treat += "分"
-        
+        wait_time_temp2 = fptime_source.text.strip()
+        wait_time_temp3 = wait_time_temp2.replace("\n","")
+        wait_time_treat = wait_time_temp3.strip("")
         wait_time.append(wait_time_treat)
     
     return fp,wait_time
@@ -335,9 +333,15 @@ def Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp):
     for fp_goal,wait_time_ind in zip(attraction_fp,wait_time_fp):
         for fp_short in attraction_pop_list:
             if fp_short in fp_goal:
-
+                wait_time_ind = wait_time_ind.replace(fp_goal,"")
+                
                 if "発券終了" in wait_time_ind:
                     wait_time_ind = "発券終了"
+
+                elif re.search(r"〜",wait_time_ind):
+                    exact_temp = re.search(r"（.*〜.{5}）",wait_time_ind)
+                    wait_time_ind = exact_temp.group()
+
                 
                 info_fp.append(wait_time_ind)
                 fp_final.append(fp_short)
@@ -357,7 +361,6 @@ def Set(park,area,info_url,target_url,genre):
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
-    situation = "open"
 
     #開園中
     if situation == "open":

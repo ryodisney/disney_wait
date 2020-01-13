@@ -73,34 +73,6 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ビッグサンダー",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "発券終了",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
                     "text": "ハニーハント",
                     "size": "sm",
                     "color": "#555555",
@@ -220,7 +192,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "発券終了",
+                    "text": "（20:05〜21:05）",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
