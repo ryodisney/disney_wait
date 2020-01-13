@@ -339,7 +339,7 @@ def Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp):
                     wait_time_ind = "発券終了"
 
                 elif re.search(r"〜",wait_time_ind):
-                    exact_temp = re.search(r"（.*〜.{5}）",wait_time_ind)
+                    exact_temp = re.search(r".{5}〜.{5}",wait_time_ind)
                     wait_time_ind = exact_temp.group()
 
                 
