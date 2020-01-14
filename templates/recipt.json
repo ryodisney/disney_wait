@@ -18,7 +18,7 @@
       },
       {
         "type": "text",
-        "text": "グリーティング",
+        "text": "パレード/ショー",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "グリーティングプレイス",
+                    "text": "ファンタズミック！",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "40分",
+                    "text": "20:00",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -73,14 +73,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "アリエルグリーティング",
+                    "text": "ピクサー・プレイタイム・パルズ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
+                    "text": "10:30/13:00/15:00",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,14 +101,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "グリーティングドック",
+                    "text": "レミーの“誰でも名シェフ”",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "40分",
+                    "text": "11:30/14:15/16:10",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -129,14 +129,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "トレイル(ミニーマウス)",
+                    "text": "ハロー、ニューヨーク！",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "情報なし",
+                    "text": "11:40/13:10/15:20/16:50/18:20",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -157,14 +157,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "アラビアンコースト",
+                    "text": "マイ・フレンド・ダッフィー",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
+                    "text": "9:30-17:00",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -185,14 +185,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ディズニーシー･プラザ",
+                    "text": "ライトニング・マックィーン",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
+                    "text": "10:50/13:45/16:05",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -213,70 +213,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ウォーターフロントパーク",
+                    "text": "ソング・オブ・ミラージュ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "案内終了",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "トレイル(ミッキーマウス)",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "情報なし",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "トレイル(グーフィー)",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "情報なし",
+                    "text": "11:00/12:30/14:00/16:15/17:45",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"

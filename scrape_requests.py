@@ -35,6 +35,11 @@ def Land_area_dict(area):
 
     return attraction_area_extraction
 
+def Land_show():
+    show_list = ["ドリーミング・アップ！","エレクトリカルパレード","ジャンボリミッキー","ベリー・ミニー・リミックス","レッツパーティグラ！","イッツ・ベリー・ミニー！"]
+
+    return show_list
+
 def Land_greating():
     greating_list = ["ミート・ミッキー","トレイル（デイジー）","トレイル（ドナルド）"]
 
@@ -45,6 +50,11 @@ def Land_restaurant():
                         "グランマ・サラ","グットタイムカフェ","ウッドチャック","プラザパビリオン","トゥモローランド・テラス","センターストリート","クイーン・オブ・ハート","プラズマ・レイズ"]
 
     return restaurant_list
+
+def Sea_show():
+    show_list = ["ファンタズミック！","ピクサー・プレイタイム・パルズ","レミーの“誰でも名シェフ”","ハロー、ニューヨーク！","マイ・フレンド・ダッフィー","ライトニング・マックィーン","ソング・オブ・ミラージュ"]
+
+    return show_list
 
 def Sea_greating():
     greating_list = ["グリーティングプレイス","アリエルグリーティング","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)",\
@@ -233,17 +243,38 @@ def Scrare_data_show(soup):
 
     return show,wait_time
 
+#表示のために名前を短くする関数
+def Show_shortname(show_list,show,wait_time):
+
+    show_final = []
+    info_show = []
+
+    for show_goal,wait_time_ind in zip(show,wait_time):
+        for show_short in show_list:
+            if show_short in show_goal:
+
+                if "案内終了" in wait_time_ind:
+                    wait_time_ind = "案内終了"
+                elif wait_time_ind == "":
+                    wait_time_ind = "情報なし"
+
+                info_show.append(wait_time_ind)
+                show_final.append(show_short)
+    
+    return show_final,info_show
+
 def Scrare_data_greating(soup):
     show = []
     wait_time = []
 
-    for show_temp in soup.find_all(class_ = "attr_name"):
-        show.append(show_temp.text.split("NEW")[0].strip())
+    show_scrape = soup.find_all(class_ = "attr_name")
+    wait_time_scrape = soup.find_all(class_ = "attr_wait")
 
-    for wait_time_temp in soup.find_all(class_ = "attr_wait"):
+    for show_temp,wait_time_temp in zip(show_scrape,wait_time_scrape):
         if "事前予約制" in wait_time_temp.text:
-            wait_time.append("事前予約制")
+            continue
         else:
+            show.append(show_temp.text.split("NEW")[0].strip())
             wait_time_temp2 = wait_time_temp.text.strip()
             wait_time_temp3 = wait_time_temp2.replace("\xa0","")
             wait_time_treat = wait_time_temp3.replace("&nbsp;","")
@@ -420,10 +451,17 @@ def Set(park,area,info_url,target_url,genre):
         パレード/ショー,グリーティング,レストラン,FP
         """
         if genre == "パレード/ショー":
+            if park == "land":
+                show_list = Land_show()
+                
+            elif park == "sea":
+                show_list = Sea_show()
+
             show,wait_time = Scrare_data_show(soup)
+            show_final,wait_time_final = Show_shortname(show_list,show,wait_time)
             Send_area("パレード/ショー")
             
-            for show_name,show_info in zip(show,wait_time):
+            for show_name,show_info in zip(show_final,wait_time_final):
                 Make_jsonfile(show_name,show_info)
         
         elif genre == "グリーティング":
@@ -486,8 +524,8 @@ def main():
     area = ""
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=sea"
-    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
-    genre = "グリーティング"
+    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
+    genre = "パレード/ショー"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)
