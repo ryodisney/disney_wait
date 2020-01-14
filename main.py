@@ -227,7 +227,6 @@ def handle_postback(event):
     #シーを選択したときのカルーセル表示
     elif park == "sea" and genre == "エリア別":
         counter += 1
-        print("押してるよ！！！！！！")
         if counter == 1:
             les = "les"
             template = template_env.get_template('sea_theme.json')
@@ -299,7 +298,7 @@ def handle_postback(event):
         line_bot_api.reply_message(
         event.reply_token,
         FlexSendMessage(
-            alt_text="items",
+            alt_text="結果表示",
             contents=BubbleContainer.new_from_json_dict(json.loads(data))
             )
         )

@@ -199,11 +199,13 @@ def Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all):
                     wait_time = wait_time.strip("【FP：TICKETING_END】") 
 
                 if wait_time == "":
-                    info_thisarea.append("情報なし")
+                    wait_time = "情報なし"
                 elif "案内終了" in wait_time:
-                    info_thisarea.append("案内終了")
-                else:
-                    info_thisarea.append(wait_time)
+                    wait_time = "案内終了"
+                elif "運営・公演中止" in wait_time:
+                    wait_time = "休止中"
+                
+                info_thisarea.append(wait_time)
                 
     return info_thisarea
 
@@ -521,7 +523,7 @@ def Set(park,area,info_url,target_url,genre):
 def main():
     print("これはpythonのみ開発モード")
     park = "sea"
-    area = "メディテレーニアンハーバー"
+    area = "アメリカンウォーターフロント"
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=sea"
     target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"
