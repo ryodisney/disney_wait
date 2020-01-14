@@ -82,7 +82,7 @@ def Sea_area_dict(area):
 
 def Sea_restaurant():
     restaurant_list = ["ケープコッド・クックオフ","カスバ","ホライズンベイ","SSコロンビア","ニューヨーク・デリ","ミゲルズ・エルドラド",\
-                        "ディ・カナレット","カプリソキッチン","ルーズヴェルト・ラウンジ","ユカタン・ベースキャンプ","マゼランズ","ポルトフィーノ",\
+                        "リストランテ・ディ・カナレット","カプリソキッチン","ルーズヴェルト・ラウンジ","ユカタン・ベースキャンプ","ポルトフィーノ",\
                             "レストラン櫻","ザンビーニ","ヴォルケイニア"]
     
     return restaurant_list
@@ -283,6 +283,7 @@ def Scrare_data_restaurant(soup):
             wait_time_temp2 = wait_time_temp.text.strip()
             wait_time_temp3 = wait_time_temp2.replace("\xa0","")
             wait_time_treat = wait_time_temp3.replace("&nbsp;","")
+            
             wait_time.append(wait_time_treat)
 
     return restaurant,wait_time
@@ -294,18 +295,22 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
     info_restaurant = []
 
     for restaurant_goal,wait_time_ind in zip(restaurant,wait_time):
-        for restaurant_short in restaurant_list:
-            if restaurant_short in restaurant_goal:
-                
-                #(なんとか味)って書いてるやつは全部消した
-                if re.search(r'(.*味)',wait_time_ind):
-                    wait_time_ind = wait_time_ind.split(")")[1].strip()
-                
-                if wait_time_ind == "":
-                    wait_time_ind = "情報なし"
+        if restaurant_goal == "ケープコッド・クックオフ前":
+            continue
 
-                info_restaurant.append(wait_time_ind)
-                restaurant_final.append(restaurant_short)
+        else:
+            for restaurant_short in restaurant_list:
+                if restaurant_short in restaurant_goal:
+                    
+                    #(なんとか味)って書いてるやつは全部消した
+                    if re.search(r'(.*味)',wait_time_ind):
+                        wait_time_ind = wait_time_ind.split(")")[1].strip()
+                    
+                    if wait_time_ind == "":
+                        wait_time_ind = "情報なし"
+
+                    info_restaurant.append(wait_time_ind)
+                    restaurant_final.append(restaurant_short)
     
     return restaurant_final,info_restaurant
 
