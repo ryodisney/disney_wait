@@ -187,7 +187,7 @@ def handle_postback(event):
         genre = post_data
 
     land_area_list = ["ワールドバザール","アドベンチャーランド","ウエスタンランド","クリッターカントリー","トゥーンタウン","トゥモローランド"]
-    sea_area_list = ["メディテレニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
+    sea_area_list = ["メディテレーニアンハーバー","アメリカンウォーターフロント","ポートディスカバリー","ロストリバーデルタ","アラビアンコースト","マーメイドラグーン","ミステリアスアイランド"]
 
     print("park = " + str(park))
     print("genre = " + str(genre))
@@ -249,7 +249,6 @@ def handle_postback(event):
                 if genre == "エリア別":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
                 
-
 
     #ランドでアトラクション以外が選択されたとき
     if park == "land" and genre != "エリア別":

@@ -423,7 +423,7 @@ def Set(park,area,info_url,target_url,genre):
 
             attraction_all,wait_time_all = Scrape_data_area(soup)
             info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
-            #print(attraction_thisarea,info_thisarea)
+            print(attraction_thisarea,info_thisarea)
             
             Send_area(area)
 
@@ -521,11 +521,11 @@ def Set(park,area,info_url,target_url,genre):
 def main():
     print("これはpythonのみ開発モード")
     park = "sea"
-    area = ""
+    area = "メディテレーニアンハーバー"
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=sea"
-    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
-    genre = "パレード/ショー"
+    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"
+    genre = "エリア別"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)

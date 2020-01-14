@@ -18,7 +18,7 @@
       },
       {
         "type": "text",
-        "text": "パレード/ショー",
+        "text": "メディテレーニアンハーバー",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
@@ -45,14 +45,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ファンタズミック！",
+                    "text": "ヴェネツィアン・ゴンドラ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "20:00",
+                    "text": "15分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -73,14 +73,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ピクサー・プレイタイム・パルズ",
+                    "text": "エクスプロレーション",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "10:30/13:00/15:00",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -101,14 +101,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "レミーの“誰でも名シェフ”",
+                    "text": "ディズニーシー･プラザ",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "11:30/14:15/16:10",
+                    "text": "案内終了",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -129,98 +129,14 @@
                 "contents": [
                   {
                     "type": "text",
-                    "text": "ハロー、ニューヨーク！",
+                    "text": "スチーマーライン",
                     "size": "sm",
                     "color": "#555555",
                     "flex": 0
                   },
                   {
                     "type": "text",
-                    "text": "11:40/13:10/15:20/16:50/18:20",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "マイ・フレンド・ダッフィー",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "9:30-17:00",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ライトニング・マックィーン",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "10:50/13:45/16:05",
-                    "size": "sm",
-                    "color": "#111111",
-                    "align": "end"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "ソング・オブ・ミラージュ",
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                  },
-                  {
-                    "type": "text",
-                    "text": "11:00/12:30/14:00/16:15/17:45",
+                    "text": "10分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
