@@ -120,9 +120,6 @@ def handle_message(event):
             elif genre == "レストラン":
                 target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
             
-            elif genre == "ガイドツアー":
-                target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=land"
-            
             elif genre == "FP":
                 target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
                     
@@ -137,9 +134,6 @@ def handle_message(event):
             
             elif genre == "レストラン":
                 target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
-            
-            elif genre == "ガイドツアー":
-                target_url = "https://tokyodisneyresort.info/guideRealtime.php?park=sea"
             
             elif genre == "FP":
                 target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"

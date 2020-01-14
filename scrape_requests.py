@@ -56,7 +56,7 @@ def Sea_greating():
 def Sea_pop_list():
 
     pop_list = ["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン",\
-                "タワー・オブ・テラー","タートル・トーク","トイ・ストーリー・マニア！","ビッグシティ・ヴィークル","グリーティングプレイス","スチーマーライン","レールウェイ","ウォーターフロントパーク","ケープコッド・クックオフ横",\
+                "タワー・オブ・テラー","タートル・トーク","トイ・ストーリー","ビッグシティ・ヴィークル","グリーティングプレイス","スチーマーライン","レールウェイ","ウォーターフロントパーク","ケープコッド・クックオフ横",\
                 "アクアトピア","レールウェイ","シーライダー",\
                 "インディージョーンズ","スチーマーライン","レイジングスピリッツ","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)",\
                 "キャラバンカルーセル","シンドバット","フライングカーペット","マジックランプシアター","アラビアンコースト",\
@@ -69,7 +69,7 @@ def Sea_pop_list():
 def Sea_area_dict(area):
     dic = {}
     dic["メディテレーニアンハーバー"] =["ヴェネツィアン・ゴンドラ","エクスプロレーション","ディズニーシー･プラザ","スチーマーライン"]
-    dic["アメリカンウォーターフロント"] = ["タワー・オブ・テラー","タートル・トーク","トイ・ストーリー・マニア！","ビッグシティ・ヴィークル","グリーティングプレイス","スチーマーライン","レールウェイ","ウォーターフロントパーク","ケープコッド・クックオフ横"]
+    dic["アメリカンウォーターフロント"] = ["タワー・オブ・テラー","タートル・トーク","トイ・ストーリー","ビッグシティ・ヴィークル","グリーティングプレイス","スチーマーライン","レールウェイ","ウォーターフロントパーク","ケープコッド・クックオフ横"]
     dic["ポートディスカバリー"] = ["アクアトピア","レールウェイ","シーライダー"]
     dic["ロストリバーデルタ"] = ["インディージョーンズ","スチーマーライン","レイジングスピリッツ","グリーティングドック","トレイル(グーフィー)","トレイル(ミニーマウス)","トレイル(ミッキーマウス)"]
     dic["アラビアンコースト"] = ["キャラバンカルーセル","シンドバット","フライングカーペット","マジックランプシアター","アラビアンコースト"]
@@ -297,12 +297,13 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
         for restaurant_short in restaurant_list:
             if restaurant_short in restaurant_goal:
 
-                if "案内終了" in wait_time_ind:
-                    wait_time_ind = "案内終了"
+                if wait_time_ind == "":
+                    wait_time_ind = "情報なし"
                 
                 #(なんとか味)って書いてるやつは全部消した
-                elif re.search(r'(.)',wait_time_ind):
-                    wait_time_ind = wait_time_ind.split("(")[0]
+                elif re.search(r'(.*味)',wait_time_ind):
+                    wait_time_ind = wait_time_ind.split(")")[1].strip()
+                    print(wait_time_ind)
 
                 info_restaurant.append(wait_time_ind)
                 restaurant_final.append(restaurant_short)
@@ -361,6 +362,7 @@ def Set(park,area,info_url,target_url,genre):
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
+    situation = "open"
 
     #開園中
     if situation == "open":
@@ -437,6 +439,7 @@ def Set(park,area,info_url,target_url,genre):
 
             restaurant,wait_time = Scrare_data_restaurant(soup)
             restaurant_final,wait_time_final = Restaurant_shortname(restaurant_list,restaurant,wait_time)
+            print(restaurant_final,wait_time_final)
             
             Send_area("レストラン")
             for restaurant_name,show_info in zip(restaurant_final,wait_time_final):
@@ -473,8 +476,8 @@ def main():
     area = ""
     #開園時間や天気などのリンク
     info_url = "https://tokyodisneyresort.info/index.php?park=land"
-    target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
-    genre = "FP"
+    target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+    genre = "レストラン"
 
     result = Set(park,area,info_url,target_url,genre)
     print(result)
