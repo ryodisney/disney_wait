@@ -296,14 +296,13 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
     for restaurant_goal,wait_time_ind in zip(restaurant,wait_time):
         for restaurant_short in restaurant_list:
             if restaurant_short in restaurant_goal:
-
-                if wait_time_ind == "":
-                    wait_time_ind = "情報なし"
                 
                 #(なんとか味)って書いてるやつは全部消した
-                elif re.search(r'(.*味)',wait_time_ind):
+                if re.search(r'(.*味)',wait_time_ind):
                     wait_time_ind = wait_time_ind.split(")")[1].strip()
-                    print(wait_time_ind)
+                
+                if wait_time_ind == "":
+                    wait_time_ind = "情報なし"
 
                 info_restaurant.append(wait_time_ind)
                 restaurant_final.append(restaurant_short)
@@ -361,8 +360,6 @@ def Set(park,area,info_url,target_url,genre):
     
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
-
-    situation = "open"
 
     #開園中
     if situation == "open":

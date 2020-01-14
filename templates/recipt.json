@@ -52,7 +52,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "0分 ～ 20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -80,7 +80,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -136,7 +136,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "0分 ～ 20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -164,7 +164,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "0分 ～ 20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -220,7 +220,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -248,7 +248,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -276,7 +276,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -304,7 +304,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "0分 ～ 20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -332,7 +332,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -388,7 +388,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "情報なし",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
@@ -416,7 +416,7 @@
                   },
                   {
                     "type": "text",
-                    "text": "",
+                    "text": "0分 ～ 20分",
                     "size": "sm",
                     "color": "#111111",
                     "align": "end"
