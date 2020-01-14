@@ -295,7 +295,8 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
     info_restaurant = []
 
     for restaurant_goal,wait_time_ind in zip(restaurant,wait_time):
-        if restaurant_goal == "ケープコッド・クックオフ前":
+        print(restaurant_goal)
+        if "ケープコッド・クックオフ前" in restaurant_goal:
             continue
 
         else:
@@ -307,6 +308,9 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
                         wait_time_ind = wait_time_ind.split(")")[1].strip()
                     
                     if wait_time_ind == "":
+                        wait_time_ind = "情報なし"
+                    
+                    elif "施設でご確認" in wait_time_ind:
                         wait_time_ind = "情報なし"
 
                     info_restaurant.append(wait_time_ind)
@@ -474,11 +478,11 @@ def Set(park,area,info_url,target_url,genre):
 
 def main():
     print("これはpythonのみ開発モード")
-    park = "land"
+    park = "sea"
     area = ""
     #開園時間や天気などのリンク
-    info_url = "https://tokyodisneyresort.info/index.php?park=land"
-    target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+    info_url = "https://tokyodisneyresort.info/index.php?park=sea"
+    target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
     genre = "レストラン"
 
     result = Set(park,area,info_url,target_url,genre)
