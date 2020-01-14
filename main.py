@@ -91,6 +91,11 @@ def handle_message(event):
         line_bot_api.push_message(userid, messages=select__theme_massage)   
     
     else:
+        #初期化
+        genre = "genre"
+        area = "area"
+        target_url = ""
+        counter = 0
         #リッチメニューが選択されたとき
         richmenu_list = ["アトラクション","パレード/ショー","グリーティング","レストラン","ガイドツアー","FP"]
 
