@@ -402,126 +402,115 @@ def Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp):
 def Set(park,area,info_url,target_url,genre):
     #警告を消すため
     urllib3.disable_warnings()
-
-    #開園時間をチェック
-    business_hour = Scrape_day(info_url)
-    situation = Check_park(business_hour)
     
     #レシートのjsonファイルを初期化
     Reset_jsonfile()
 
-    #開園中
-    if situation == "open":
-        html = requests.get(target_url,verify=False)
-        soup = BeautifulSoup(html.content,'lxml')
+    html = requests.get(target_url,verify=False)
+    soup = BeautifulSoup(html.content,'lxml')
 
-        """
-        アトラクション
-        """
-        #エリア別
-        if genre == "エリア別":
-            if park == "land":
-                attraction_thisarea = Land_area_dict(area)
-                
-            elif park == "sea":
-                attraction_thisarea = Sea_area_dict(area)
-
-            attraction_all,wait_time_all = Scrape_data_area(soup)
-            info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
-            print(attraction_thisarea,info_thisarea)
+    """
+    アトラクション
+    """
+    #エリア別
+    if genre == "エリア別":
+        if park == "land":
+            attraction_thisarea = Land_area_dict(area)
             
-            Send_area(area)
+        elif park == "sea":
+            attraction_thisarea = Sea_area_dict(area)
 
-            for attraction,info in zip(attraction_thisarea,info_thisarea):
-                Make_jsonfile(attraction,info)
-
-        elif genre == "待ち時間TOP10":
-
-            if park == "land":
-                attraction_pop_list = Land_pop_list()
-                
-            elif park == "sea":
-                attraction_pop_list = Sea_pop_list()
-
-            attraction_pop,wait_time_pop = Scrape_data_top10(soup)
-
-            attraction_pop_final,info_pop = Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop)
-
-            Send_area("待ち時間TOP10")
-
-            for attraction,info in zip(attraction_pop_final,info_pop):
-                Make_jsonfile(attraction,info)
+        attraction_all,wait_time_all = Scrape_data_area(soup)
+        info_thisarea = Wait_time_extraction(attraction_thisarea,attraction_all,wait_time_all)
+        print(attraction_thisarea,info_thisarea)
         
-        """
-        パレード/ショー,グリーティング,レストラン,FP
-        """
-        if genre == "パレード/ショー":
-            if park == "land":
-                show_list = Land_show()
-                
-            elif park == "sea":
-                show_list = Sea_show()
+        Send_area(area)
 
-            show,wait_time = Scrare_data_show(soup)
-            show_final,wait_time_final = Show_shortname(show_list,show,wait_time)
-            Send_area("パレード/ショー")
+        for attraction,info in zip(attraction_thisarea,info_thisarea):
+            Make_jsonfile(attraction,info)
+
+    elif genre == "待ち時間TOP10":
+
+        if park == "land":
+            attraction_pop_list = Land_pop_list()
             
-            for show_name,show_info in zip(show_final,wait_time_final):
-                Make_jsonfile(show_name,show_info)
-        
-        elif genre == "グリーティング":
-            if park == "land":
-                greating_list = Land_greating()
-                
-            elif park == "sea":
-                greating_list = Sea_greating()
+        elif park == "sea":
+            attraction_pop_list = Sea_pop_list()
 
-            greating,wait_time = Scrare_data_greating(soup)
-            greating_final,wait_time_final = Greating_shortname(greating_list,greating,wait_time)
-            print(greating_final,wait_time_final)
-            
-            Send_area("グリーティング")
-            for greating_name,show_info in zip(greating_final,wait_time_final):
-                Make_jsonfile(greating_name,show_info)         
+        attraction_pop,wait_time_pop = Scrape_data_top10(soup)
 
-        elif genre == "レストラン":
-            if park == "land":
-                restaurant_list = Land_restaurant()
-                
-            elif park == "sea":
-                restaurant_list = Sea_restaurant()
+        attraction_pop_final,info_pop = Pop_shortname(attraction_pop_list,attraction_pop,wait_time_pop)
 
-            restaurant,wait_time = Scrare_data_restaurant(soup)
-            restaurant_final,wait_time_final = Restaurant_shortname(restaurant_list,restaurant,wait_time)
-            
-            Send_area("レストラン")
-            for restaurant_name,show_info in zip(restaurant_final,wait_time_final):
-                Make_jsonfile_restaurant(restaurant_name,show_info)
+        Send_area("待ち時間TOP10")
 
-        elif genre == "FP":
-            #リストは一緒なので使いまわす
-            if park == "land":
-                attraction_pop_list = Land_pop_list()
-                
-            elif park == "sea":
-                attraction_pop_list = Sea_pop_list()                           
-
-            attraction_fp,wait_time_fp = Scrape_data_fp(soup)
-            fp_final,wait_time_final = Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp)
-            #print(attraction_thisarea,info_thisarea)
-            
-            print(fp_final,wait_time_final)
-
-            Send_area("FP")
-            for fp_name,fp_info in zip(fp_final,wait_time_final):
-                Make_jsonfile(fp_name,fp_info)
-
-            
-        return "open"
+        for attraction,info in zip(attraction_pop_final,info_pop):
+            Make_jsonfile(attraction,info)
     
-    #閉園中
-    else:    
-        return "close"
+    """
+    パレード/ショー,グリーティング,レストラン,FP
+    """
+    if genre == "パレード/ショー":
+        if park == "land":
+            show_list = Land_show()
+            
+        elif park == "sea":
+            show_list = Sea_show()
+
+        show,wait_time = Scrare_data_show(soup)
+        show_final,wait_time_final = Show_shortname(show_list,show,wait_time)
+        Send_area("パレード/ショー")
+        
+        for show_name,show_info in zip(show_final,wait_time_final):
+            Make_jsonfile(show_name,show_info)
+    
+    elif genre == "グリーティング":
+        if park == "land":
+            greating_list = Land_greating()
+            
+        elif park == "sea":
+            greating_list = Sea_greating()
+
+        greating,wait_time = Scrare_data_greating(soup)
+        greating_final,wait_time_final = Greating_shortname(greating_list,greating,wait_time)
+        print(greating_final,wait_time_final)
+        
+        Send_area("グリーティング")
+        for greating_name,show_info in zip(greating_final,wait_time_final):
+            Make_jsonfile(greating_name,show_info)         
+
+    elif genre == "レストラン":
+        if park == "land":
+            restaurant_list = Land_restaurant()
+            
+        elif park == "sea":
+            restaurant_list = Sea_restaurant()
+
+        restaurant,wait_time = Scrare_data_restaurant(soup)
+        restaurant_final,wait_time_final = Restaurant_shortname(restaurant_list,restaurant,wait_time)
+        
+        Send_area("レストラン")
+        for restaurant_name,show_info in zip(restaurant_final,wait_time_final):
+            Make_jsonfile_restaurant(restaurant_name,show_info)
+
+    elif genre == "FP":
+        #リストは一緒なので使いまわす
+        if park == "land":
+            attraction_pop_list = Land_pop_list()
+            
+        elif park == "sea":
+            attraction_pop_list = Sea_pop_list()                           
+
+        attraction_fp,wait_time_fp = Scrape_data_fp(soup)
+        fp_final,wait_time_final = Fp_shortname(attraction_pop_list,attraction_fp,wait_time_fp)
+        #print(attraction_thisarea,info_thisarea)
+        
+        print(fp_final,wait_time_final)
+
+        Send_area("FP")
+        for fp_name,fp_info in zip(fp_final,wait_time_final):
+            Make_jsonfile(fp_name,fp_info)
+
+            
 
 def main():
     print("これはpythonのみ開発モード")

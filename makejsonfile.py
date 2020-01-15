@@ -25,7 +25,7 @@ def Make_jsonfile(attraction,info):
                     {
                         "type": "text",
                         "text": str(info),
-                        "size": "xs",
+                        "size": "md",
                         "color": "#111111",
                         "align": "end"
                     }
@@ -63,7 +63,7 @@ def Make_jsonfile_restaurant(attraction,info):
                     {
                         "type": "text",
                         "text": str(info),
-                        "size": "xs",
+                        "size": "md",
                         "color": "#111111",
                         "align": "end"
                     }
