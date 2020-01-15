@@ -163,7 +163,7 @@ def handle_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             FlexSendMessage(
-                alt_text="items",
+                alt_text="結果表示",
                 contents=BubbleContainer.new_from_json_dict(json.loads(data))
                 )
             )
