@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 import os,json,shutil
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from scrape_requests import Set
+from scrape_requests import Set, Scrape_day, Check_park
 
 
 from linebot import (
@@ -207,6 +207,18 @@ def handle_postback(event):
 
         park_message = TextSendMessage(text= str(park_ja) + "を選択しています\nカテゴリを下のメニューから\n選択してください")
         line_bot_api.push_message(userid, messages=park_message)
+
+        #開園時間をチェック
+        business_hour = Scrape_day(info_url)
+        situation = Check_park(business_hour)
+
+        if situation == "close":
+            print("close")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="閉園中です")
+                )
+        
 
     #ランドを選択したときのカルーセル表示
     if park == "land" and genre == "エリア別":
