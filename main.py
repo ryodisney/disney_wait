@@ -207,9 +207,6 @@ def handle_postback(event):
             info_url = "https://tokyodisneyresort.info/index.php?park=sea"
             park_ja ="シー"
 
-        park_message = TextSendMessage(text= str(park_ja) + "を選択しています\nカテゴリを下のメニューから\n選択してください")
-        line_bot_api.push_message(userid, messages=park_message)
-
         #開園時間をチェック
         business_hour = Scrape_day(info_url)
         situation = Check_park(business_hour)
@@ -220,6 +217,12 @@ def handle_postback(event):
                 event.reply_token,
                 TextSendMessage(text="閉園中です")
                 )
+                
+        elif situation == "open":
+            park_message = TextSendMessage(text= str(park_ja) + "を選択しています\nカテゴリを下のメニューから\n選択してください")
+            line_bot_api.push_message(userid, messages=park_message)
+
+
         
         elif situation == "open":
             #ランドを選択したときのカルーセル表示
