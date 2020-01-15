@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 from time import sleep
 import json
-from makejsonfile import Make_jsonfile,Send_area,Reset_jsonfile
+from makejsonfile import Make_jsonfile,Make_jsonfile_restaurant,Send_area,Reset_jsonfile
 from datetime import datetime as dt
 import re
 import urllib3
@@ -347,6 +347,9 @@ def Restaurant_shortname(restaurant_list,restaurant,wait_time):
                 
                 elif "施設でご確認" in wait_time_ind:
                     wait_time_ind = "情報なし"
+                
+                elif "運営・公演" in wait_time_ind:
+                    wait_time_ind = "休止中"
 
                 info_restaurant.append(wait_time_ind)
                 restaurant_final.append(restaurant_short)
@@ -493,7 +496,7 @@ def Set(park,area,info_url,target_url,genre):
             
             Send_area("レストラン")
             for restaurant_name,show_info in zip(restaurant_final,wait_time_final):
-                Make_jsonfile(restaurant_name,show_info)
+                Make_jsonfile_restaurant(restaurant_name,show_info)
 
         elif genre == "FP":
             #リストは一緒なので使いまわす

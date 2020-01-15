@@ -25,7 +25,45 @@ def Make_jsonfile(attraction,info):
                     {
                         "type": "text",
                         "text": str(info),
+                        "size": "xs",
+                        "color": "#111111",
+                        "align": "end"
+                    }
+                    ]
+                }
+            ]
+        }
+
+    json_object["body"]["contents"][3]["contents"].append(new)
+
+    new_json_file = open('templates/recipt.json', 'w',encoding="utf-8")
+    json.dump(json_object, new_json_file, indent=2,ensure_ascii=False)
+
+def Make_jsonfile_restaurant(attraction,info):
+    json_file = open('templates/recipt.json', 'r',encoding="utf-8-sig")
+    json_object = json.load(json_file)
+
+    new =   {
+                "type": "box",
+                "layout": "vertical",
+                "margin": "xxl",
+                "spacing": "sm",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": str(attraction),
                         "size": "sm",
+                        "color": "#555555",
+                        "flex": 0
+                    },
+                    {
+                        "type": "text",
+                        "text": str(info),
+                        "size": "xs",
                         "color": "#111111",
                         "align": "end"
                     }
