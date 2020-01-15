@@ -101,81 +101,81 @@ def handle_message(event):
         #リッチメニューが選択されたとき
         richmenu_list = ["アトラクション","パレード/ショー","グリーティング","レストラン","ガイドツアー","FP"]
 
-        for richmenu in richmenu_list:
-            if text == richmenu:
-                genre = text
-                print(genre)
-                
-                if genre == "アトラクション":
-                    #quickreplyはjsonで書くこともできる（下記サイト）
-                    #https://developers.line.biz/ja/docs/messaging-api/using-quick-reply/
-                    select_list = ["待ち時間TOP10","エリア別"]
-                    items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
-                    
-                    quick_messages = TextSendMessage(text="どちらで表示しますか？",
-                                quick_reply=QuickReply(items=items))
-
-                    line_bot_api.push_message(userid, messages=quick_messages)
-
-        if park == "land" and genre != "アトラクション":
-            if genre == "パレード/ショー":
-                target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
-            
-            elif genre == "グリーティング":
-                target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
-            
-            elif genre == "レストラン":
-                target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
-            
-            elif genre == "FP":
-                target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
-                    
-
-        elif park == "sea" and genre != "アトラクション":
-
-            if genre == "パレード/ショー":
-                target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
-            
-            elif genre == "グリーティング":
-                target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
-            
-            elif genre == "レストラン":
-                target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
-            
-            elif genre == "FP":
-                target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
-
-
-        if info_url != "" and target_url != "":
-            #ポストバック受け取り確認
-            confirm_message = TextSendMessage(text="処理中です")
-            line_bot_api.push_message(userid, messages=confirm_message)
-
-            #開閉園、スクレイピング、レシート作成
-            Set(park,area,info_url,target_url,genre)
-
-        if situation == "open":
-            print("open")
-
-            #レシート出力
-            les = "les"
-            template = template_env.get_template('recipt.json')
-            data = template.render(dict(items=les))
-
-            line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                alt_text="結果表示",
-                contents=BubbleContainer.new_from_json_dict(json.loads(data))
-                )
-            )
-
-        elif situation == "close":
+        if situation == "close":
             print("close")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="閉園中です")
                 )
+                
+        elif situation == "open":
+            for richmenu in richmenu_list:
+                if text == richmenu:
+                    genre = text
+                    print(genre)
+                    
+                    if genre == "アトラクション":
+                        #quickreplyはjsonで書くこともできる（下記サイト）
+                        #https://developers.line.biz/ja/docs/messaging-api/using-quick-reply/
+                        select_list = ["待ち時間TOP10","エリア別"]
+                        items = [QuickReplyButton(action=PostbackAction(label=f"{select}",data = f"{select}")) for select in select_list]
+                        
+                        quick_messages = TextSendMessage(text="どちらで表示しますか？",
+                                    quick_reply=QuickReply(items=items))
+
+                        line_bot_api.push_message(userid, messages=quick_messages)
+
+            if park == "land" and genre != "アトラクション":
+                if genre == "パレード/ショー":
+                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=land"
+                
+                elif genre == "グリーティング":
+                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=land"
+                
+                elif genre == "レストラン":
+                    target_url = "https://tokyodisneyresort.info/restwait.php?park=land"
+                
+                elif genre == "FP":
+                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=land"
+                        
+
+            elif park == "sea" and genre != "アトラクション":
+
+                if genre == "パレード/ショー":
+                    target_url = "https://tokyodisneyresort.info/showSchedule.php?park=sea"
+                
+                elif genre == "グリーティング":
+                    target_url = "https://tokyodisneyresort.info/greeting_realtime.php?park=sea"
+                
+                elif genre == "レストラン":
+                    target_url = "https://tokyodisneyresort.info/restwait.php?park=sea"
+                
+                elif genre == "FP":
+                    target_url = "https://tokyodisneyresort.info/fastpass.php?park=sea"
+
+
+            if info_url != "" and target_url != "":
+                #ポストバック受け取り確認
+                confirm_message = TextSendMessage(text="処理中です")
+                line_bot_api.push_message(userid, messages=confirm_message)
+
+                #開閉園、スクレイピング、レシート作成
+                Set(park,area,info_url,target_url,genre)
+
+                #レシート出力
+                les = "les"
+                template = template_env.get_template('recipt.json')
+                data = template.render(dict(items=les))
+
+                line_bot_api.reply_message(
+                event.reply_token,
+                FlexSendMessage(
+                    alt_text="結果表示",
+                    contents=BubbleContainer.new_from_json_dict(json.loads(data))
+                    )
+                )
+
+
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
