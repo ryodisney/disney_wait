@@ -461,7 +461,7 @@ def Set(park,area,info_url,target_url,genre):
         Send_area("パレード/ショー")
         
         for show_name,show_info in zip(show_final,wait_time_final):
-            Make_jsonfile(show_name,show_info)
+            Make_jsonfile_restaurant(show_name,show_info)
     
     elif genre == "グリーティング":
         if park == "land":
