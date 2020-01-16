@@ -224,91 +224,91 @@ def handle_postback(event):
 
 
         
-        elif situation == "open":
-            #ランドを選択したときのカルーセル表示
-            if park == "land" and genre == "エリア別":
-                counter += 1
+    if situation == "open":
+        #ランドを選択したときのカルーセル表示
+        if park == "land" and genre == "エリア別":
+            counter += 1
 
-                if counter == 1:
-                    les = "les"
-                    template = template_env.get_template('land_theme.json')
-                    data = template.render(dict(items=les))
-
-                    land_carousel = FlexSendMessage(
-                        alt_text="テーマランド",
-                        contents=CarouselContainer.new_from_json_dict(json.loads(data))
-                        )
-                    line_bot_api.push_message(userid, messages=land_carousel)
-                
-
-            #シーを選択したときのカルーセル表示
-            elif park == "sea" and genre == "エリア別":
-                counter += 1
-                if counter == 1:
-                    les = "les"
-                    template = template_env.get_template('sea_theme.json')
-                    data = template.render(dict(items=les))
-
-                    sea_carousel = FlexSendMessage(
-                        alt_text="テーマポート",
-                        contents=CarouselContainer.new_from_json_dict(json.loads(data))
-                        )
-                    line_bot_api.push_message(userid, messages=sea_carousel)
-                    
-            #カルーセルのボタンが押された後の処理
-            if park == "land" and genre == "エリア別":
-                for land_area in land_area_list:
-                    if post_data == land_area:
-                        area = post_data
-
-                        #リッチメニューによるURLの変化
-                        if genre == "エリア別":
-                            target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
-                        
-
-            if park == "land" and genre != "エリア別":
-                print("ここまで来てる")
-                if genre == "待ち時間TOP10":
-                    target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=wait"
-
-            #カルーセルのボタンが押された後の処理
-            elif park == "sea" and genre == "エリア別":
-                for sea_area in sea_area_list:
-                    if post_data == sea_area:
-                        area = post_data
-                        
-                        #リッチメニューによるURLの変化
-                        if genre == "エリア別":
-                            target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"
-
-                    
-            if park == "sea" and genre != "エリア別":
-                print("ここまで来てる")
-                if genre == "待ち時間TOP10":
-                    target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait" 
-
-
-            if info_url != "" and target_url != "":
-                #ポストバック受け取り確認
-                confirm_message = TextSendMessage(text="処理中です")
-                line_bot_api.push_message(userid, messages=confirm_message)
-
-                print("target = " + str(target_url))
-                #開閉園、スクレイピング、レシート作成
-                Set(park,area,info_url,target_url,genre)
-            
-                #レシート出力
+            if counter == 1:
                 les = "les"
-                template = template_env.get_template('recipt.json')
+                template = template_env.get_template('land_theme.json')
                 data = template.render(dict(items=les))
 
-                line_bot_api.reply_message(
-                event.reply_token,
-                FlexSendMessage(
-                    alt_text="結果表示",
-                    contents=BubbleContainer.new_from_json_dict(json.loads(data))
+                land_carousel = FlexSendMessage(
+                    alt_text="テーマランド",
+                    contents=CarouselContainer.new_from_json_dict(json.loads(data))
                     )
+                line_bot_api.push_message(userid, messages=land_carousel)
+            
+
+        #シーを選択したときのカルーセル表示
+        elif park == "sea" and genre == "エリア別":
+            counter += 1
+            if counter == 1:
+                les = "les"
+                template = template_env.get_template('sea_theme.json')
+                data = template.render(dict(items=les))
+
+                sea_carousel = FlexSendMessage(
+                    alt_text="テーマポート",
+                    contents=CarouselContainer.new_from_json_dict(json.loads(data))
+                    )
+                line_bot_api.push_message(userid, messages=sea_carousel)
+                
+        #カルーセルのボタンが押された後の処理
+        if park == "land" and genre == "エリア別":
+            for land_area in land_area_list:
+                if post_data == land_area:
+                    area = post_data
+
+                    #リッチメニューによるURLの変化
+                    if genre == "エリア別":
+                        target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=area_name" 
+                    
+
+        if park == "land" and genre != "エリア別":
+            print("ここまで来てる")
+            if genre == "待ち時間TOP10":
+                target_url = "https://tokyodisneyresort.info/realtime.php?park=land&order=wait"
+
+        #カルーセルのボタンが押された後の処理
+        elif park == "sea" and genre == "エリア別":
+            for sea_area in sea_area_list:
+                if post_data == sea_area:
+                    area = post_data
+                    
+                    #リッチメニューによるURLの変化
+                    if genre == "エリア別":
+                        target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=area_name"
+
+                
+        if park == "sea" and genre != "エリア別":
+            print("ここまで来てる")
+            if genre == "待ち時間TOP10":
+                target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait" 
+
+
+        if info_url != "" and target_url != "":
+            #ポストバック受け取り確認
+            confirm_message = TextSendMessage(text="処理中です")
+            line_bot_api.push_message(userid, messages=confirm_message)
+
+            print("target = " + str(target_url))
+            #開閉園、スクレイピング、レシート作成
+            Set(park,area,info_url,target_url,genre)
+        
+            #レシート出力
+            les = "les"
+            template = template_env.get_template('recipt.json')
+            data = template.render(dict(items=les))
+
+            line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text="結果表示",
+                contents=BubbleContainer.new_from_json_dict(json.loads(data))
                 )
+            )
 
 
 if __name__ == "__main__":
