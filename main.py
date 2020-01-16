@@ -288,7 +288,7 @@ def handle_postback(event):
                 if genre == "待ち時間TOP10":
                     target_url = "https://tokyodisneyresort.info/realtime.php?park=sea&order=wait" 
 
-
+            print(info_url,target_url)
             if info_url != "" and target_url != "":
                 #ポストバック受け取り確認
                 confirm_message = TextSendMessage(text="処理中です")
